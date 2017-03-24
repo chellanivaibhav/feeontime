@@ -52,6 +52,14 @@ var MyDrawer = React.createClass({
 	render: function() {
 
 		  const styles = {	  	
+		  	appbarstyleactive:
+		  	{
+		  		'border-bottom-width':'2px',
+		  		'border-bottom-style':'solid',
+		    	backgroundColor: '#4688C7',
+		    	color: 'white',
+		    	'font-size': '110%'
+		  	},
 		  	appbarstyle:
 		  	{
 		    	backgroundColor: '#4688C7',
@@ -75,7 +83,7 @@ var MyDrawer = React.createClass({
 			  <AppBar title={<img src={logo} style={styles.logostyle} />} onLeftIconButtonTouchTap={this.handleToggle} style={styles.appbarstyle}>
 			   <Toolbar style={styles.appbarstyle}>
 			   <ToolbarGroup>
-			   <FlatButton style={styles.appbarstyle}>Pay Fees Here</FlatButton>
+			   <FlatButton style={styles.appbarstyleactive}>Pay Fees Here</FlatButton>
 			   <FlatButton style={styles.appbarstyle}>Daily Needs</FlatButton>
 			   <FlatButton style={styles.appbarstyle}>Shop Online</FlatButton>
 			   <FlatButton style={styles.appbarstyle}>Offers</FlatButton>
@@ -601,10 +609,33 @@ var Playschool = React.createClass({
 				'font-size': '2em'
 			},
 
+			floatingLabelFocusStyle: {
+				color: '#4688C7',
+			},
+
+			underlineFocusStyle: {
+				borderColor: '#4688C7'
+			},
+
+			textfieldstyle: {
+				background:'#dbe8f4'
+			},
+
+			formstyle: {
+				'padding-left':'5%',
+				'padding-right':'5%',
+				'padding-bottom':'2%',
+				'margin-bottom':'3%',
+				border:'5px solid #aecbe6',
+				'background-color': '#dbe8f4',
+				width:'90%'
+			},
+
 			proceed: {
 				
 				background: '#4688C7',
-				width:"100%"
+				width:"100%",
+				'font-size':'1.5em'
 			}
 
 		}
@@ -614,38 +645,36 @@ var Playschool = React.createClass({
 				<Grid bsClass="container-fluid">
 					<Row style={styles.row}>
 						<Col xs="12" md="8" style={styles.content}>
-						<Grid bsClass="container-fluid">
-						<Row style={styles.row}>
+						<Grid bsClass="container-fluid" style={styles.formstyle}>
+						<Row style={styles.row}  style={styles.textfieldstyle}>
 							<Col xs="12" md="6">
 								<Row>
-									<TextField floatingLabelText="Select Location" fullWidth={true} />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" width="90%" />
 								</Row>
 								<Row>
-									<TextField floatingLabelText="Select Play School" fullWidth={true} />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Play School" width="90%" />
 								</Row>
 								<Row>
-									<TextField floatingLabelText="Enrollment Number" fullWidth={true} />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" width="90%" />
 								</Row>
 								<Row>
-									<TextField floatingLabelText="Student Name" fullWidth={true} />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" width="90%" />
 								</Row>
 								<Row>
-									<TextField floatingLabelText="Class" fullWidth={true} />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" width="90%" />
 								</Row>
-								<Row>
-									<TextField floatingLabelText="Section" fullWidth={true} />
-								</Row>
-								<Row>
-									<TextField floatingLabelText="Fees" fullWidth={true} />
-								</Row>
-								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
-								</Row>
-								<br />
 							</Col>
-							<Col xs="12" md="6">
+							<Col xs="12" md="6"  style={styles.textfieldstyle}>
+								<Row>
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" width="90%" />
+								</Row>
+								<Row>
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" width="90%" />
+								</Row>
 								 <AutoComplete
-						          hintText="Start Typing...."
+								  style={styles.textfieldstyle}
+								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+								  underlineFocusStyle={styles.underlineFocusStyle} 
 						          dataSource={this.state.dataSource}
 						          onUpdateInput={this.handleUpdateInput}
 						          floatingLabelText="Search Location"
@@ -653,10 +682,13 @@ var Playschool = React.createClass({
 						        />
 							</Col>
 						</Row>
+						<Row>
+							<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+						</Row>
 						</Grid>
 						</Col>
 						<Col xs="12" md="4">
-							<Carousel>
+							<Carousel style={styles.carousel}>
 								<Carousel.Item>
 									<Image src={carouselimage} />
 									<Carousel.Caption>
