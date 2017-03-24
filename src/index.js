@@ -33,7 +33,7 @@ import tutor from './images/tutor.png';
 import workshops from './images/workshops.png';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button} from 'react-bootstrap';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -575,6 +575,18 @@ var Content = React.createClass({
 
 var Playschool = React.createClass({
 
+	getInitialState : function() {
+		return { dataSource: [] };
+	},
+
+	handleUpdateInput : function(value) {
+		this.setState({
+			dataSource : [
+				value
+			],
+		});
+	},
+
 	render: function() {
 
 		const styles = {
@@ -587,6 +599,12 @@ var Playschool = React.createClass({
 			h2: {
 				color:'#8E9295',
 				'font-size': '2em'
+			},
+
+			proceed: {
+				
+				background: '#4688C7',
+				width:"100%"
 			}
 
 		}
@@ -595,7 +613,48 @@ var Playschool = React.createClass({
 			<div>
 				<Grid bsClass="container-fluid">
 					<Row style={styles.row}>
-						<Col xs="12" md="8" style={styles.content}></Col>
+						<Col xs="12" md="8" style={styles.content}>
+						<Grid bsClass="container-fluid">
+						<Row style={styles.row}>
+							<Col xs="12" md="6">
+								<Row>
+									<TextField floatingLabelText="Select Location" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Select Play School" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Enrollment Number" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Student Name" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Class" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Section" fullWidth={true} />
+								</Row>
+								<Row>
+									<TextField floatingLabelText="Fees" fullWidth={true} />
+								</Row>
+								<Row>
+									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+								</Row>
+								<br />
+							</Col>
+							<Col xs="12" md="6">
+								 <AutoComplete
+						          hintText="Start Typing...."
+						          dataSource={this.state.dataSource}
+						          onUpdateInput={this.handleUpdateInput}
+						          floatingLabelText="Search Location"
+						          fullWidth={true}
+						        />
+							</Col>
+						</Row>
+						</Grid>
+						</Col>
 						<Col xs="12" md="4">
 							<Carousel>
 								<Carousel.Item>
