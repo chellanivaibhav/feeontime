@@ -33,6 +33,7 @@ import tutor from '../images/tutor.png';
 import workshops from '../images/workshops.png';
 import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
+import PayFeesDrawer from './PayFeesDrawer.js';
 
 var Book = React.createClass({
 
@@ -649,6 +650,7 @@ var homepage = React.createClass({
 	render: function() {
 		return (
 			<div>
+			    <PayFeesDrawer />
 				<Content />
 				<Playschool />
 				<DailyNeeds />

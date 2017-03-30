@@ -1,8 +1,10 @@
 import React from 'react';
-import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
-import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {DropdownButton,Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
+import {MenuItem,Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
+import LoginSignup from './LoginSignupButton.js'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 var MyDrawer = React.createClass({
 
@@ -155,12 +157,12 @@ var MyDrawer = React.createClass({
 			  <AppBar title={<img src={logo} style={styles.logostyle} />} onLeftIconButtonTouchTap={this.handleToggle} style={styles.appbarstyle}>
 			   <Toolbar style={styles.appbarstyle}>
 			   <ToolbarGroup>
-			   <FlatButton style={styles.appbarstyleactive}>Pay Fees Here</FlatButton>
-			   <FlatButton style={styles.appbarstyle}>Daily Needs</FlatButton>
-			   <FlatButton style={styles.appbarstyle}>Shop Online</FlatButton>
-			   <FlatButton style={styles.appbarstyle}>Offers</FlatButton>
-			   <FlatButton style={styles.appbarstyle}>Updates</FlatButton>
-			   <ButtonToolbar><Button onClick={this.open} bsStyle="" style={styles.button}>Login | Signup</Button></ButtonToolbar>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Pay Fees Here</FlatButton>
+			   <FlatButton containerElement={<Link to="/dailyneeds" />} style={styles.appbarstyleactive}>Daily Needs</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Shop Online</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
+			   <LoginSignup />
 			   </ToolbarGroup>
 			   </Toolbar>
 			  </AppBar>
