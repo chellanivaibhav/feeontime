@@ -297,7 +297,7 @@ var Container = React.createClass({
 
 });
 
-var DailyNeeds = React.createClass({
+var UserProfile = React.createClass({
 
 	render: function() {
 		return (
@@ -310,4 +310,4 @@ var DailyNeeds = React.createClass({
 
 });
 
-module.exports = DailyNeeds;
+module.exports = UserProfile;

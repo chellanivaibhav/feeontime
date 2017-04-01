@@ -6,6 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import Homepage from './Components/HomePage.js';
 import DailyNeeds from './Components/DailyNeeds.js';
 import UserProfile from './Components/UserProfile.js';
+import TransactionHistory from './Components/TransactionHistory.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 injectTapEventPlugin();
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/" component={Homepage} />
         <Route exact path="/dailyneeds" component={DailyNeeds} />
         <Route exact path="/profile" component={UserProfile} />
+        <Route exact path="/transactionhistory" component={TransactionHistory} />
       </div>
     </Router>
     </div>  

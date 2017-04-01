@@ -54,7 +54,7 @@ var LoginSignup = React.createClass({
 {/*			  <ButtonToolbar><Button onClick={this.open} bsStyle="" style={styles.button}>Login | Signup</Button></ButtonToolbar>
 */}		      <DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
 		        <MenuItem href="/profile" >View Profile</MenuItem>
-		        <MenuItem >Transaction History</MenuItem>
+		        <MenuItem href="/transactionhistory">Transaction History</MenuItem>
 		        <MenuItem >Your Cart</MenuItem>
 		        <MenuItem >Your Wishlist</MenuItem>
 		        <MenuItem >Logout</MenuItem>
