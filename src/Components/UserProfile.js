@@ -6,6 +6,7 @@ import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal} from 'react-boo
 import physicsbook from '../images/physicsbook.png';
 import SwipeableViews from 'react-swipeable-views';
 import visa from '../images/visa.gif';
+import address from '../images/address.png';
 
 var PersonalDetails = React.createClass({
 
@@ -154,6 +155,9 @@ var SavedCards = React.createClass({
 			},
 			removebut: {
 				'float': 'right'
+			},
+			label: {
+				'color': '#4688c7'
 			}
 		}
 		return (
@@ -161,7 +165,7 @@ var SavedCards = React.createClass({
 				<Grid bsClass="container-fluid">
 					<Row>
 						<Col xs="12" md="4">
-							<Paper zDepth="5">
+							<Paper zDepth="3">
 								<Grid bsClass="container-fluid" style={styles.cardpad}>
 									<Row>
 										<Col xs="4" md="4">
@@ -170,15 +174,59 @@ var SavedCards = React.createClass({
 										<Col xs="8" md="8" style={styles.cardtextstyle}>
 											<Row>**************1122</Row>
 											<Row><span style={styles.bankname}>HDFC</span></Row>
-											<Row><RaisedButton label="Remove" icon={<FontIcon className="muidocs-icon-custom-github"/>} style={styles.removebut} /></Row>
+											<Row><FlatButton label="Remove" labelStyle={styles.label} icon={ <i className="material-icons" style={{color: '#4688c7'}}>delete</i>} style={styles.removebut} /></Row>
 										</Col>
 									</Row>
 								</Grid>
 							</Paper>
 						</Col>
-						<Col xs="12" md="8">
+					</Row>
+					<br />
+				</Grid>
+			</div>
+		);
+	}
+
+});
+
+var DeliveryAddress = React.createClass({
+
+	render: function() {
+
+		const styles = {
+
+			leftcol: {
+
+				'border-right': '1px solid gray'
+			},
+
+			imgstyle: {
+
+				'width': '100%'
+			},
+
+			address: {
+
+				'color': '#4688c7',
+				'font-size': '1.5em',
+			}
+
+		}
+		return (
+			<div><br />
+				<Grid bsClass="container-fluid">
+					<Row>
+						<Col xs="12" md="3" style={styles.leftcol}>
+						Name<br />Address Line 1<br />Address Line 2<br />City, State<br />Pincode
+						</Col>
+						<Col xs="12" md="9">
+							<Row>
+								<Col xs="12" md="2"><Image src={address} style={styles.imgstyle} /></Col>
+								<Col xs="12" md="10"><span style={styles.address}><br />Add Address</span></Col>
+							</Row>
 						</Col>
 					</Row>
+					<br />
 				</Grid>
 			</div>
 		);
@@ -237,7 +285,7 @@ var Container = React.createClass({
 								<div><PersonalDetails /></div>
 								<div><ChangePassword /></div>
 								<div><SavedCards /></div>
-								<div>Delivery Address</div>
+								<div><DeliveryAddress /></div>
 							</SwipeableViews>
 						</Col>
 					</Row>
