@@ -5,13 +5,22 @@ import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
 import LoginSignup from './LoginSignupButton.js';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 
 var MyDrawer = React.createClass({
 
 	getInitialState: function() {
-	
-		 return {open: false};
+		var login = false;
+		Cookies.remove('isloggedin');
+		if(Cookies.get('isloggedin')==undefined)
+		{
+			login = false;
+		}
+		else
+		{
+			login = true;
+		}
+		return {open: false, isloggedin: login};
 	},
 
  	handleToggle :function() { this.setState({open: !this.state.open}) },
@@ -52,7 +61,7 @@ var MyDrawer = React.createClass({
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Shop Online</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
-			   <LoginSignup loggedin={false}/>
+			   <LoginSignup loggedin={this.state.isloggedin}/>
 			   </ToolbarGroup>
 			   </Toolbar>
 			  </AppBar>

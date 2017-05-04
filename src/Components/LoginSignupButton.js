@@ -4,6 +4,7 @@ import {Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
+import Cookies from 'js-cookie';
 var $ = require ('jquery');
  
 var Dropdownhead = React.createClass({
@@ -54,15 +55,12 @@ var LoginSignupButton = React.createClass({
 
 	handleSignup: function()
 	{
-		var $ = require ('jquery');
-		var data = { name: this.state.name, email: this.state.email, phone: this.state.phone, password: this.state.password, user_type: "0" }; 
-		alert(JSON.stringify(data));
+		var mydata = { name: this.state.name, email: this.state.email, phone: this.state.phone, password: this.state.password, user_type: "0" }; 
+		alert(JSON.stringify(mydata));
 		$.ajax({
 			type: 'POST',
-			contentType: "application/json",
-			dataType: 'json',
 			url: 'http://52.41.82.157/Feeontime/index.php/user/signup',
-			data: data,
+			data: mydata,
 			success: function(data)
 			{
 				alert(JSON.stringify(data));
@@ -80,19 +78,16 @@ var LoginSignupButton = React.createClass({
 		alert(JSON.stringify(mydata));
 		 $.ajax({
 			type: 'POST',
-			crossDomain: true,
 			url: 'http://52.41.82.157/Feeontime/index.php/user/login',
-			data: JSON.stringify(mydata),
-			xhrFields: {
-		        withCredentials: true
-		    },
+			data: mydata,
 			success: function(data)
 			{
+				Cookies.set('isloggedin',true);
 				alert(JSON.stringify(data));
 			},
 		    error: function (error) 
 		    {
-				alert(JSON.stringify(error));
+//				alert(JSON.stringify(error));
 		    }
 		});
 	},
