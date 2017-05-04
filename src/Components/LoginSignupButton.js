@@ -4,6 +4,7 @@ import {Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
+var $ = require ('jquery');
  
 var Dropdownhead = React.createClass({
 
@@ -25,41 +26,245 @@ var Dropdownhead = React.createClass({
 
 });
 
+var LoginSignupButton = React.createClass({
 
-var LoginSignup = React.createClass({
-
-	render: function() {
+	getInitialState: function() {
 	
+		 return {
+		 	showModal: false,
+		 	name: "",
+		 	email: "",
+		 	phone: "",
+		 	password: "",
+		 	loginemail: "",
+		 	loginpassword: "",
+		 };
+	},
+
+	handleChange: function(event)
+	{
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
+	},
+
+	handleSignup: function()
+	{
+		var $ = require ('jquery');
+		var data = { name: this.state.name, email: this.state.email, phone: this.state.phone, password: this.state.password, user_type: "0" }; 
+		alert(JSON.stringify(data));
+		$.ajax({
+			type: 'POST',
+			contentType: "application/json",
+			dataType: 'json',
+			url: 'http://52.41.82.157/Feeontime/index.php/user/signup',
+			data: data,
+			success: function(data)
+			{
+				alert(JSON.stringify(data));
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }
+		});
+	},
+
+	handleLogin: function()
+	{
+		var mydata = { email: this.state.loginemail, password: this.state.loginpassword };
+		alert(JSON.stringify(mydata));
+		 $.ajax({
+			type: 'POST',
+			crossDomain: true,
+			url: 'http://52.41.82.157/Feeontime/index.php/user/login',
+			data: JSON.stringify(mydata),
+			xhrFields: {
+		        withCredentials: true
+		    },
+			success: function(data)
+			{
+				alert(JSON.stringify(data));
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }
+		});
+	},
+
+	close() {
+		this.setState({ showModal: false });
+	},
+
+	open() {
+		this.setState({ showModal: true });
+	},
+
+	render:function() {
+
 		const styles = {
 
-			navdrophead : {
-				'margin-right': '0',
-				'padding': '0',
-				'margin-top': '5px',
-				'color': 'white',
-				'background': '#4688c7',
-				'border-color': '#4688c7'
+			modalstyle: {
+				padding:'0px',
+				'margin-top':'90px'
+			},
+
+			logoimagestyle: {
+				'padding-top': '30%'
+			},
+
+			h3: {
+				color: 'white'
+			},
+
+			bottompad: {
+				'padding-bottom':'10%'
+			},
+
+			modalfirstpart: {
+				'background-color':'#4688c7'
+			},
+
+			floatingLabelFocusStyle: {
+				color: '#4688C7',
+			},
+
+			underlineFocusStyle: {
+				borderColor: '#4688C7'
+			},
+
+			h6: {
+				float:'right'
+			},
+
+			loginbutton: {
+				background: '#4688C7',
+				width:"70%",
+				color:'white',
+				'font-size':'1em'
 			},
 		    button:
 		    {
 		    	color:'white',
 		    	'background-color':'#4688C7',
 		    	'border-color':'white'
-		    },
+		    }
+		}
+
+		return (
+			<div>
+			<Modal show={this.state.showModal} style={styles.modalstyle} onHide={this.close} >
+				<Modal.Header closeButton>Login / Signup
+				</Modal.Header>
+				<Modal.Body>
+					<Grid bsClass="container-fluid">
+						<Row>
+							<Col xs="12" md="6" style={styles.modalfirstpart}>
+								<center>
+								<Image src={logoimage} style={styles.logoimagestyle} />
+								<h3 style={styles.h3}><br />Pay Fees Online</h3><br />
+								<h3 style={Object.assign({},styles.h3,styles.bottompad)}>#gocashless</h3>
+								<br />
+								</center>
+							</Col>
+							<Col xs="12" md="6">
+							<Tabs defaultActiveKey={1}>
+								<Tab eventKey={1} title="Login">
+									<Grid bsClass="container-fluid">
+										<Row>
+											<TextField value={this.state.loginemail} onChange={this.handleChange} name="loginemail" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
+										</Row>
+										<Row>
+											<TextField value={this.state.loginpassword} onChange={this.handleChange} name="loginpassword" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Password" type="password" />
+										</Row>
+										<Row>
+											<a href="#"><h6 style={styles.h6}>Trouble Logging in ?</h6></a>
+										</Row>
+										<Row>
+											<center><Button onClick={this.handleLogin} style={styles.loginbutton}>Login</Button></center>
+										</Row>
+									</Grid>
+								</Tab>
+								<Tab eventKey={2} title="Sign Up">
+									<Grid bsClass="container-fluid">
+										<Row>
+											<TextField value={this.state.name} name="name" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Name" />
+										</Row>
+										<Row>
+											<TextField value={this.state.email} name="email" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
+										</Row>
+										<Row>
+											<TextField value={this.state.phone} name="phone" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Mobile Number" type="number" />
+										</Row>
+										<Row>
+											<TextField value={this.state.password} name="password" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Password" type="password" />
+										</Row>
+										<Row>
+											<center><Button onClick={this.handleSignup} style={styles.loginbutton}>Sign Up</Button></center>
+										</Row>
+									</Grid>
+								</Tab>
+							</Tabs>
+							</Col>
+						</Row>
+					</Grid>
+				</Modal.Body>
+			</Modal>
+			<ButtonToolbar><Button onClick={this.open} bsStyle="" style={styles.button}>Login | Signup</Button></ButtonToolbar></div>
+		);
+	}
+});
+
+
+var LoginSignup = React.createClass({
+
+	render: function() {	
+
+	let hehe;
+
+		const styles = {
+
+				navdrophead : {
+					'margin-right': '0',
+					'padding': '0',
+					'margin-top': '5px',
+					'color': 'white',
+					'background': '#4688c7',
+					'border-color': '#4688c7'
+				},
+			    button:
+			    {
+			    	color:'white',
+			    	'background-color':'#4688C7',
+			    	'border-color':'white'
+			    },
+			}
+
+		if(!this.props.loggedin)
+		{
+			hehe = (<LoginSignupButton />);
+		} 
+		else 
+		{
+			hehe = (
+				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
+				<MenuItem href="/profile" >View Profile</MenuItem>
+				<MenuItem href="/transactionhistory">Transaction History</MenuItem>
+				<MenuItem >Your Cart</MenuItem>
+				<MenuItem >Your Wishlist</MenuItem>
+				<MenuItem >Logout</MenuItem>
+				</DropdownButton>
+				);
 		}
 
 		return (
 	
-			<div>
-{/*			  <ButtonToolbar><Button onClick={this.open} bsStyle="" style={styles.button}>Login | Signup</Button></ButtonToolbar>
-*/}		      <DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
-		        <MenuItem href="/profile" >View Profile</MenuItem>
-		        <MenuItem href="/transactionhistory">Transaction History</MenuItem>
-		        <MenuItem >Your Cart</MenuItem>
-		        <MenuItem >Your Wishlist</MenuItem>
-		        <MenuItem >Logout</MenuItem>
-		      </DropdownButton>
-     		</div>
+			<div>{hehe}</div>
 		);
 	}
 
