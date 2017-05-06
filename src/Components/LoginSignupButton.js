@@ -1,6 +1,6 @@
 import React from 'react';
-import {MenuItem, DropdownButton,Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
-import {Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {MenuItem, DropdownButton,Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal} from 'react-bootstrap';
+import {Tabs,Tab,Dialog,Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
 import {BrowserRouter as Router, Route } from 'react-router-dom';
@@ -110,6 +110,7 @@ var LoginSignupButton = React.createClass({
 			},
 
 			logoimagestyle: {
+				'margin':'0',
 				'padding-top': '30%'
 			},
 
@@ -148,15 +149,25 @@ var LoginSignupButton = React.createClass({
 		    	color:'white',
 		    	'background-color':'#4688C7',
 		    	'border-color':'white'
-		    }
+		    },
+		    gridstyle: {
+		    	'padding':'0',
+		    	'margin':'0',
+		    },
+		    tabstyle: {
+		    	'background':'white',
+		    	'color':'black',
+		    },
 		}
-
 		return (
 			<div>
-			<Modal show={this.state.showModal} style={styles.modalstyle} onHide={this.close} >
-				<Modal.Header closeButton>Login / Signup
-				</Modal.Header>
-				<Modal.Body>
+	        <Dialog
+	        titleStyle={styles.gridstyle}
+	        bodyStyle={styles.gridstyle}
+	        style={styles.gridstyle}
+	          open={this.state.showModal}
+	          onRequestClose={this.close}
+	        >
 					<Grid bsClass="container-fluid">
 						<Row>
 							<Col xs="12" md="6" style={styles.modalfirstpart}>
@@ -168,8 +179,8 @@ var LoginSignupButton = React.createClass({
 								</center>
 							</Col>
 							<Col xs="12" md="6">
-							<Tabs defaultActiveKey={1}>
-								<Tab eventKey={1} title="Login">
+							<Tabs defaultActiveKey={1} inkBarStyle={{background: '#4688C7'}} tabItemContainerStyle={styles.tabstyle} buttonStyle={styles.tabstyle}>
+								<Tab eventKey={1} label={<span style={{ color: 'black', fontFamily:'museo500' }}>Login</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 											<TextField value={this.state.loginemail} onChange={this.handleChange} name="loginemail" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
@@ -185,7 +196,7 @@ var LoginSignupButton = React.createClass({
 										</Row>
 									</Grid>
 								</Tab>
-								<Tab eventKey={2} title="Sign Up">
+								<Tab eventKey={2} label={<span style={{ color: 'black', fontFamily:'museo500' }}>Sign Up</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 											<TextField value={this.state.name} name="name" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Name" />
@@ -208,8 +219,7 @@ var LoginSignupButton = React.createClass({
 							</Col>
 						</Row>
 					</Grid>
-				</Modal.Body>
-			</Modal>
+	        </Dialog>
 			<ButtonToolbar><Button onClick={this.open} bsStyle="" style={styles.button}>Login | Signup</Button></ButtonToolbar></div>
 		);
 	}

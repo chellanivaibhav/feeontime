@@ -512,7 +512,7 @@ var Content = React.createClass({
 var Playschool = React.createClass({
 
 	getInitialState : function() {
-		return { dataSource: [] };
+		return { dataSource: [], controls: false};
 	},
 
 	handleUpdateInput : function(value) {
@@ -524,6 +524,18 @@ var Playschool = React.createClass({
 	},
 
 	render: function() {
+
+		var letter = {
+        padding: 10,
+        margin: 10,
+        backgroundColor: "#ffde00",
+        color: "#333",
+        display: "inline-block",
+        fontFamily: "monospace",
+        fontSize: "32",
+        textAlign: "center"
+      };
+ 
 
 		const styles = {
 
@@ -546,6 +558,8 @@ var Playschool = React.createClass({
 			},
 
 			textfieldstyle: {
+				height:'4em',
+				width:'100%',
 				background:'#dbe8f4'
 			},
 
@@ -553,17 +567,25 @@ var Playschool = React.createClass({
 				'padding-left':'5%',
 				'padding-right':'5%',
 				'padding-bottom':'2%',
-				'margin-bottom':'3%',
-				border:'5px solid #aecbe6',
+				'border':'5px solid #aecbe6',
 				'background-color': '#dbe8f4',
-				width:'90%'
+				'width':'50%'
 			},
 
 			proceed: {
 				
-				background: '#4688C7',
-				width:"100%",
+				'background': '#4688C7',
+				'width':"100%",
 				'font-size':'1.5em'
+			},
+
+			locationstyle: {
+				'background-color':'#fff'
+			},
+
+			locationstyle1: {
+				'background':'white',
+				'height': '37em'
 			}
 
 		}
@@ -572,51 +594,50 @@ var Playschool = React.createClass({
 			<div>
 				<Grid bsClass="container-fluid">
 					<Row style={styles.row}>
-						<Col xs="12" md="8" style={styles.content}>
-						<Grid bsClass="container-fluid" style={styles.formstyle}>
-						<Row style={styles.row}  style={styles.textfieldstyle}>
-							<Col xs="12" md="6">
+						<Col xs="12" md="8">
+						<Grid bsClass="container-fluid">
+						<Row>
+							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" width="90%" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Play School" width="90%" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Play School" />
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" width="90%" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" />
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" width="90%" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" />
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" width="90%" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" />
+								</Row>
+								<Row>
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" />
+								</Row>
+								<Row>
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
+								</Row>
+								<Row>
+									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
 								</Row>
 							</Col>
-							<Col xs="12" md="6"  style={styles.textfieldstyle}>
-								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" width="90%" />
-								</Row>
-								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" width="90%" />
-								</Row>
+							<Col xs="12" md="6" style={styles.locationstyle1}>
 								 <AutoComplete
-								  style={styles.textfieldstyle}
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
 						          dataSource={this.state.dataSource}
 						          onUpdateInput={this.handleUpdateInput}
 						          floatingLabelText="Search Location"
-						          fullWidth={true}
+						          fullWidth={true}					
 						        />
 							</Col>
-						</Row>
-						<Row>
-							<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
 						</Row>
 						</Grid>
 						</Col>
 						<Col xs="12" md="4">
-							<Carousel style={styles.carousel}>
+							<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
 								<Carousel.Item>
 									<Image src={carouselimage} />
 									<Carousel.Caption>
@@ -654,10 +675,7 @@ var homepage = React.createClass({
 				<Content />
 				<Playschool />
 				<DailyNeeds />
-				<Shop />
 				<Discount />
-				<Book />
-				<Uniform />
 			</div>
 		);
 	}
