@@ -82,7 +82,8 @@ var LoginSignupButton = React.createClass({
 			data: mydata,
 			success: function(data)
 			{
-				Cookies.set('isloggedin',true);
+				this.props.loggedin=false;
+				//Cookies.set('isloggedin',true);
 				alert(JSON.stringify(data));
 			},
 		    error: function (error) 

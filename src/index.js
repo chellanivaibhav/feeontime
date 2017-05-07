@@ -8,6 +8,7 @@ import DailyNeeds from './Components/DailyNeeds.js';
 import UserProfile from './Components/UserProfile.js';
 import TransactionHistory from './Components/TransactionHistory.js';
 import Leadgen from './Components/Leadgen.js';
+import SearchTutor from './Components/SearchTutor.js';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 injectTapEventPlugin();
@@ -22,6 +23,7 @@ const App = () => (
         <Route exact path="/profile" component={UserProfile} />
         <Route exact path="/transactionhistory" component={TransactionHistory} />
         <Route exact path="/leadgen" component={Leadgen} />
+        <Route exact path="/searchtutor" component={SearchTutor} />
       </div>
     </Router>
     </div>  
