@@ -11,6 +11,8 @@ var Dropdownhead = React.createClass({
 
 	render: function() {
 
+	var name = Cookies.get('username');
+
 		const styles = {
 
 			profilepic: {
@@ -20,7 +22,7 @@ var Dropdownhead = React.createClass({
 		}
 		return (
 			<div>
-			<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;Rahul Malhotra
+			<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;&nbsp;
 			</div>
 		);
 	}
@@ -56,41 +58,57 @@ var LoginSignupButton = React.createClass({
 	handleSignup: function()
 	{
 		var mydata = { name: this.state.name, email: this.state.email, phone: this.state.phone, password: this.state.password, user_type: "0" }; 
-		alert(JSON.stringify(mydata));
+		var data1=null;
 		$.ajax({
 			type: 'POST',
 			url: 'http://52.41.82.157/Feeontime/index.php/user/signup',
+			dataType:'json',
+			async:false,
 			data: mydata,
 			success: function(data)
 			{
-				alert(JSON.stringify(data));
+				data1 = data.success;
+				if(data1==1)
+				Cookies.set('isloggedin',true);
 			},
 		    error: function (error) 
 		    {
 				alert(JSON.stringify(error));
 		    }
 		});
+		if(data1==1)
+			this.props.changestate(true);
+		else
+			alert('Unable to Signup');
 	},
 
 	handleLogin: function()
 	{
 		var mydata = { email: this.state.loginemail, password: this.state.loginpassword };
-		alert(JSON.stringify(mydata));
-		 $.ajax({
+		var data1=null;
+		$.ajax({
 			type: 'POST',
 			url: 'http://52.41.82.157/Feeontime/index.php/user/login',
+			dataType:'json',
+			async:false,
 			data: mydata,
 			success: function(data)
 			{
-				this.props.loggedin=false;
-				//Cookies.set('isloggedin',true);
-				alert(JSON.stringify(data));
+				data1 = data.success;
+				if(data1==1)
+				Cookies.set('isloggedin',true);
+				var p = data.message;
+				Cookies.set('username',p[0].name);
 			},
 		    error: function (error) 
 		    {
-//				alert(JSON.stringify(error));
+				alert(JSON.stringify(error));
 		    }
 		});
+		if(data1==1)
+			this.props.changestate(true);
+		else
+			alert('Wrong email or Password');
 	},
 
 	close() {
@@ -229,6 +247,21 @@ var LoginSignupButton = React.createClass({
 
 var LoginSignup = React.createClass({
 
+	getInitialState: function()
+	{
+		return {loggedin: Cookies.get('isloggedin')};
+	},
+
+	changelogin: function(data)
+	{
+		this.setState({loggedin: data});
+		if(data==false)
+		{
+			Cookies.remove('username');
+			Cookies.remove('isloggedin');
+		}
+	},
+
 	render: function() {	
 
 	let hehe;
@@ -251,9 +284,9 @@ var LoginSignup = React.createClass({
 			    },
 			}
 
-		if(!this.props.loggedin)
+		if(!this.state.loggedin)
 		{
-			hehe = (<LoginSignupButton />);
+			hehe = (<LoginSignupButton changestate={this.changelogin} />);
 		} 
 		else 
 		{
@@ -263,7 +296,7 @@ var LoginSignup = React.createClass({
 				<MenuItem href="/transactionhistory">Transaction History</MenuItem>
 				<MenuItem >Your Cart</MenuItem>
 				<MenuItem >Your Wishlist</MenuItem>
-				<MenuItem >Logout</MenuItem>
+				<MenuItem onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
 		}

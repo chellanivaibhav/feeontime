@@ -1809,7 +1809,6 @@ var Skills = React.createClass({
 
 });
 
-
 var Content = React.createClass({
 
 
@@ -1887,7 +1886,6 @@ var FormGet = React.createClass({
 	}
 
 });
-
 
 var homepage = React.createClass({
 

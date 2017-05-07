@@ -10,12 +10,8 @@ import Cookies from 'js-cookie';
 var MyDrawer = React.createClass({
 
 	getInitialState: function() {
-		return {open: false, isloggedin: false};
-	},
 
-	setLoginState: function(data)
-	{
-		this.setState({isloggedin: data});
+		return {open: false};
 	},
 
  	handleToggle :function() { this.setState({open: !this.state.open}) },
@@ -56,7 +52,7 @@ var MyDrawer = React.createClass({
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Shop Online</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
-			   <LoginSignup loggedin={this.setLoginState.bind(this)}/>
+			   <LoginSignup />
 			   </ToolbarGroup>
 			   </Toolbar>
 			  </AppBar>
