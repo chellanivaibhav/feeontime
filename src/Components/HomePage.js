@@ -157,7 +157,6 @@ var Discount = React.createClass({
 			const styles = {
 
 				row:  {
-					backgroundColor: '#ECF3F9',
 				},
 				discount: {
 					'padding-top':'2em',
@@ -393,7 +392,6 @@ var DailyNeeds = React.createClass({
 			{
 				'padding-top': '1em',
 				'padding-bottom':'1em',
-				backgroundColor: '#ECF3F9'
 			},
 			row1:
 			{
@@ -413,7 +411,7 @@ var DailyNeeds = React.createClass({
 		}
 		return (
 			<div>
-			 <Grid bsClass="container-fluid">
+			 <Grid bsClass="container-fluid"><br />
 				<Row style={styles.row1}>
 					<Col xs="12" md="12" style={styles.line}/>
 				</Row>
@@ -434,68 +432,84 @@ var DailyNeeds = React.createClass({
 			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
+			      <a href="/aptitudetest" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image src={aptitutetest} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Aptitude Test</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
+			      <a href="/onlinetest" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image style={{'margin-bottom':'0.5em'}} src={onlinetests} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Online Test</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
+			      <a href="/informative" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image style={{'margin-bottom':'0.5em'}} src={informative} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span>Informative</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
+			      <a href="/admissionhotline" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image src={admissionhotline} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Admission Hotline</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1}  style={{'margin-left':'1.5em'}} >
+   			      <a href="/elearning" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image style={{'margin-bottom':'0.5em'}} src={elearning} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em', 'margin-left':'0.5em'}}>E learning</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
+			      <a href="/healthcard" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image style={{'margin-bottom':'0.5em'}} src={healthcard} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Health Card</span>
 			      </Row>
+			      </a>
 			      </Col>  
 			      <Col xs={12} md={1}>
+			      <a href="/studentinsurance" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image src={studentinsurance} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
 			      </Row>
+			      </a>
 			      </Col>
 			      <Col xs={12} md={1} style={{'margin-left':'1.5em'}} >
+			      <a href="/educationloan" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
 			      <Image src={educationloan} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
 			      </Row>
+			      </a>
 			      </Col>
 			    </Row>
 			 </Grid>
@@ -536,8 +550,6 @@ var Playschool = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -596,7 +608,7 @@ var Playschool = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -622,7 +634,7 @@ var Playschool = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -699,8 +711,6 @@ var School = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -759,7 +769,7 @@ var School = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -785,7 +795,7 @@ var School = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -862,8 +872,6 @@ var College = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -922,7 +930,7 @@ var College = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -948,7 +956,7 @@ var College = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1025,8 +1033,6 @@ var Coaching = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -1085,7 +1091,7 @@ var Coaching = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -1111,7 +1117,7 @@ var Coaching = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1188,8 +1194,6 @@ var Tutor = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -1248,7 +1252,7 @@ var Tutor = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -1274,7 +1278,7 @@ var Tutor = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1351,8 +1355,6 @@ var Admissions = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -1411,7 +1413,7 @@ var Admissions = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -1437,7 +1439,7 @@ var Admissions = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1514,8 +1516,6 @@ var Workshops = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -1574,7 +1574,7 @@ var Workshops = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -1600,7 +1600,7 @@ var Workshops = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1677,8 +1677,6 @@ var Skills = React.createClass({
 		const styles = {
 
 			row : {
-
-				backgroundColor: '#ECF3F9',
 			},
 
 			carousel: {
@@ -1737,7 +1735,7 @@ var Skills = React.createClass({
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
 						<Grid bsClass="container-fluid">
-						<Row style={{'border':'5px solid #aecbe6'}}>
+						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
@@ -1763,7 +1761,7 @@ var Skills = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<Button bsStyle="primary" style={styles.proceed} >Proceed</Button>
+									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -1822,7 +1820,6 @@ var Content = React.createClass({
 		const styles = {
 			row:
 			{
-				backgroundColor: '#ECF3F9',
 			},
 			leftpad: {
 				'padding-left':'15%'
@@ -1831,34 +1828,79 @@ var Content = React.createClass({
 		return (
 			<div>
 			 <Grid bsClass="container-fluid">
+			 <br />
 			    <Row style={styles.row}>
-			      <Col xs={12} md={1} style={styles.leftpad}>
+			      <Col xs={12} md={1}>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <Image src={playschool} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Playschool />)} width="150%" />
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={school} style={{cursor:'pointer'}} onClick={() => this.changecontent(<School />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Playschool />)} >
+   			      <Row>
+			      <Image style={{'margin-bottom':'0.5em'}} src={playschool} width="60%" height="60em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '10dp'}}>Play School</span>
+			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={college} style={{cursor:'pointer'}} onClick={() => this.changecontent(<College />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<School />)} >
+   			      <Row>
+			      <Image src={school} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-left':'0.6em'}}>School</span>
+			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={coaching} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Coaching />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<College />)} >
+   			      <Row>
+			      <Image src={college} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-left':'0.5em'}}>College</span>
+			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={tutor} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Tutor />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Coaching />)} >
+   			      <Row>
+			      <Image src={coaching} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-left':'0.2em'}}>Coaching</span>
+			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={admissions} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Admissions />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Tutor />)} >
+   			      <Row>
+			      <Image src={tutor} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-left':'1em'}}>Tutor</span>
+			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
-			      <Image src={workshops} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Workshops />)} width="150%" />
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Admissions />)} >
+   			      <Row>
+			      <Image src={admissions} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-left':'0.1em'}}>Admission</span>
+			      </Row>
+			      </Col>
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Workshops />)} >
+   			      <Row>
+			      <Image src={workshops} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '10dp'}}>Workshops</span>
+			      </Row>
 			      </Col>  
-			      <Col xs={12} md={1}>
-			      <Image src={skills} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} width="150%" />
+			      <Col xs={12} md={2} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} >
+   			      <Row>
+			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.7em'}} width="30%" height="60em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-right':'2em'}}>Skills & Employability</span>
+			      </Row>
 			      </Col>
-			    </Row>
+			      <Col xs={12} md={1}>
+			      </Col>
+			    </Row><br />
 			 </Grid>
 			</div>
 		);

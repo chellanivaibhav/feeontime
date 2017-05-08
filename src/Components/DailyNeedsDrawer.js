@@ -31,7 +31,7 @@ var MyDrawer = React.createClass({
 		  	},
 		    logostyle:
 		    {
-		    	width:'50%'
+		    	width:'30%'
 		    },
 		  	appbarstyle:
 		  	{
@@ -48,7 +48,6 @@ var MyDrawer = React.createClass({
 			   <ToolbarGroup>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Pay Fees Here</FlatButton>
 			   <FlatButton containerElement={<Link to="/dailyneeds" />} style={styles.appbarstyleactive}>Daily Needs</FlatButton>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Shop Online</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
 			   <LoginSignup loggedin={false}/>
