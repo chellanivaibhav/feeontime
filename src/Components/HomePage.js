@@ -34,6 +34,8 @@ import workshops from '../images/workshops.png';
 import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
+var $ = require ('jquery');
+
 
 var Book = React.createClass({
 
@@ -545,7 +547,11 @@ var Playschool = React.createClass({
         fontSize: "32",
         textAlign: "center"
       };
- 
+	
+	 	const dataSource3 = [
+	 	 {textKey: 'Some Text', valueKey: 'someFirstValue'},
+	  	 {textKey: 'Some Text', valueKey: 'someSecondValue'},
+		];
 
 		const styles = {
 
@@ -641,8 +647,9 @@ var Playschool = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
-						          onUpdateInput={this.handleUpdateInput}
+						          dataSource={dataSource3}
+						          filter={AutoComplete.noFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1932,6 +1939,34 @@ var FormGet = React.createClass({
 var homepage = React.createClass({
 
 	render: function() {
+
+		var mydata={};
+		var data1=null;
+
+		function do_the_stuff(data)
+		{
+			data1=data;
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		alert(JSON.stringify(data1));
+
 		return (
 			<div>
 			    <PayFeesDrawer />
