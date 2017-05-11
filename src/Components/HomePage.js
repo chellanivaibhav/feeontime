@@ -31,11 +31,10 @@ import college from '../images/college.png';
 import skills from '../images/skills.png';
 import tutor from '../images/tutor.png';
 import workshops from '../images/workshops.png';
-import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {RaisedButton, Dialog, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
 var $ = require ('jquery');
-
 
 var Book = React.createClass({
 
@@ -521,18 +520,168 @@ var DailyNeeds = React.createClass({
 
 });
 
-var Playschool = React.createClass({
+var Otp = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState: function()
+	{
+		return {showotp: false}
 	},
 
-	handleUpdateInput : function(value) {
+	close: function()
+	{
+		this.setState({ showotp: false });
+	},
+
+	open: function()
+	{
+		this.setState({ showotp: true });
+	},
+
+	render: function() {
+
+		const styles = {
+
+			proceed: {
+				'background': '#4688C7',
+				'width':"100%",
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			},
+
+			underlineFocusStyle: {
+				borderColor: '#4688C7'
+			},
+
+			dialogstyle: {
+
+				'width': '50%'
+			},
+
+			otpbtn: {
+				'background': '#4688C7',
+				'margin-top':'1em',
+				'font-size':'1.2em',
+				'padding-left':'4em',
+				'padding-right':'4em'
+			}
+
+		}
+
+		return (
+			<div>
+			<Dialog
+			open={this.state.showotp}
+			onRequestClose={this.close}
+			contentStyle={styles.dialogstyle}
+			>
+			<center>
+			<h4 style={{color: '#4688C7'}}>An OTP has been sent to your Registered Mobile Number</h4>
+			<TextField
+			textFieldStyle={styles.textfieldstyle}
+			underlineFocusStyle={styles.underlineFocusStyle}
+			hintText="Enter OTP"
+			></TextField>
+			<h5>Haven't Received OTP ? <a href="#" ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
+			<Button bsStyle="primary" style={styles.otpbtn}>Submit</Button>
+			</center>
+			</Dialog>
+			<Button onClick={this.open} bsStyle="primary" style={styles.proceed}>Get OTP</Button>
+			</div>
+		);
+	}
+
+});
+
+var Playschool = React.createClass({
+
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p, institutes: ['']};
+	},
+
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	fetchinstitutes: function()
+	{
+		var q = this.getinsdata();
+		this.setState({ institutes: q });
+	},
+
+	getinsdata: function()
+	{
+		var mydata={};
+		var data2=[];
+		var mydata={
+			type:'school',
+			location:this.state.searchText
+		};
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].name;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_institute',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		return data2;
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -546,12 +695,7 @@ var Playschool = React.createClass({
         fontFamily: "monospace",
         fontSize: "32",
         textAlign: "center"
-      };
-	
-	 	const dataSource3 = [
-	 	 {textKey: 'Some Text', valueKey: 'someFirstValue'},
-	  	 {textKey: 'Some Text', valueKey: 'someSecondValue'},
-		];
+	    };
 
 		const styles = {
 
@@ -617,13 +761,37 @@ var Playschool = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+								<AutoComplete
+								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+								  underlineFocusStyle={styles.underlineFocusStyle} 
+						          dataSource={this.state.data}
+						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
+						          floatingLabelText="Select Location"
+						          onClose={this.fetchinstitutes}
+						          fullWidth={true}					
+						        />
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Play School" />
+								<AutoComplete
+								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+								  underlineFocusStyle={styles.underlineFocusStyle} 
+						          dataSource={this.state.institutes}
+						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
+						          floatingLabelText="Select Play School"
+						          fullWidth={true}					
+						        />
 								</Row>
 								<Row>
+									<Col md="6">
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" />
+									</Col>
+									<Col md="6">
+									<Otp />
+									</Col>
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" />
@@ -647,8 +815,9 @@ var Playschool = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={dataSource3}
-						          filter={AutoComplete.noFilter}
+						          dataSource={this.state.data}
+						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
 						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
@@ -689,16 +858,50 @@ var Playschool = React.createClass({
 
 var School = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -779,7 +982,16 @@ var School = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select School" />
@@ -809,8 +1021,10 @@ var School = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -850,16 +1064,50 @@ var School = React.createClass({
 
 var College = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -940,7 +1188,16 @@ var College = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select College" />
@@ -970,8 +1227,10 @@ var College = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1007,20 +1266,54 @@ var College = React.createClass({
 		);
 	}
 
-});
+});	
 
 var Coaching = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -1101,7 +1394,16 @@ var Coaching = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									<AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Coaching" />
@@ -1131,8 +1433,10 @@ var Coaching = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1172,16 +1476,50 @@ var Coaching = React.createClass({
 
 var Tutor = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -1262,7 +1600,16 @@ var Tutor = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Tutor" />
@@ -1292,8 +1639,10 @@ var Tutor = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1333,16 +1682,50 @@ var Tutor = React.createClass({
 
 var Admissions = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -1423,7 +1806,16 @@ var Admissions = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Admission" />
@@ -1453,8 +1845,10 @@ var Admissions = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1494,16 +1888,50 @@ var Admissions = React.createClass({
 
 var Workshops = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -1584,7 +2012,16 @@ var Workshops = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Workshop" />
@@ -1614,8 +2051,10 @@ var Workshops = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1655,16 +2094,50 @@ var Workshops = React.createClass({
 
 var Skills = React.createClass({
 
-	getInitialState : function() {
-		return { dataSource: [], controls: false};
+	getInitialState : function() {		
+		var p = this.getapidata();
+		return { controls: false, searchText: '', data:p};
 	},
 
-	handleUpdateInput : function(value) {
+	handleUpdateInput : function(searchText) {
 		this.setState({
-			dataSource : [
-				value
-			],
+			searchText: searchText,
 		});
+	},
+
+	getapidata: function()
+	{
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].LocationName;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		this.setState({data: data2});
+		return data2;
 	},
 
 	render: function() {
@@ -1745,7 +2218,16 @@ var Skills = React.createClass({
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Location" />
+									 <AutoComplete
+									  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+									  underlineFocusStyle={styles.underlineFocusStyle} 
+							          dataSource={this.state.data}
+							          onUpdateInput={this.handleUpdateInput}
+							          filter={AutoComplete.fuzzyFilter}
+							          openOnFocus={true}
+							          floatingLabelText="Select Location"
+							          fullWidth={true}					
+							        />
 								</Row>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Skill" />
@@ -1775,8 +2257,10 @@ var Skills = React.createClass({
 								 <AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.dataSource}
+						          dataSource={this.state.data}
 						          onUpdateInput={this.handleUpdateInput}
+						          filter={AutoComplete.fuzzyFilter}
+						          openOnFocus={true}
 						          floatingLabelText="Search Location"
 						          fullWidth={true}					
 						        />
@@ -1936,36 +2420,9 @@ var FormGet = React.createClass({
 
 });
 
-var homepage = React.createClass({
+var Homepage = React.createClass({
 
 	render: function() {
-
-		var mydata={};
-		var data1=null;
-
-		function do_the_stuff(data)
-		{
-			data1=data;
-		}
-
-		$.ajax({
-			type: 'POST',
-			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
-			dataType: 'json',
-			async: false,
-			data: mydata,
-			success: function(data)
-			{
-				var data1 = data.message;
-				do_the_stuff(data1);
-			},
-		    error: function (error) 
-		    {
-				alert(JSON.stringify(error));
-		    }			
-		});
-
-		alert(JSON.stringify(data1));
 
 		return (
 			<div>
@@ -1979,4 +2436,4 @@ var homepage = React.createClass({
 
 });
 
-module.exports = homepage;
+module.exports = Homepage;
