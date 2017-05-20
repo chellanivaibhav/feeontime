@@ -69,7 +69,11 @@ var LoginSignupButton = React.createClass({
 			{
 				data1 = data.success;
 				if(data1==1)
-				Cookies.set('isloggedin',true);
+				{
+					Cookies.set('isloggedin',true);
+					Cookies.set('username',this.state.name);
+					Cookies.set('userid',data.message);
+				}
 			},
 		    error: function (error) 
 		    {
@@ -99,6 +103,7 @@ var LoginSignupButton = React.createClass({
 				Cookies.set('isloggedin',true);
 				var p = data.message;
 				Cookies.set('username',p[0].name);
+				Cookies.set('userid',p[0].id);
 			},
 		    error: function (error) 
 		    {
@@ -258,6 +263,7 @@ var LoginSignup = React.createClass({
 		if(data==false)
 		{
 			Cookies.remove('username');
+			Cookies.remove('userid');
 			Cookies.remove('isloggedin');
 		}
 	},

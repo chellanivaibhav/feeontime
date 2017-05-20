@@ -31,9 +31,11 @@ import college from '../images/college.png';
 import skills from '../images/skills.png';
 import tutor from '../images/tutor.png';
 import workshops from '../images/workshops.png';
-import {RaisedButton, Dialog, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
+import LoginSignup from './LoginSignupButton.js';
+import Cookies from 'js-cookie';
 var $ = require ('jquery');
 
 var Book = React.createClass({
@@ -524,17 +526,147 @@ var Otp = React.createClass({
 
 	getInitialState: function()
 	{
-		return {showotp: false}
+		return {showotp: false, showsnackbar:false, otp: ''};
+	},
+
+	handleChange: function(event)
+	{
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
 	},
 
 	close: function()
 	{
-		this.setState({ showotp: false });
+		this.setState({ showotp: false, showsnackbar: false });
 	},
 
 	open: function()
 	{
-		this.setState({ showotp: true });
+		if(Cookies.get('isloggedin')!=undefined)
+		{
+			this.setState({ showotp: true });
+			this.sendotp();
+		}
+		else
+		this.setState({ showsnackbar: true });
+	},
+
+	sendotp: function()
+	{
+		var mydata={};
+		var mydata={
+			user_id: Cookies.get('userid')
+		};
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/User/call_otp',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				if(data.success==true)
+				{
+					alert(data.message);
+				}
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+	},
+
+	fetchstudentdetails: function()
+	{
+		let t = this;
+
+		var mydata = {
+			regnum: this.props.studentregnum,
+			instituteid: this.props.studentinsid,
+		};
+
+		function setstudentdata(data)
+		{
+			var data1=[];
+			data1['p']='hehe';
+			data1['studentname'] = data[0].name;
+			data1['studentclass'] = data[0].class;
+			data1['studentsection'] = data[0].section;
+			data1['studentfees'] = data[0].fee;
+			t.props.setdata(data1);
+		}
+
+		$.ajax({
+
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_student_detail',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				if(data.success==true)
+				{
+					setstudentdata(data.message);
+				}
+				else
+				{
+					alert("student data not available");
+				}
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }						
+		})
+	},
+
+	verifyotp: function()
+	{
+
+		let p = this;
+
+		var mydata={
+			user_id: Cookies.get('userid'),
+			otp: this.state.otp
+		};
+
+		function setstudentdata()
+		{
+			p.fetchstudentdetails();
+			p.setState({showotp: false});
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/User/verify_otp',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				if(data.success==true)
+				{
+					setstudentdata();
+					alert(data.message);
+				}
+				else
+				{
+					alert("otp not matched");
+				}
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});		
 	},
 
 	render: function() {
@@ -569,6 +701,12 @@ var Otp = React.createClass({
 
 		return (
 			<div>
+			<Snackbar
+			open={this.state.showsnackbar}
+			message="Please Login First"
+			autoHideDuration={4000}
+			onRequestClose={this.close}			
+			/>
 			<Dialog
 			open={this.state.showotp}
 			onRequestClose={this.close}
@@ -579,10 +717,12 @@ var Otp = React.createClass({
 			<TextField
 			textFieldStyle={styles.textfieldstyle}
 			underlineFocusStyle={styles.underlineFocusStyle}
+			onChange={this.handleChange}
+			name="otp"
 			hintText="Enter OTP"
 			></TextField>
 			<h5>Haven't Received OTP ? <a href="#" ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
-			<Button bsStyle="primary" style={styles.otpbtn}>Submit</Button>
+			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
 			</Dialog>
 			<Button onClick={this.open} bsStyle="primary" style={styles.proceed}>Get OTP</Button>
@@ -596,12 +736,44 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { controls: false, searchText: '', data:p, institutes: ['']};
+		return { enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+	},
+
+	handleChange: function(event) {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
+	},
+
+	onsetstudentdata: function(data) {
+
+		this.setState({
+			studentname : data['studentname'],
+			studentclass : data['studentclass'],
+			studentsection : data['studentsection'],
+			studentfees : data['studentfees'],
+		});
 	},
 
 	handleUpdateInput : function(searchText) {
 		this.setState({
-			searchText: searchText,
+			locationname: searchText,
+		});
+	},
+
+	newRequest: function(chosenRequest,index) {
+		this.setState({
+			insid: index,
+		});
+	},
+
+	handleUpdateInput1 : function(searchText) {
+		this.setState({
+			insname: searchText,
 		});
 	},
 
@@ -617,14 +789,14 @@ var Playschool = React.createClass({
 		var data2=[];
 		var mydata={
 			type:'school',
-			location:this.state.searchText
+			location:this.state.locationname
 		};
 
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i].name;
+				var c = data[i];
 				data2.push(c);
 			}
 		}
@@ -697,6 +869,11 @@ var Playschool = React.createClass({
         textAlign: "center"
 	    };
 
+	    const dataSourceConfig = {
+		  text: 'name',
+		  value: 'id',
+		};
+
 		const styles = {
 
 			row : {
@@ -768,6 +945,7 @@ var Playschool = React.createClass({
 						          onUpdateInput={this.handleUpdateInput}
 						          filter={AutoComplete.fuzzyFilter}
 						          openOnFocus={true}
+						          name="selectlocation"
 						          floatingLabelText="Select Location"
 						          onClose={this.fetchinstitutes}
 						          fullWidth={true}					
@@ -778,8 +956,11 @@ var Playschool = React.createClass({
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
 						          dataSource={this.state.institutes}
-						          onUpdateInput={this.handleUpdateInput}
+						          dataSourceConfig={dataSourceConfig}
+						          onUpdateInput={this.handleUpdateInput1}
 						          filter={AutoComplete.fuzzyFilter}
+						          name="selectplayschool"
+						          onNewRequest={this.newRequest}
 						          openOnFocus={true}
 						          floatingLabelText="Select Play School"
 						          fullWidth={true}					
@@ -787,25 +968,25 @@ var Playschool = React.createClass({
 								</Row>
 								<Row>
 									<Col md="6">
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</Col>
 									<Col md="6">
-									<Otp />
+									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
 									</Col>
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
 								</Row>
 								<Row>
 									<Col xs="12" md="6">
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
 									</Col>
 									<Col xs="12" md="6">
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
 									</Col>
 								</Row>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
 								<Row>
 									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
