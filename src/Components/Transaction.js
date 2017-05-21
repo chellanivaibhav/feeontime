@@ -8,19 +8,83 @@ import internetbanking from '../images/internetbanking.png';
 import otherwallets from '../images/otherwallets.png';
 import upi from '../images/upi.png';
 import aadhar from '../images/aadhar.png';
+import Cookies from 'js-cookie';
+var $ = require('jquery');
 
 var Component = React.createClass({
 
 	getInitialState: function()
 	{
-		return { value : 1 }
+		return { value : 1, amount: Cookies.get('studentfees'), pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'delhi' }
+	},
+
+	componentDidMount: function()
+	{
+		this.fetchuserdata();
 	},
 
 	handlechange: function(event,index,value)
 	{
 		this.setState({value});
 	},
+
+	checkcc: function()
+	{
+		this.setState({ 
+			pcode: 'OPTCRDC'
+		 });
+	},
 	
+	checkdc: function()
+	{
+		this.setState({ 
+			pcode: 'OPTDBCRD'
+		 });
+	},
+
+	checknb: function()
+	{
+		this.setState({ 
+			pcode: 'OPTNBK'
+		 });
+	},
+
+	fetchuserdata: function()
+	{
+		var mydata={
+			user_id: Cookies.get('userid')
+		};
+		let t = this;
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/User/getProfile',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				if(data.success==true)
+				{
+					var data1 = data.message;
+					t.setState({
+						firstname: data1.name,
+						email: data1.email,
+						phone: data1.phone,
+						address: data1.address,
+					});
+				}
+				else
+				{
+					alert('user data not available');
+				}
+			},
+		    error: function (error) 
+		    {
+				alert(JSON.stringify(error));
+		    }			
+		});
+	},
+
 	render: function() {
 
 	var styles = {
@@ -64,7 +128,7 @@ var Component = React.createClass({
 			<Grid bsClass="container">
 			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
 			<Row>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Total Amount: &#8377;810</span>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Total Amount: &#8377;{this.state.amount}</span>
 			</Row>
 			<Row>
 			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Transaction ID: 123456</span>
@@ -142,8 +206,9 @@ var Component = React.createClass({
 			<Col md="9">
 			<Row>
 			<RadioButtonGroup style={{'display':'flex','flexDirection':'row','margin-top':'1em'}}>
-			<RadioButton label="Credit Card" style={{'width':'10em', 'color':'red'}} value="creditcard" />
-			<RadioButton label="Debit Card" style={{'float':'left', 'width':'10em'}} value="debitcard" />
+			<RadioButton onClick={this.checkcc} label="Credit Card" style={{'width':'10em', 'color':'red'}} value="creditcard" />
+			<RadioButton onClick={this.checkdc} label="Debit Card" style={{'float':'left', 'width':'10em'}} value="debitcard" />
+			<RadioButton onClick={this.checknb} label="Net Banking" style={{'float':'left', 'width':'20em'}} value="netbanking" />
 			</RadioButtonGroup>
 			</Row>
 			<Row>
@@ -193,7 +258,19 @@ var Component = React.createClass({
 			<TextField floatingLabelText="CVV" floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} textFieldStyle={styles.textFieldStyle} type="number"/><br />
 			</Row>
 			<Row>
-			<RaisedButton style={styles.button1} buttonStyle={styles.button}>Pay Now</RaisedButton>
+			<form method="POST" action="http://52.36.30.121/api/dataForm.php">
+			<input type="hidden" name="amount" value={Cookies.get('studentfees')} />
+			<input type="hidden" name="firstname" value={this.state.firstname} />
+			<input type="hidden" name="email" value={this.state.email} />
+			<input type="hidden" name="phone" value={this.state.phone} />
+			<input type="hidden" name="udf1" value={Cookies.get('insid')} />
+			<input type="hidden" name="udf2" value={Cookies.get('insname')} />
+			<input type="hidden" name="udf3" value={Cookies.get('enrollmentno')} />
+			<input type="hidden" name="address1" value={this.state.address} />
+			<input type="hidden" name="city" value={this.state.city} />
+			<input type="hidden" name="enforce_paymethod" value={this.state.pcode} />
+			<RaisedButton type="submit" style={styles.button1}  buttonStyle={styles.button}>Pay Now</RaisedButton>
+			</form>
 			</Row>
 			</Col>
 			</Row>

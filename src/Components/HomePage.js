@@ -765,9 +765,9 @@ var Playschool = React.createClass({
 		});
 	},
 
-	newRequest: function(chosenRequest,index) {
+	newRequest: function(chosenRequest) {
 		this.setState({
-			insid: index,
+			insid: chosenRequest.id,
 		});
 	},
 
@@ -854,6 +854,14 @@ var Playschool = React.createClass({
 
 		this.setState({data: data2});
 		return data2;
+	},
+
+	proceedbutfunc: function()
+	{
+		Cookies.set('studentfees', this.state.studentfees);
+		Cookies.set('insid', this.state.insid);
+		Cookies.set('insname',this.state.insname);
+		Cookies.set('enrollmentno',this.state.enrollmentno);
 	},
 
 	render: function() {
@@ -989,7 +997,7 @@ var Playschool = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
+									<a href="/transaction"><Button bsStyle="primary" onClick={this.proceedbutfunc} style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>

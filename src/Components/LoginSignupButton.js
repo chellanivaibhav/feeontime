@@ -59,6 +59,7 @@ var LoginSignupButton = React.createClass({
 	{
 		var mydata = { name: this.state.name, email: this.state.email, phone: this.state.phone, password: this.state.password, user_type: "0" }; 
 		var data1=null;
+		let t = this;
 		$.ajax({
 			type: 'POST',
 			url: 'http://52.41.82.157/Feeontime/index.php/user/signup',
@@ -71,7 +72,7 @@ var LoginSignupButton = React.createClass({
 				if(data1==1)
 				{
 					Cookies.set('isloggedin',true);
-					Cookies.set('username',this.state.name);
+					Cookies.set('username',t.state.name);
 					Cookies.set('userid',data.message);
 				}
 			},
@@ -82,6 +83,8 @@ var LoginSignupButton = React.createClass({
 		});
 		if(data1==1)
 			this.props.changestate(true);
+		else if(data1==2)
+			alert('User already exists');
 		else
 			alert('Unable to Signup');
 	},
