@@ -33,7 +33,7 @@ class HorizontalLinearStepper extends React.Component {
   getStepContent(stepIndex) {
 
   	let cont = (<div>
-		<Progress completed={this.state.prog} color="#4688C7" />
+		<Progress completed={this.state.prog} color="#2ED320" />
    		<Grid bsClass="container-fluid">
   		<Row>
   		<Col xs={12} md={12}>

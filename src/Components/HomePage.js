@@ -36,6 +36,7 @@ import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from
 import PayFeesDrawer from './PayFeesDrawer.js';
 import LoginSignup from './LoginSignupButton.js';
 import Cookies from 'js-cookie';
+import classes from '../index.css';
 var $ = require ('jquery');
 
 var Book = React.createClass({
@@ -421,100 +422,84 @@ var DailyNeeds = React.createClass({
 				<Row style={styles.row1}>
 					<Col xs="12" md="12" style={styles.shophead}>DAILY NEEDS</Col>
 				</Row>
+			    <a href="/dailyneeds" style={{'text-decoration':'none','color':'black'}}>
 			    <Row style={styles.row}>
 			      <Col xs={12} md={1} style={styles.leftpad}>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/searchtutor" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image src={searchtutor} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={searchtutor} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Search Tutor</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/aptitudetest" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image src={aptitutetest} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={aptitutetest} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Aptitude Test</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/onlinetest" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image style={{'margin-bottom':'0.5em'}} src={onlinetests} width="60%" height="60em" />
+			      <Image style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} src={onlinetests} width="35em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Online Test</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/informative" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image style={{'margin-bottom':'0.5em'}} src={informative} width="60%" height="60em" />
+			      <Image style={{'margin-left':'1.2em','margin-bottom':'0.5em'}} src={informative} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span>Informative</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/admissionhotline" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image src={admissionhotline} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={admissionhotline} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Admission Hotline</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}  style={{'margin-left':'1.5em'}} >
-   			      <a href="/elearning" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image style={{'margin-bottom':'0.5em'}} src={elearning} width="60%" height="60em" />
+			      <Image style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} src={elearning} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em', 'margin-left':'0.5em'}}>E learning</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1}>
-			      <a href="/healthcard" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image style={{'margin-bottom':'0.5em'}} src={healthcard} width="60%" height="60em" />
+			      <Image style={{'margin-top':'0.5em','margin-left':'0.5em','margin-bottom':'0.5em'}} src={healthcard} width="50em" height="35em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Health Card</span>
 			      </Row>
-			      </a>
 			      </Col>  
 			      <Col xs={12} md={1}>
-			      <a href="/studentinsurance" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image src={studentinsurance} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={studentinsurance} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
 			      </Row>
-			      </a>
 			      </Col>
 			      <Col xs={12} md={1} style={{'margin-left':'1.5em'}} >
-			      <a href="/educationloan" style={{'text-decoration':'none','color':'black'}}>
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
 			      </Row>
-			      </a>
 			      </Col>
 			    </Row>
+			    </a>
 			 </Grid>
 			</div>
 		);
@@ -674,9 +659,13 @@ var Otp = React.createClass({
 		const styles = {
 
 			proceed: {
-				'background': '#4688C7',
+
+				'background': '#dbe8f4',
 				'width':"100%",
+				'color':'#4688C7',
+				'border':'none',
 				'margin-top':'1em',
+				'text-decoration':'underline',
 				'font-size':'1.2em'
 			},
 
@@ -724,8 +713,8 @@ var Otp = React.createClass({
 			<h5>Haven't Received OTP ? <a href="#" ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
-			</Dialog>
-			<Button onClick={this.open} bsStyle="primary" style={styles.proceed}>Get OTP</Button>
+			</Dialog><br />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.open} style={styles.proceed}>Get OTP</span>
 			</div>
 		);
 	}
@@ -736,7 +725,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { openclose: 'none', enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -769,6 +758,14 @@ var Playschool = React.createClass({
 		this.setState({
 			insid: chosenRequest.id,
 		});
+		if(chosenRequest.verified==0)
+		{
+			this.setState({ openclose: 'block' });
+		}
+		else
+		{
+			this.setState({ openclose: 'none' });
+		}
 	},
 
 	handleUpdateInput1 : function(searchText) {
@@ -997,7 +994,7 @@ var Playschool = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
 								<Row>
-									<a href="/transaction"><Button bsStyle="primary" onClick={this.proceedbutfunc} style={styles.proceed} >Proceed</Button></a>
+									<a href="/coupons"><Button bsStyle="primary" onClick={this.proceedbutfunc} style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -2514,17 +2511,17 @@ var Content = React.createClass({
 			      </Col>
 			      <Col xs={12} md={1}>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Playschool />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Playschool />)} >
    			      <Row>
-			      <Image style={{'margin-bottom':'0.5em'}} src={playschool} width="60%" height="60em" />
+			      <Image style={{'margin-bottom':'0.5em','margin-left':'1em'}} src={playschool} width="40%" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Play School</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<School />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<School />)} >
    			      <Row>
-			      <Image src={school} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={school} style={{'margin-bottom':'0.5em'}} width="60%" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-left':'0.6em'}}>School</span>
@@ -2532,7 +2529,7 @@ var Content = React.createClass({
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<College />)} >
    			      <Row>
-			      <Image src={college} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={college} style={{'margin-bottom':'0.5em'}} width="60%" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-left':'0.5em'}}>College</span>
@@ -2540,15 +2537,15 @@ var Content = React.createClass({
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Coaching />)} >
    			      <Row>
-			      <Image src={coaching} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={coaching} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
 			      <Row>
-			      <span style={{'font-size': '1em','margin-left':'0.2em'}}>Coaching</span>
+			      <span style={{'font-size': '1em','margin-left':'0.4em'}}>Coaching</span>
 			      </Row>
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Tutor />)} >
    			      <Row>
-			      <Image src={tutor} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={tutor} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-left':'1em'}}>Tutor</span>
@@ -2556,7 +2553,7 @@ var Content = React.createClass({
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Admissions />)} >
    			      <Row>
-			      <Image src={admissions} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={admissions} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-left':'0.1em'}}>Admission</span>
@@ -2564,7 +2561,7 @@ var Content = React.createClass({
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Workshops />)} >
    			      <Row>
-			      <Image src={workshops} style={{'margin-bottom':'0.5em'}} width="60%" height="60em" />
+			      <Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}} width="30em" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Workshops</span>
@@ -2572,7 +2569,7 @@ var Content = React.createClass({
 			      </Col>  
 			      <Col xs={12} md={2} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} >
    			      <Row>
-			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.7em'}} width="30%" height="60em" />
+			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'2.7em'}} width="20%" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-right':'2em'}}>Skills & Employability</span>

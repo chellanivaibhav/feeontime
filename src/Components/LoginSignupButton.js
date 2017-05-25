@@ -207,7 +207,7 @@ var LoginSignupButton = React.createClass({
 							</Col>
 							<Col xs="12" md="6">
 							<Tabs defaultActiveKey={1} inkBarStyle={{background: '#4688C7'}} tabItemContainerStyle={styles.tabstyle} buttonStyle={styles.tabstyle}>
-								<Tab eventKey={1} label={<span style={{ color: 'black', fontFamily:'museo500' }}>Login</span>}>
+								<Tab eventKey={1} label={<span style={{ 'text-transform':'capitalize', color: 'gray', fontFamily:'proxima nova' }}>Login</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 											<TextField value={this.state.loginemail} onChange={this.handleChange} name="loginemail" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
@@ -223,7 +223,7 @@ var LoginSignupButton = React.createClass({
 										</Row>
 									</Grid>
 								</Tab>
-								<Tab eventKey={2} label={<span style={{ color: 'black', fontFamily:'museo500' }}>Sign Up</span>}>
+								<Tab eventKey={2} label={<span style={{ 'text-transform':'capitalize', color: 'gray', fontFamily:'proxima nova' }}>Sign Up</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 											<TextField value={this.state.name} name="name" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Name" />

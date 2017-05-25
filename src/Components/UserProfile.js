@@ -189,6 +189,87 @@ var SavedCards = React.createClass({
 
 });
 
+var SavedCoupons = React.createClass({
+
+	render: function() {
+
+		const styles = {
+
+			imgdes: {
+
+				'width': '100%'
+			},
+			cardtextstyle: {
+				'padding-top': '1em',
+				'font-size': '1.5em',
+				'color': '#929292'
+			},
+			bankname: {
+				'float': 'right',
+				'font-size': '0.75em'
+			},
+			cardpad: {
+				'padding-right': '2em'
+			},
+			removebut: {
+				'float': 'right'
+			},
+			label: {
+				'color': '#4688c7'
+			}
+		}
+		return (
+			<div><br />
+				<Grid bsClass="container-fluid">
+					<Row>
+					<Col xs="12" md="3">
+					<Grid bsClass="container-fluid" style={styles.couponstyle}>
+					<Row>
+					<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+					</Row>
+					<Row style={{'background':'#4688C7'}}>
+					<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Redeem</FlatButton>
+					</Row>
+					</Grid>
+					</Col>
+					<Col xs="12" md="3">
+					<Grid bsClass="container-fluid" style={styles.couponstyle}>
+					<Row>
+					<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+					</Row>
+					<Row style={{'background':'#4688C7'}}>
+					<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Redeem</FlatButton>
+					</Row>
+					</Grid>
+					</Col>
+					<Col xs="12" md="3">
+					<Grid bsClass="container-fluid" style={styles.couponstyle}>
+					<Row>
+					<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+					</Row>
+					<Row style={{'background':'#4688C7'}}>
+					<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Redeem</FlatButton>
+					</Row>
+					</Grid>
+					</Col>
+					<Col xs="12" md="3">
+					<Grid bsClass="container-fluid" style={styles.couponstyle}>
+					<Row>
+					<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+					</Row>
+					<Row style={{'background':'#4688C7'}}>
+					<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Redeem</FlatButton>
+					</Row>
+					</Grid>
+					</Col>
+					</Row>
+				</Grid>
+			</div>
+		);
+	}
+
+});
+
 var DeliveryAddress = React.createClass({
 
 	render: function() {
@@ -259,10 +340,12 @@ var Container = React.createClass({
 			},
 
 			tab: {
+				'font-family':'proxima nova',
+				'text-transform':'capitalize',
 				'color' : '#4688c7'
 			},
 			paper:{
-
+				'font-family':'proxima nova',
 				'padding-left': '2em',
 				'padding-right': '2em'
 			}
@@ -278,13 +361,13 @@ var Container = React.createClass({
 							<Tabs onChange={this.handleChange} tabItemContainerStyle={styles.tabitemcontainer} value={this.state.slideIndex} inkBarStyle={styles.tabs}>
 								<Tab label="Personal Details" buttonStyle={styles.tab} value={0} />
 								<Tab label="Change Password" style={styles.tab} value={1} />
-								<Tab label="Saved Cards" style={styles.tab} value={2} />
+								<Tab label="My Coupons" style={styles.tab} value={2} />
 								<Tab label="Delivery Address" style={styles.tab} value={3} />
 							</Tabs>
 							<SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange}>
 								<div><PersonalDetails /></div>
 								<div><ChangePassword /></div>
-								<div><SavedCards /></div>
+								<div><SavedCoupons /></div>
 								<div><DeliveryAddress /></div>
 							</SwipeableViews>
 						</Col>
