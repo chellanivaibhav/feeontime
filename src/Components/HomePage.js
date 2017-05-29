@@ -725,7 +725,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { openclose: 'none', enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispotp:false ,enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -760,11 +760,25 @@ var Playschool = React.createClass({
 		});
 		if(chosenRequest.verified==0)
 		{
-			this.setState({ openclose: 'block' });
+			this.setState({dispotp:true});
 		}
 		else
 		{
-			this.setState({ openclose: 'none' });
+			this.setState({dispotp:false});
+		}
+	},
+
+	showotpbut: function(p)
+	{
+		if(p==0)
+		{
+			alert('hello');
+			$('Otp').show();
+		}
+		else if(p==1)
+		{
+			alert('hey');
+			$('Otp').hide();
 		}
 	},
 
@@ -879,6 +893,17 @@ var Playschool = React.createClass({
 		  value: 'id',
 		};
 
+		var otpstyle = {
+			'display': 'none',
+		};
+
+		if(this.state.dispotp)
+		{
+			var otpstyle = {
+				'display': 'block',
+			};
+		}
+
 		const styles = {
 
 			row : {
@@ -976,7 +1001,9 @@ var Playschool = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</Col>
 									<Col md="6">
+									<div style={otpstyle}>
 									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
+									</div>
 									</Col>
 								</Row>
 								<Row>
