@@ -660,7 +660,7 @@ var Otp = React.createClass({
 
 			proceed: {
 
-				'background': '#dbe8f4',
+				'background': '#ffffff',
 				'width':"100%",
 				'color':'#4688C7',
 				'border':'none',
@@ -725,7 +725,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispotp:false , dispplayschool:false, enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { selectedloclat:'',selectedloclong:'',dispenrollno:false, dispstuddetails:false, dispotp:false , dispplayschool:false, enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -758,6 +758,8 @@ var Playschool = React.createClass({
 		this.setState({
 			insid: chosenRequest.id,
 		});
+		this.setState({dispstuddetails: true});
+		this.setState({dispenrollno:true});
 		if(chosenRequest.verified==0)
 		{
 			this.setState({dispotp:true});
@@ -769,27 +771,17 @@ var Playschool = React.createClass({
 	},
 
 	newRequestPlaySchool: function(chosenRequest) {
-		alert(chosenRequest.Location_id);
-		if(chosenRequest.Location_id)
-		{
+			this.setState({selectedloclat:chosenRequest.lat});
+			this.setState({selectedloclong:chosenRequest.long});
 			this.setState({dispplayschool:true});
-		}
-		else
-		{
-			this.setState({dispplayschool:false});
-		}
+			var q = this.getinsdata1();
+			this.setState({ institutes: q });
 	},
 
 	handleUpdateInput1 : function(searchText) {
 		this.setState({
 			insname: searchText,
 		});
-	},
-
-	fetchinstitutes: function()
-	{
-		var q = this.getinsdata();
-		this.setState({ institutes: q });
 	},
 
 	getinsdata: function()
@@ -830,6 +822,41 @@ var Playschool = React.createClass({
 		return data2;
 	},
 
+	getinsdata1: function()
+	{
+		var mydata={};
+		var data2=[];
+		let p = this;
+		alert(this.state.selectedloclong);
+		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.selectedloclat+','+this.state.selectedloclong+'&type=school&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000';
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i];
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'GET',
+			url: url,
+			success: function(data)
+			{
+				var data1 = data.results;
+				alert(JSON.stringify(data1));
+				do_the_stuff(data1);
+			},
+		    error: function (error) 
+		    { 
+		    	alert(url);
+				alert(JSON.stringify(error));
+		    }			
+		});
+
+		return data2;
+	},
+
 	getapidata: function()
 	{
 		var mydata={};
@@ -839,7 +866,7 @@ var Playschool = React.createClass({
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i].LocationName;
+				var c = data[i];
 				data2.push(c);
 			}
 		}
@@ -891,6 +918,15 @@ var Playschool = React.createClass({
 		  value: 'id',
 		};
 
+	    const dataSourceConfig1 = {
+		  text: 'LocationName',
+		  value: 'Location_id',
+		};
+
+		var studdetailsstyle = {
+			'display': 'none',
+		};
+
 		var otpstyle = {
 			'display': 'none',
 		};
@@ -898,6 +934,24 @@ var Playschool = React.createClass({
 		var playschoolstyle = {
 			'display': 'none',
 		};
+
+		var enrollmentnostyle = {
+			'display': 'none',
+		};
+
+		if(this.state.dispstuddetails)
+		{
+			var studdetailsstyle = {
+				'display': 'block',
+			};
+		}
+
+		if(this.state.dispenrollno)
+		{
+			var enrollmentnostyle = {
+				'display': 'block',
+			};
+		}
 
 		if(this.state.dispplayschool)
 		{
@@ -919,7 +973,7 @@ var Playschool = React.createClass({
 			},
 
 			carousel: {
-				height:'32.5em'
+				'margin-top':'10em',
 			},
 
 			h2: {
@@ -938,14 +992,14 @@ var Playschool = React.createClass({
 			textfieldstyle: {
 				height:'4em',
 				width:'100%',
-				background:'#dbe8f4'
+				background:'#ffffff'
 			},
 
 			formstyle: {
 				'padding-left':'5%',
 				'padding-right':'5%',
 				'padding-bottom':'2%',
-				'background-color': '#dbe8f4',
+				'background-color': '#ffffff',
 				'width':'50%'
 			},
 
@@ -981,13 +1035,13 @@ var Playschool = React.createClass({
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 								  underlineFocusStyle={styles.underlineFocusStyle} 
 						          dataSource={this.state.data}
+						          dataSourceConfig={dataSourceConfig1}
 						          onUpdateInput={this.handleUpdateInput}
 						          filter={AutoComplete.fuzzyFilter}
 						          openOnFocus={true}
 						          name="selectlocation"
 						          onNewRequest={this.newRequestPlaySchool}
 						          floatingLabelText="Select Location"
-						          onClose={this.fetchinstitutes}
 						          fullWidth={true}					
 						        />
 								</Row>
@@ -1010,7 +1064,9 @@ var Playschool = React.createClass({
 								</div>
 								<Row>
 									<Col md="6">
+									<div style={enrollmentnostyle}>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+									</div>
 									</Col>
 									<Col md="6">
 									<div style={otpstyle}>
@@ -1018,6 +1074,7 @@ var Playschool = React.createClass({
 									</div>
 									</Col>
 								</Row>
+								<div style={studdetailsstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
 								</Row>
@@ -1032,21 +1089,12 @@ var Playschool = React.createClass({
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
+								</div>
 								<Row>
 									<a href="/coupons"><Button bsStyle="primary" onClick={this.proceedbutfunc} style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
-								 <AutoComplete
-								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-								  underlineFocusStyle={styles.underlineFocusStyle} 
-						          dataSource={this.state.data}
-						          onUpdateInput={this.handleUpdateInput}
-						          filter={AutoComplete.fuzzyFilter}
-						          openOnFocus={true}
-						          floatingLabelText="Search Location"
-						          fullWidth={true}					
-						        />
 							</Col>
 						</Row>
 						</Grid>
@@ -1056,19 +1104,16 @@ var Playschool = React.createClass({
 								<Carousel.Item>
 									<Image src={carouselimage} />
 									<Carousel.Caption>
-										<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 									</Carousel.Caption>
 								</Carousel.Item>
 								<Carousel.Item>
 									<Image src={carouselimage} />
 									<Carousel.Caption>
-										<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 									</Carousel.Caption>
 								</Carousel.Item>
 								<Carousel.Item>
 									<Image src={carouselimage} />
 									<Carousel.Caption>
-										<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 									</Carousel.Caption>
 								</Carousel.Item>
 							</Carousel>
@@ -1767,7 +1812,7 @@ var Tutor = React.createClass({
 			},
 
 			carousel: {
-				height:'32.5em'
+				height:'22.5em'
 			},
 
 			h2: {
@@ -2543,7 +2588,7 @@ var Content = React.createClass({
 		}
 		return (
 			<div>
-			 <Grid bsClass="container-fluid">
+			 <Grid style={{'background-color': '#f3f3f4'}} bsClass="container-fluid">
 			 <br />
 			    <Row style={styles.row}>
 			      <Col xs={12} md={1}>
@@ -2556,6 +2601,7 @@ var Content = React.createClass({
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Play School</span>
+			      <div style={{ width: '60',height: '0', 'border': 'solid 30px', 'margin-top': '-30px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
 			      </Row>
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<School />)} >
@@ -2637,7 +2683,7 @@ var FormGet = React.createClass({
 	},
 
 	render: function() {
-	
+
 		return (
 			<div><Content changeactive={this.onchangedisp} />{this.state.dispform}</div>
 		)
