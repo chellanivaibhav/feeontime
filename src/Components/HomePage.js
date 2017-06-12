@@ -725,7 +725,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispotp:false ,enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispotp:false , dispplayschool:false, enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -754,7 +754,7 @@ var Playschool = React.createClass({
 		});
 	},
 
-	newRequest: function(chosenRequest) {
+	newRequestOtp: function(chosenRequest) {
 		this.setState({
 			insid: chosenRequest.id,
 		});
@@ -768,17 +768,15 @@ var Playschool = React.createClass({
 		}
 	},
 
-	showotpbut: function(p)
-	{
-		if(p==0)
+	newRequestPlaySchool: function(chosenRequest) {
+		alert(chosenRequest.Location_id);
+		if(chosenRequest.Location_id)
 		{
-			alert('hello');
-			$('Otp').show();
+			this.setState({dispplayschool:true});
 		}
-		else if(p==1)
+		else
 		{
-			alert('hey');
-			$('Otp').hide();
+			this.setState({dispplayschool:false});
 		}
 	},
 
@@ -897,6 +895,17 @@ var Playschool = React.createClass({
 			'display': 'none',
 		};
 
+		var playschoolstyle = {
+			'display': 'none',
+		};
+
+		if(this.state.dispplayschool)
+		{
+			var playschoolstyle = {
+				'display': 'block',
+			};
+		}
+
 		if(this.state.dispotp)
 		{
 			var otpstyle = {
@@ -976,11 +985,13 @@ var Playschool = React.createClass({
 						          filter={AutoComplete.fuzzyFilter}
 						          openOnFocus={true}
 						          name="selectlocation"
+						          onNewRequest={this.newRequestPlaySchool}
 						          floatingLabelText="Select Location"
 						          onClose={this.fetchinstitutes}
 						          fullWidth={true}					
 						        />
 								</Row>
+								<div style={playschoolstyle}>
 								<Row>
 								<AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -990,12 +1001,13 @@ var Playschool = React.createClass({
 						          onUpdateInput={this.handleUpdateInput1}
 						          filter={AutoComplete.fuzzyFilter}
 						          name="selectplayschool"
-						          onNewRequest={this.newRequest}
+						          onNewRequest={this.newRequestOtp}
 						          openOnFocus={true}
 						          floatingLabelText="Select Play School"
 						          fullWidth={true}					
 						        />
 								</Row>
+								</div>
 								<Row>
 									<Col md="6">
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
