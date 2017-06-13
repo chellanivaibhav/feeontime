@@ -18,7 +18,7 @@ import sports from '../images/sports.png';
 import toys from '../images/toys.png';
 import stationary from '../images/stationary.png';
 import uniform from '../images/uniforms.png';
-import shoes from '../images/shoes.png';
+import shoes from '../images/shoes.png'; 
 import off from '../images/off.png';
 import physicsbook from '../images/physicsbook.png';
 import school_uniform from '../images/school_uniform.png';
@@ -30,7 +30,7 @@ import coaching from '../images/coaching.png';
 import college from '../images/college.png';
 import skills from '../images/skills.png';
 import tutor from '../images/tutor.png';
-import workshops from '../images/workshops.png';
+import workshops from '../images/workshops.png'; 
 import {RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
@@ -824,11 +824,15 @@ var Playschool = React.createClass({
 
 	getinsdata1: function()
 	{
-		var mydata={};
+		var mydata={
+			'location':this.state.selectedloclat+','+this.state.selectedloclong,
+			'type': 'school',
+			'key': 'AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs',
+			'radius': '50000'
+		};
+		var params = "location="+this.state.selectedloclat+','+this.state.selectedloclong+"&type=schol&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000";
 		var data2=[];
-		let p = this;
-		alert(this.state.selectedloclong);
-		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.selectedloclat+','+this.state.selectedloclong+'&type=school&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000';
+		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json';
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
@@ -838,9 +842,20 @@ var Playschool = React.createClass({
 			}
 		}
 
+		/*$.get(url,mydata,function(data)
+			{
+				var data1 = data.results;
+				alert(JSON.stringify(data1));
+				do_the_stuff(data1);
+			});
+		*/
+
 		$.ajax({
 			type: 'GET',
 			url: url,
+			data: mydata,
+			dataType: 'json',
+			async: false,
 			success: function(data)
 			{
 				var data1 = data.results;
