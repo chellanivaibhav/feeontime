@@ -4,7 +4,7 @@ import DailyNeedsDrawer from './DailyNeedsDrawer.js';
 import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import physicsbook from '../images/physicsbook.png';
-import educationloan from '../images/education loan.png';
+import educationloan from '../images/college.png';
 import studentinsurance from '../images/student insurance.png';
 import healthcard from '../images/health card.png';
 import elearning from '../images/e learning.png';

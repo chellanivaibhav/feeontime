@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import logoimage from '../images/logoimage.png';
 import carouselimage from '../images/carousel.png';
-import educationloan from '../images/education loan.png';
+import educationloan from '../images/college.png';
 import studentinsurance from '../images/student insurance.png';
 import healthcard from '../images/health card.png';
 import elearning from '../images/e learning.png';
@@ -18,7 +18,7 @@ import sports from '../images/sports.png';
 import toys from '../images/toys.png';
 import stationary from '../images/stationary.png';
 import uniform from '../images/uniforms.png';
-import shoes from '../images/shoes.png'; 
+import shoes from '../images/shoes.png';
 import off from '../images/off.png';
 import physicsbook from '../images/physicsbook.png';
 import school_uniform from '../images/school_uniform.png';
@@ -30,7 +30,8 @@ import coaching from '../images/coaching.png';
 import college from '../images/college.png';
 import skills from '../images/skills.png';
 import tutor from '../images/tutor.png';
-import workshops from '../images/workshops.png'; 
+import workshops from '../images/workshops.png';
+import donations from '../images/donations.png';
 import {RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
@@ -423,9 +424,11 @@ var DailyNeeds = React.createClass({
 					<Col xs="12" md="12" style={styles.shophead}>DAILY NEEDS</Col>
 				</Row>
 			    <a href="/dailyneeds" style={{'text-decoration':'none','color':'black'}}>
+			    <Row>
+			    <Col md={1}>
+			    </Col>
+			    <Col md={9} style={{'margin-left':'-1em','margin-right':'-50em'}}>
 			    <Row style={styles.row}>
-			      <Col xs={12} md={1} style={styles.leftpad}>
-			      </Col>
 			      <Col xs={12} md={1}>
 			      <Row>
 			      <Image src={searchtutor} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
@@ -490,7 +493,7 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'1.5em'}} >
+			      <Col xs={12} md={1} >
 			      <Row>
 			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
@@ -498,6 +501,42 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
 			      </Row>
 			      </Col>
+			      <Col xs={12} md={1} >
+			      <Row>
+			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      </Row>
+			      </Col>
+			      <Col xs={12} md={1}>
+			      <Row>
+			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      </Row>
+			      </Col>
+			    </Row>
+			    </Col>
+			      <Col md={1} style={{'margin-left':'45em','margin-top':'1em'}} >
+			      <Row>
+			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      </Row>
+			      </Col>
+			    <Col md={1}>
+			      <Col md={1} style={{'margin-top':'1em'}}>
+			      <Row>
+			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      </Row>
+			      </Col>
+			    </Col>
 			    </Row>
 			    </a>
 			 </Grid>
@@ -659,13 +698,10 @@ var Otp = React.createClass({
 		const styles = {
 
 			proceed: {
-
-				'background': '#ffffff',
+				
+				'background': '#4688C7',
 				'width':"100%",
-				'color':'#4688C7',
-				'border':'none',
 				'margin-top':'1em',
-				'text-decoration':'underline',
 				'font-size':'1.2em'
 			},
 
@@ -713,8 +749,8 @@ var Otp = React.createClass({
 			<h5>Haven't Received OTP ? <a href="#" ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
-			</Dialog><br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span onClick={this.open} style={styles.proceed}>Get OTP</span>
+			</Dialog>
+			<Button bsStyle="primary" onClick={this.open} style={styles.proceed}>Get Otp</Button>
 			</div>
 		);
 	}
@@ -774,7 +810,7 @@ var Playschool = React.createClass({
 			this.setState({selectedloclat:chosenRequest.lat});
 			this.setState({selectedloclong:chosenRequest.long});
 			this.setState({dispplayschool:true});
-			var q = this.getinsdata1();
+			var q = this.getinsdata();
 			this.setState({ institutes: q });
 	},
 
@@ -824,15 +860,11 @@ var Playschool = React.createClass({
 
 	getinsdata1: function()
 	{
-		var mydata={
-			'location':this.state.selectedloclat+','+this.state.selectedloclong,
-			'type': 'school',
-			'key': 'AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs',
-			'radius': '50000'
-		};
-		var params = "location="+this.state.selectedloclat+','+this.state.selectedloclong+"&type=schol&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000";
+		var mydata={};
 		var data2=[];
-		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json';
+		let p = this;
+		alert(this.state.selectedloclong);
+		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.selectedloclat+','+this.state.selectedloclong+'&type=school&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000';
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
@@ -842,20 +874,9 @@ var Playschool = React.createClass({
 			}
 		}
 
-		/*$.get(url,mydata,function(data)
-			{
-				var data1 = data.results;
-				alert(JSON.stringify(data1));
-				do_the_stuff(data1);
-			});
-		*/
-
 		$.ajax({
 			type: 'GET',
 			url: url,
-			data: mydata,
-			dataType: 'json',
-			async: false,
 			success: function(data)
 			{
 				var data1 = data.results;
@@ -908,6 +929,10 @@ var Playschool = React.createClass({
 	},
 
 	proceedbutfunc: function()
+	{
+	},
+
+	preproceedbutfunc: function()
 	{
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
@@ -1042,7 +1067,7 @@ var Playschool = React.createClass({
 				<Grid bsClass="container-fluid">
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
-						<Grid bsClass="container-fluid">
+						<Grid bsClass="container-fluid" style={{'margin-left':'20em'}}>
 						<Row>
 							<Col xs="12" md="6" style={styles.formstyle}>
 								<Row>
@@ -1078,12 +1103,14 @@ var Playschool = React.createClass({
 								</Row>
 								</div>
 								<Row>
-									<Col md="6">
+									<Col md="12">
 									<div style={enrollmentnostyle}>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</div>
 									</Col>
-									<Col md="6">
+								</Row>
+								<Row>
+									<Col md="12">
 									<div style={otpstyle}>
 									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
 									</div>
@@ -1106,7 +1133,7 @@ var Playschool = React.createClass({
 								</Row>
 								</div>
 								<Row>
-									<a href="/coupons"><Button bsStyle="primary" onClick={this.proceedbutfunc} style={styles.proceed} >Proceed</Button></a>
+									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} >Proceed</Button></a>
 								</Row>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
@@ -2608,20 +2635,20 @@ var Content = React.createClass({
 			    <Row style={styles.row}>
 			      <Col xs={12} md={1}>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{opacity:'0.5'}}>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Playschool />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em','margin-left':'-5em'}} onClick={() => this.changecontent(<Playschool />)} >
    			      <Row>
 			      <Image style={{'margin-bottom':'0.5em','margin-left':'1em'}} src={playschool} width="40%" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Play School</span>
-			      <div style={{ width: '60',height: '0', 'border': 'solid 30px', 'margin-top': '-30px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
+			      <div style={{ width: '60',height: '0', 'border': 'solid 30px', 'margin-top': '-20px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
 			      </Row>
 			      </Col>
 			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<School />)} >
    			      <Row>
-			      <Image src={school} style={{'margin-bottom':'0.5em'}} width="60%" height="40em" />
+			      <Image src={school} style={{'margin-bottom':'0.5em','margin-left':'0.5em'}} width="40%" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-left':'0.6em'}}>School</span>
@@ -2667,12 +2694,23 @@ var Content = React.createClass({
 			      <span style={{'font-size': '10dp'}}>Workshops</span>
 			      </Row>
 			      </Col>  
-			      <Col xs={12} md={2} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','padding-right':'0'}} onClick={() => this.changecontent(<Skills />)} >
    			      <Row>
-			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'2.7em'}} width="20%" height="40em" />
+			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}} width="35%" height="40em" />
    			      </Row>
 			      <Row>
-			      <span style={{'font-size': '1em','margin-right':'2em'}}>Skills & Employability</span>
+			      <span style={{'font-size': '1em','margin-left':'1.2em'}}>Skills &</span>
+			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em'}}>Employability</span>
+			      </Row>
+			      </Col>
+			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} >
+   			      <Row>
+			      <Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="28%" height="40em" />
+   			      </Row>
+			      <Row>
+			      <span style={{'font-size': '1em','margin-right':'2em'}}>Donations</span>
 			      </Row>
 			      </Col>
 			      <Col xs={12} md={1}>
