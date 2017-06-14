@@ -28,6 +28,15 @@ li:before {
 	background-color: #4688c7;
 }
 
+.dropdown-menu li:before {
+	color: blue;
+	display: none;
+}
+
+.dropdown-menu li {
+	padding-left: 0;
+}
+
 .carousel-indicators li:before {
 	color: blue;
 	display: none;

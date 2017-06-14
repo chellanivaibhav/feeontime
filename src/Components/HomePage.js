@@ -428,59 +428,66 @@ var DailyNeeds = React.createClass({
 					<Col xs="12" md="12" style={styles.shophead}>DAILY NEEDS</Col>
 				</Row>
 			    <a href="/dailyneeds" style={{'text-decoration':'none','color':'black'}}>
-			    <Row>
-			    <Col md={1}>
-			    </Col>
-			    <Col md={9} style={{'margin-left':'-1em','margin-right':'-50em'}}>
 			    <Row style={styles.row}>
-			      <Col xs={12} md={1}>
+			      <Col md={1}></Col>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={searchtutor} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={searchtutor} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Search Tutor</span>
 			      </Row>
+			      </center>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={aptitutetest} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={aptitutetest} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Aptitude Test</span>
 			      </Row>
+			      </center>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} src={onlinetests} width="35em" height="40em" />
+			      <Image style={{'margin-left':'1em','margin-bottom':'0.5em'}} src={onlinetests} width="35em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Online Test</span>
 			      </Row>
+			      </center>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image style={{'margin-left':'1.2em','margin-bottom':'0.5em'}} src={informative} width="40em" height="40em" />
+			      <Image style={{'margin-left':'0.7em','margin-bottom':'0.5em'}} src={informative} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span>Informative</span>
 			      </Row>
+			      </center>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'-0.5em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={admissionhotline} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={admissionhotline} style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Admission</span>
+			      <span style={{'font-size': '0.9em'}}>Admission Hotline</span>
 			      </center>
 			      </Row>
-			      <Row>
-			      <center>
-			      <span style={{'font-size': '0.9em'}}>Hotline</span>
 			      </center>
-			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col md={1}></Col>
+			      </Row><br />
+			      <Row>
+			      <Col md={1}></Col>
+			      <center>
+			      <Col xs={12} md={2}>
 			      <Row>
 			      <Image style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} src={elearning} width="45em" height="40em" />
 			      </Row>
@@ -488,86 +495,90 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '0.9em', 'margin-left':'0.5em'}}>E learning</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      </center>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
 			      <Image style={{'margin-top':'0.5em','margin-left':'0.5em','margin-bottom':'0.5em'}} src={healthcard} width="50em" height="35em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Health Card</span>
 			      </Row>
+			      </center>
 			      </Col>  
-			      <Col xs={12} md={1} style={{'margin-left':'-1em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={studentinsurance} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={studentinsurance} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Student</span>
+			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
 			      </center>
 			      </Row>
-			      <Row>
-			      <center>
-			      <span style={{'font-size': '0.9em'}}>Insurance</span>
 			      </center>
-			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'-1em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={educationloan} style={{'margin-left':'0.7em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Education</span>
+			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
 			      </center>
 			      </Row>
-			      <Row>
-			      <center>
-			      <span style={{'font-size': '0.9em'}}>Loan</span>
 			      </center>
-			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'0em'}}>
+			      <Col xs={12} md={2}>
+			      <center>
 			      <Row>
-			      <Image src={educationtour} style={{'margin-left':'1.5em','margin-bottom':'0.5em','padding-top':'0.8em'}} width="45em" height="40em" />
+			      <Image src={educationtour} style={{'margin-left':'0.7em','margin-bottom':'0.5em','padding-top':'0.8em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Education Tour</span>
 			      </Row>
+			      </center>
 			      </Col>
-			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
+			      <Col md={1}></Col>
+			      </Row><br />
 			      <Row>
-			      <Image src={forexcard} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			   	  <Col md={1}></Col>
+			      <Col xs={12} md={2}>
+			      <center>
+			      <Row>
+			      <Image src={forexcard} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Forex Card</span>
 			      </Row>
+			      </center>
 			      </Col>
-			    </Row>
-			    </Col>
-			      <Col md={1} style={{'margin-left':'44em','margin-top':'1em'}} >
+			      <Col md={2}>
+			      <center>
 			      <Row>
 			      <Image src={overseaseducation} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '0.9em'}}>Overseas Education</span>
 			      </Row>
+			      </center>
 			      </Col>
-				      <Col md={1} style={{'margin-left':'-5em','margin-top':'1em'}}>
+				      <Col md={2}>
+			      	  <center>
 				      <Row>
-				      <Image src={careercounselling} style={{'margin-left':'3.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+				      <Image src={careercounselling} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 				      </Row>
 				      <Row>
 				      <center>
-				      <span style={{'font-size': '0.9em'}}>Career</span>
+				      <span style={{'font-size': '0.9em'}}>Career Counselling</span>
 				      </center>
 				      </Row>
-				      <Row>
-				      <center>
-				      <span style={{'font-size': '0.9em'}}>Counselling</span>
 				      </center>
-				      </Row>
 				    </Col>
+				    <Col md={5}></Col>
 			    </Row>
+			    <br />
 			    </a>
 			 </Grid>
 			</div>
@@ -791,7 +802,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { selectedloclat:'',selectedloclong:'',dispenrollno:false, dispstuddetails:false, dispotp:false , dispplayschool:false, enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: false, selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -824,14 +835,14 @@ var Playschool = React.createClass({
 		this.setState({
 			insid: chosenRequest.id,
 		});
-		this.setState({dispstuddetails: true});
-		this.setState({dispenrollno:true});
 		if(chosenRequest.verified==0)
 		{
 			this.setState({dispotp:true});
+			this.setState({dispproceed: false});
 		}
 		else
 		{
+			this.setState({dispproceed:true});
 			this.setState({dispotp:false});
 		}
 	},
@@ -839,7 +850,6 @@ var Playschool = React.createClass({
 	newRequestPlaySchool: function(chosenRequest) {
 			this.setState({selectedloclat:chosenRequest.lat});
 			this.setState({selectedloclong:chosenRequest.long});
-			this.setState({dispplayschool:true});
 			var q = this.getinsdata();
 			this.setState({ institutes: q });
 	},
@@ -1001,38 +1011,28 @@ var Playschool = React.createClass({
 			'display': 'none',
 		};
 
-		var playschoolstyle = {
+		var proceedstyle = {
 			'display': 'none',
+		};
+
+		var playschoolstyle = {
+			'display': 'block',
 		};
 
 		var enrollmentnostyle = {
-			'display': 'none',
+			'display': 'block',
 		};
-
-		if(this.state.dispstuddetails)
-		{
-			var studdetailsstyle = {
-				'display': 'block',
-			};
-		}
-
-		if(this.state.dispenrollno)
-		{
-			var enrollmentnostyle = {
-				'display': 'block',
-			};
-		}
-
-		if(this.state.dispplayschool)
-		{
-			var playschoolstyle = {
-				'display': 'block',
-			};
-		}
 
 		if(this.state.dispotp)
 		{
 			var otpstyle = {
+				'display': 'block',
+			};
+		}
+
+		if(this.state.dispproceed)
+		{
+			var proceedstyle = {
 				'display': 'block',
 			};
 		}
@@ -1162,9 +1162,11 @@ var Playschool = React.createClass({
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
 								</div>
+								<div style={proceedstyle}>
 								<Row>
 									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} >Proceed</Button></a>
 								</Row>
+								</div>
 							</Col>
 							<Col xs="12" md="6" style={styles.locationstyle1}>
 							</Col>
