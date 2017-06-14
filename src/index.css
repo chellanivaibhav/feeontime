@@ -3,3 +3,32 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+ul {
+	list-style: none;
+}
+
+li {
+  padding-left: 1em; 
+  text-indent: -.7em;
+}
+
+li:before {
+	margin-right: 1em;
+  content: "•";
+  color: blue; /* or whatever color you prefer */
+}
+
+.carousel-indicators li {
+	border: none;
+  background-color: #c7dbee;
+}
+
+.carousel-indicators .active {
+	background-color: #4688c7;
+}
+
+.carousel-indicators li:before {
+	color: blue;
+	display: none;
+}

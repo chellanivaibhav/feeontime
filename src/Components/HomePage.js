@@ -11,9 +11,13 @@ import informative from '../images/informative.png';
 import onlinetests from '../images/online test.png';
 import aptitutetest from '../images/aptitude test.png';
 import searchtutor from '../images/search tutor.png';
+import forexcard from '../images/forex card.png';
+import overseaseducation from '../images/overseas_education.png';
+import careercounselling from '../images/career_counselling.png';
 import bag from '../images/bag.png';
-import books from '../images/books.png';
+import educationtour from '../images/education_tour.png';
 import bottles from '../images/bottles.png';
+import books from '../images/books.png';
 import sports from '../images/sports.png';
 import toys from '../images/toys.png';
 import stationary from '../images/stationary.png';
@@ -437,7 +441,7 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '10dp'}}>Search Tutor</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
 			      <Row>
 			      <Image src={aptitutetest} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
@@ -445,7 +449,7 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '10dp'}}>Aptitude Test</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
 			      <Row>
 			      <Image style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} src={onlinetests} width="35em" height="40em" />
 			      </Row>
@@ -461,15 +465,22 @@ var DailyNeeds = React.createClass({
 			      <span>Informative</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{'margin-left':'-0.5em'}}>
 			      <Row>
 			      <Image src={admissionhotline} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Admission Hotline</span>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Admission</span>
+			      </center>
+			      </Row>
+			      <Row>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Hotline</span>
+			      </center>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}  style={{'margin-left':'1.5em'}} >
+			      <Col xs={12} md={1}>
 			      <Row>
 			      <Image style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} src={elearning} width="45em" height="40em" />
 			      </Row>
@@ -485,58 +496,77 @@ var DailyNeeds = React.createClass({
 			      <span style={{'font-size': '0.9em'}}>Health Card</span>
 			      </Row>
 			      </Col>  
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{'margin-left':'-1em'}}>
 			      <Row>
 			      <Image src={studentinsurance} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="40em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Student</span>
+			      </center>
+			      </Row>
+			      <Row>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Insurance</span>
+			      </center>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} >
+			      <Col xs={12} md={1} style={{'margin-left':'-1em'}}>
 			      <Row>
 			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Education</span>
+			      </center>
+			      </Row>
+			      <Row>
+			      <center>
+			      <span style={{'font-size': '0.9em'}}>Loan</span>
+			      </center>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} >
+			      <Col xs={12} md={1} style={{'margin-left':'0em'}}>
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={educationtour} style={{'margin-left':'1.5em','margin-bottom':'0.5em','padding-top':'0.8em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      <span style={{'font-size': '0.9em'}}>Education Tour</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1}>
+			      <Col xs={12} md={1} style={{'margin-left':'1em'}}>
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={forexcard} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      <span style={{'font-size': '0.9em'}}>Forex Card</span>
 			      </Row>
 			      </Col>
 			    </Row>
 			    </Col>
-			      <Col md={1} style={{'margin-left':'45em','margin-top':'1em'}} >
+			      <Col md={1} style={{'margin-left':'44em','margin-top':'1em'}} >
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={overseaseducation} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
-			      </Row>
-			      </Col>
-			    <Col md={1}>
-			      <Col md={1} style={{'margin-top':'1em'}}>
-			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'1.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
-			      </Row>
-			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      <span style={{'font-size': '0.9em'}}>Overseas Education</span>
 			      </Row>
 			      </Col>
-			    </Col>
+				      <Col md={1} style={{'margin-left':'-5em','margin-top':'1em'}}>
+				      <Row>
+				      <Image src={careercounselling} style={{'margin-left':'3.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+				      </Row>
+				      <Row>
+				      <center>
+				      <span style={{'font-size': '0.9em'}}>Career</span>
+				      </center>
+				      </Row>
+				      <Row>
+				      <center>
+				      <span style={{'font-size': '0.9em'}}>Counselling</span>
+				      </center>
+				      </Row>
+				    </Col>
 			    </Row>
 			    </a>
 			 </Grid>
