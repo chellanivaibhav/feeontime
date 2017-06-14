@@ -42,6 +42,7 @@ import PayFeesDrawer from './PayFeesDrawer.js';
 import LoginSignup from './LoginSignupButton.js';
 import Cookies from 'js-cookie';
 import classes from '../index.css';
+import Geosuggest from 'react-geosuggest';
 var $ = require ('jquery');
 
 var Book = React.createClass({
@@ -850,7 +851,7 @@ var Playschool = React.createClass({
 	newRequestPlaySchool: function(chosenRequest) {
 			this.setState({selectedloclat:chosenRequest.lat});
 			this.setState({selectedloclong:chosenRequest.long});
-			var q = this.getinsdata();
+			var q = this.getinsdata1();
 			this.setState({ institutes: q });
 	},
 
@@ -900,8 +901,21 @@ var Playschool = React.createClass({
 
 	getinsdata1: function()
 	{
-		var mydata={};
-		var data2=[];
+		/*
+		var GooglePlaces = require('node-googleplaces');
+		var places = new GooglePlaces('AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs');
+		var location = this.state.selectedloclat+','+this.state.selectedloclong;
+		var mydata={
+			'location': location,
+			'radius': 50000
+		};
+		service = new window.google.maps.places.PlacesService(mydata);
+		service.nearbySearch(request, callback);
+		places.nearbySearch(mydata, (err, res) => {
+		  alert(JSON.stringify(res.body));
+		  alert(JSON.stringify(err));
+		});
+/*		var data2=[];
 		let p = this;
 		alert(this.state.selectedloclong);
 		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.selectedloclat+','+this.state.selectedloclong+'&type=school&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000';
@@ -931,7 +945,7 @@ var Playschool = React.createClass({
 		});
 
 		return data2;
-	},
+*/	},
 
 	getapidata: function()
 	{
@@ -2776,6 +2790,44 @@ var FormGet = React.createClass({
 
 });
 
+var App = React.createClass({
+  /**
+   * Render the example app
+   */
+  render: function() {
+    var fixtures = [
+      {label: 'Old Elbe Tunnel, Hamburg', location: {lat: 53.5459, lng: 9.966576}},
+      {label: 'Reeperbahn, Hamburg', location: {lat: 53.5495629, lng: 9.9625838}},
+      {label: 'Alster, Hamburg', location: {lat: 53.5610398, lng: 10.0259135}}
+    ];
+
+    return (
+      <div>
+        <Geosuggest
+          ref={el=>this._geoSuggest=el}
+          placeholder="Start typing!"
+          initialValue="Hamburg"
+          fixtures={fixtures}
+          onSuggestSelect={this.onSuggestSelect}
+          location={new window.google.maps.LatLng(53.558572, 9.9278215)}
+          radius="20" />
+
+        <button onClick={()=>this._geoSuggest.focus()}>Focus</button>
+        <button onClick={()=>this._geoSuggest.update('New Zeland')}>Update</button>
+        <button onClick={()=>this._geoSuggest.clear()}>Clear</button>
+      </div>
+    )
+  },
+
+  /**
+   * When a suggest got selected
+   * @param  {Object} suggest The suggest
+   */
+  onSuggestSelect: function(suggest) {
+    console.log(suggest);
+  }
+});
+
 var Homepage = React.createClass({
 
 	render: function() {
@@ -2785,6 +2837,7 @@ var Homepage = React.createClass({
 			    <PayFeesDrawer />
 				<FormGet/>
 				<DailyNeeds />
+				<App />
 				<Discount />
 			</div>
 		);

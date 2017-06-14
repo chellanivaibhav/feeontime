@@ -19,6 +19,15 @@ li:before {
   color: blue; /* or whatever color you prefer */
 }
 
+.geosuggest__suggests--hidden {
+  max-height: 0;
+  overflow: hidden;
+  border-width: 0;
+}
+.geosuggest__item--active {
+  background: #267dc0;
+  color: #fff;
+}
 .carousel-indicators li {
 	border: none;
   background-color: #c7dbee;
