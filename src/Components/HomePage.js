@@ -36,7 +36,7 @@ import skills from '../images/skills.png';
 import tutor from '../images/tutor.png';
 import workshops from '../images/workshops.png';
 import donations from '../images/donations.png';
-import {RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
+import {Card,RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
 import PayFeesDrawer from './PayFeesDrawer.js';
 import LoginSignup from './LoginSignupButton.js';
@@ -405,13 +405,13 @@ var DailyNeeds = React.createClass({
 			},
 			row1:
 			{
-				backgroundColor:'#ECF3F9'
+				backgroundColor:'#ffffff'
 			},
 			line: {
-				'background-color':'#D4DAE0'
+				'background-color':'#ffffff'
 			},
 			shophead: {
-				'background-color':'#E0E7EC',
+				'background-color':'#ffffff',
 				'text-align':'center',
 				'font-size':'1.7em'
 			},
@@ -792,7 +792,7 @@ var Otp = React.createClass({
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
 			</Dialog>
-			<Button bsStyle="primary" onClick={this.open} style={styles.proceed}>Get Otp</Button>
+			<Button bsStyle="primary" onClick={this.open} style={styles.proceed}><b>Get Otp</b></Button>
 			</div>
 		);
 	}
@@ -803,7 +803,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: false, selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true, selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -851,7 +851,7 @@ var Playschool = React.createClass({
 	newRequestPlaySchool: function(chosenRequest) {
 			this.setState({selectedloclat:chosenRequest.lat});
 			this.setState({selectedloclong:chosenRequest.long});
-			var q = this.getinsdata1();
+			var q = this.getinsdata();
 			this.setState({ institutes: q });
 	},
 
@@ -914,11 +914,30 @@ var Playschool = React.createClass({
 		places.nearbySearch(mydata, (err, res) => {
 		  alert(JSON.stringify(res.body));
 		  alert(JSON.stringify(err));
-		});
-/*		var data2=[];
+		});*/
+var request = require('superagent');
+request
+  .get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.state.selectedloclong+'/50000')
+  .end(function(err, res){
+    alert(JSON.stringify(res.Results));
+  });/*		var request = require('axios');
+	    var path=require('path');
+	    var lib=path.join(path.dirname(require.resolve('axios')),'lib/adapters/http');
+	    var http=require(lib);
+
+request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.state.selectedloclong+'/50000', {
+	adapter: http,
+})
+  .then(function (response) {
+    alert(response);
+  })
+  .catch(function (error) {
+    alert(error);
+  });
+		/*
+		var data2=[];
 		let p = this;
-		alert(this.state.selectedloclong);
-		var url='https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+this.state.selectedloclat+','+this.state.selectedloclong+'&type=school&key=AIzaSyB4nQSPV3FFRcgv3SV5RvNmvCfFzmOQhJs&radius=50000';
+		var url='http://localhost:8080/maps/'+this.state.selectedloclat+','+this.state.selectedloclong+'/50000';
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
@@ -929,11 +948,14 @@ var Playschool = React.createClass({
 		}
 
 		$.ajax({
-			type: 'GET',
-			url: url,
+
+            type: "GET",
+   	        contentType: "text/javascript; charset=UTF-8",
+   			url: url,
 			success: function(data)
 			{
-				var data1 = data.results;
+				alert(JSON.stringify(data));
+				var data1 = data.Results;
 				alert(JSON.stringify(data1));
 				do_the_stuff(data1);
 			},
@@ -944,8 +966,8 @@ var Playschool = React.createClass({
 		    }			
 		});
 
-		return data2;
-*/	},
+		return data2;*/
+	},
 
 	getapidata: function()
 	{
@@ -1054,10 +1076,12 @@ var Playschool = React.createClass({
 		const styles = {
 
 			row : {
+				'background-color': '#f3f3f3',
+				'padding-bottom':'1em'
 			},
 
 			carousel: {
-				'margin-top':'10em',
+				'margin-top':'5em',
 			},
 
 			h2: {
@@ -1074,17 +1098,16 @@ var Playschool = React.createClass({
 			},
 
 			textfieldstyle: {
-				height:'4em',
+				height:'4.5em',
 				width:'100%',
 				background:'#ffffff'
 			},
 
 			formstyle: {
-				'padding-left':'5%',
-				'padding-right':'5%',
-				'padding-bottom':'2%',
-				'background-color': '#ffffff',
-				'width':'50%'
+				'font-size':'1em',
+				'padding-left':'10%',
+				'padding-right':'10%',
+				'padding-bottom':'1em'
 			},
 
 			proceed: {
@@ -1095,15 +1118,6 @@ var Playschool = React.createClass({
 				'font-size':'1.2em'
 			},
 
-			locationstyle: {
-				'background-color':'#fff'
-			},
-
-			locationstyle1: {
-				'background':'white',
-				'height': '32.5em'
-			}
-
 		}
 
 		return (
@@ -1111,9 +1125,11 @@ var Playschool = React.createClass({
 				<Grid bsClass="container-fluid">
 					<Row style={styles.row}>
 						<Col xs="12" md="8">
-						<Grid bsClass="container-fluid" style={{'margin-left':'20em'}}>
-						<Row>
-							<Col xs="12" md="6" style={styles.formstyle}>
+						<Grid bsClass="container-fluid" style={{'margin-left':'6em','width':'30em'}}>
+						<Card>
+					    <div style={{ 'margin-left':'30px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
+						<Row style={styles.formstyle}>
+							<Col xs="12" md="12">
 								<Row>
 								<AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -1125,7 +1141,7 @@ var Playschool = React.createClass({
 						          openOnFocus={true}
 						          name="selectlocation"
 						          onNewRequest={this.newRequestPlaySchool}
-						          floatingLabelText="Select Location"
+						          floatingLabelText="Location"
 						          fullWidth={true}					
 						        />
 								</Row>
@@ -1141,25 +1157,21 @@ var Playschool = React.createClass({
 						          name="selectplayschool"
 						          onNewRequest={this.newRequestOtp}
 						          openOnFocus={true}
-						          floatingLabelText="Select Play School"
+						          floatingLabelText="Play School"
 						          fullWidth={true}					
 						        />
 								</Row>
-								</div>
 								<Row>
-									<Col md="12">
 									<div style={enrollmentnostyle}>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</div>
-									</Col>
 								</Row>
 								<Row>
-									<Col md="12">
 									<div style={otpstyle}>
 									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
 									</div>
-									</Col>
 								</Row>
+								</div>
 								<div style={studdetailsstyle}>
 								<Row>
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
@@ -1178,13 +1190,12 @@ var Playschool = React.createClass({
 								</div>
 								<div style={proceedstyle}>
 								<Row>
-									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} >Proceed</Button></a>
+									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
 								</Row>
 								</div>
 							</Col>
-							<Col xs="12" md="6" style={styles.locationstyle1}>
-							</Col>
 						</Row>
+						</Card>
 						</Grid>
 						</Col>
 						<Col xs="12" md="4">
@@ -2658,10 +2669,91 @@ var Skills = React.createClass({
 
 var Content = React.createClass({
 
+	getInitialState: function()
+	{
+		return {activeid: '1','replaceactiveid':''}
+	},
 
 	changecontent: function(data)
 	{
 		this.props.changeactive(data);
+	},
+
+	changepp: function(id)
+	{
+		$('#mainp').html('').delay(500);
+		$('#mainq').html('').delay(500);
+		$('#mainq').html($('#main1').html()).delay(500);
+		$('#main1').html($('#main'+id).html()).delay(500);
+		$('#main'+id).html($('#mainq').html()).delay(500);
+		$('#mainq').html($('#mainp').html()).delay(500);			
+	},
+
+	hello: function(pic)
+	{
+		if(pic==2)
+		{
+			if(this.state.activeid==2)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '2'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<School />);
+				this.setState({activeid: '2'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<School />);
+					this.setState({activeid: '2'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+
+				}
+			}
+		}
+		else if(pic==3)
+		{
+			if(this.state.activeid==3)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '3'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<College />);
+				this.setState({activeid: '3'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<College />);
+					this.setState({activeid: '3'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
 	},
 
 	render: function() {
@@ -2679,19 +2771,21 @@ var Content = React.createClass({
 			 <Grid style={{'background-color': '#f3f3f4'}} bsClass="container-fluid">
 			 <br />
 			    <Row style={styles.row}>
-			      <Col xs={12} md={1}>
-			      </Col>
 			      <Col xs={12} md={1} style={{opacity:'0.5'}}>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em','margin-left':'-5em'}} onClick={() => this.changecontent(<Playschool />)} >
+			      <div id="mainp"></div>
+			      <div id="mainq"></div>
+			      <div id="main1">
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Playschool />)} >
    			      <Row>
 			      <Image style={{'margin-bottom':'0.5em','margin-left':'1em'}} src={playschool} width="40%" height="40em" />
 			      </Row>
 			      <Row>
 			      <span style={{'font-size': '10dp'}}>Play School</span>
-			      <div style={{ width: '60',height: '0', 'border': 'solid 30px', 'margin-top': '-20px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
 			      </Row>
 			      </Col>
+			      </div>
+			      <div id="main2" onClick={() => this.hello(2)}>
 			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<School />)} >
    			      <Row>
 			      <Image src={school} style={{'margin-bottom':'0.5em','margin-left':'0.5em'}} width="40%" height="40em" />
@@ -2700,7 +2794,9 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em','margin-left':'0.6em'}}>School</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<College />)} >
+			      </div>
+			      <div id="main3" onClick={() => this.hello(3)}>
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<College />)} >
    			      <Row>
 			      <Image src={college} style={{'margin-bottom':'0.5em'}} width="60%" height="40em" />
    			      </Row>
@@ -2708,7 +2804,8 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em','margin-left':'0.5em'}}>College</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Coaching />)} >
+			      </div>
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Coaching />)} >
    			      <Row>
 			      <Image src={coaching} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
@@ -2716,7 +2813,7 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em','margin-left':'0.4em'}}>Coaching</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Tutor />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Tutor />)} >
    			      <Row>
 			      <Image src={tutor} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
@@ -2724,7 +2821,7 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em','margin-left':'1em'}}>Tutor</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Admissions />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Admissions />)} >
    			      <Row>
 			      <Image src={admissions} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
    			      </Row>
@@ -2732,7 +2829,7 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em','margin-left':'0.1em'}}>Admission</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Workshops />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Workshops />)} >
    			      <Row>
 			      <Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}} width="30em" height="40em" />
    			      </Row>
@@ -2740,7 +2837,7 @@ var Content = React.createClass({
 			      <span style={{'font-size': '10dp'}}>Workshops</span>
 			      </Row>
 			      </Col>  
-			      <Col xs={12} md={1} style={{cursor:'pointer','padding-right':'0'}} onClick={() => this.changecontent(<Skills />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
    			      <Row>
 			      <Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}} width="35%" height="40em" />
    			      </Row>
@@ -2751,13 +2848,15 @@ var Content = React.createClass({
 			      <span style={{'font-size': '1em'}}>Employability</span>
 			      </Row>
 			      </Col>
-			      <Col xs={12} md={1} style={{cursor:'pointer'}} onClick={() => this.changecontent(<Skills />)} >
+			      <Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
    			      <Row>
 			      <Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="28%" height="40em" />
    			      </Row>
 			      <Row>
 			      <span style={{'font-size': '1em','margin-right':'2em'}}>Donations</span>
 			      </Row>
+			      </Col>
+			      <Col xs={12} md={1}>
 			      </Col>
 			      <Col xs={12} md={1}>
 			      </Col>
@@ -2837,7 +2936,7 @@ var Homepage = React.createClass({
 			    <PayFeesDrawer />
 				<FormGet/>
 				<DailyNeeds />
-				<App />
+{/*				<App />*/}
 				<Discount />
 			</div>
 		);
