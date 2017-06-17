@@ -11,7 +11,22 @@ var MyDrawer = React.createClass({
 
 	getInitialState: function() {
 
-		return {open: false};
+		return {
+			open: false,
+			active: 0,
+		};
+	},
+
+	clickbutton: function(value) {
+		if(value==0)
+		{
+			this.setState({ active: 0 });
+		}
+		else if(value==1)
+		{
+			this.setState({ active: 1 });
+		}
+		this.props.maindrawer(value);
 	},
 
  	handleToggle :function() { this.setState({open: !this.state.open}) },
@@ -22,14 +37,6 @@ var MyDrawer = React.createClass({
 
 		  const styles = {	 
 		   	
-		  	appbarstyleactive:
-		  	{
-		  		'border-bottom-width':'2px',
-		  		'border-bottom-style':'solid',
-		    	backgroundColor: '#4688C7',
-		    	color: 'white',
-		    	'font-size': '110%'
-		  	},
 		    logostyle:
 		    {
 		    	width:'30%'
@@ -42,13 +49,54 @@ var MyDrawer = React.createClass({
 		    },
 		  };
 
+		  	var appbarstyleactive =  {
+
+		    	backgroundColor: '#4688C7',
+		    	color: 'white',
+			  	'-moz-border-bottom-colors':'#4688C7',
+		    	'font-size': '110%'
+		  	}
+
+		  	var appbarstyleactive1 =  {
+
+		    	backgroundColor: '#4688C7',
+		    	color: 'white',
+			  	'-moz-border-bottom-colors':'#4688C7',
+		    	'font-size': '110%'
+		  	}
+
+		  	if(this.state.active==0)
+		  	{
+			  	var appbarstyleactive =  {
+
+			  		'border-bottom-width':'2px',
+			  		'border-bottom-style':'solid',
+			    	backgroundColor: '#4688C7',
+			    	color: 'white',
+			    	'font-size': '110%'
+			  	}
+		  	}
+
+		  	else if(this.state.active==1)
+		  	{
+			  	var appbarstyleactive1 =  {
+
+			  		'border-bottom-width':'2px',
+			  		'border-bottom-style':'solid',
+			    	backgroundColor: '#4688C7',
+			    	color: 'white',
+			    	'font-size': '110%'
+			  	}
+		  	}
+
+
 		return (
 			<div>
 			  <AppBar title={<img src={logo} style={styles.logostyle} />} onLeftIconButtonTouchTap={this.handleToggle} style={styles.appbarstyle}>
 			   <Toolbar style={styles.appbarstyle}>
 			   <ToolbarGroup>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyleactive}>Pay Fees Here</FlatButton>
-			   <FlatButton containerElement={<Link to="/dailyneeds" />} style={styles.appbarstyle}>Daily Needs</FlatButton>
+			   <FlatButton onClick={() => this.clickbutton(0)} style={appbarstyleactive}>Pay Fees Here</FlatButton>
+			   <FlatButton onClick={() => this.clickbutton(1)} style={appbarstyleactive1}>Daily Needs</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
 			   <LoginSignup />

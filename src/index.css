@@ -14,8 +14,9 @@ li {
 }
 
 li:before {
-	margin-right: 1em;
+	margin-right: 0.5em;
   content: "•";
+  font-size: 250%;
   color: blue; /* or whatever color you prefer */
 }
 
@@ -49,4 +50,14 @@ li:before {
 .carousel-indicators li:before {
 	color: blue;
 	display: none;
+}
+
+.list-group li:before {
+  color: blue;
+  display: none;
+}
+
+#leadgenimage
+{
+  background-image: url("./images/leadgen.png");
 }

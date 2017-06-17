@@ -428,93 +428,94 @@ var DailyNeeds = React.createClass({
 				<Row style={styles.row1}>
 					<Col xs="12" md="12" style={styles.shophead}>DAILY NEEDS</Col>
 				</Row>
-			    <a href="/dailyneeds" style={{'text-decoration':'none','color':'black'}}>
+				<br />
+			    <a href="/leadgen" style={{'text-decoration':'none','color':'black'}}>
 			    <Row style={styles.row}>
 			      <Col md={1}></Col>
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={searchtutor} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={searchtutor} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="105em" height="120em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '10dp'}}>Search Tutor</span>
-			      </Row>
-			      </center>
-			      </Col>
-			      <Col xs={12} md={2}>
-			      <center>
-			      <Row>
-			      <Image src={aptitutetest} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
-			      </Row>
-			      <Row>
-			      <span style={{'font-size': '10dp'}}>Aptitude Test</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Search Tutor</span>
 			      </Row>
 			      </center>
 			      </Col>
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image style={{'margin-left':'1em','margin-bottom':'0.5em'}} src={onlinetests} width="35em" height="40em" />
+			      <Image src={aptitutetest} style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'1.3em'}} width="105em" height="97.5em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '10dp'}}>Online Test</span>
-			      </Row>
-			      </center>
-			      </Col>
-			      <Col xs={12} md={2}>
-			      <center>
-			      <Row>
-			      <Image style={{'margin-left':'0.7em','margin-bottom':'0.5em'}} src={informative} width="40em" height="40em" />
-			      </Row>
-			      <Row>
-			      <span>Informative</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Aptitude Test</span>
 			      </Row>
 			      </center>
 			      </Col>
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={admissionhotline} style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'0.7em'}} src={onlinetests} width="80em" height="105em" />
+			      </Row>
+			      <Row>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Online Test</span>
+			      </Row>
+			      </center>
+			      </Col>
+			      <Col xs={12} md={2}>
+			      <center>
+			      <Row>
+			      <Image style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'0.7em'}} src={informative} width="110em" height="105em" />
+			      </Row>
+			      <Row>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Informative</span>
+			      </Row>
+			      </center>
+			      </Col>
+			      <Col xs={12} md={2}>
+			      <center>
+			      <Row>
+			      <Image src={admissionhotline} style={{'margin-left':'0.8em','margin-bottom':'0.9em','margin-top':'0.7em'}} width="105em" height="105em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Admission Hotline</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Admission Hotline</span>
 			      </center>
 			      </Row>
 			      </center>
 			      </Col>
 			      <Col md={1}></Col>
-			      </Row><br />
+			      </Row><br /><br />
 			      <Row>
 			      <Col md={1}></Col>
 			      <center>
 			      <Col xs={12} md={2}>
 			      <Row>
-			      <Image style={{'margin-left':'0.8em','margin-bottom':'0.5em'}} src={elearning} width="45em" height="40em" />
+			      <Image style={{'margin-left':'0.8em','margin-bottom':'0.9em','margin-top':'1em'}} src={elearning} width="112.5em" height="100em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em', 'margin-left':'0.5em'}}>E learning</span>
+			      <span style={{'color':'black','font-size': '1.5em', 'margin-left':'0.5em'}}>E learning</span>
 			      </Row>
 			      </Col>
 			      </center>
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image style={{'margin-top':'0.5em','margin-left':'0.5em','margin-bottom':'0.5em'}} src={healthcard} width="50em" height="35em" />
+			      <Image style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'2em'}} src={healthcard} width="120em" height="80em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Health Card</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Health Card</span>
 			      </Row>
 			      </center>
 			      </Col>  
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={studentinsurance} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="40em" height="40em" />
+			      <Image src={studentinsurance} style={{'margin-left':'1em','margin-bottom':'0.9em','margin-top':'1em'}} width="105em" height="90em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Student Insurance</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Student Insurance</span>
 			      </center>
 			      </Row>
 			      </center>
@@ -522,11 +523,11 @@ var DailyNeeds = React.createClass({
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={educationloan} style={{'margin-left':'0.7em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={educationloan} style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'2em'}} width="87.5em" height="75em" />
 			      </Row>
 			      <Row>
 			      <center>
-			      <span style={{'font-size': '0.9em'}}>Education Loan</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Education Loan</span>
 			      </center>
 			      </Row>
 			      </center>
@@ -534,52 +535,52 @@ var DailyNeeds = React.createClass({
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={educationtour} style={{'margin-left':'0.7em','margin-bottom':'0.5em','padding-top':'0.8em'}} width="45em" height="40em" />
+			      <Image src={educationtour} style={{'margin-left':'0.7em','margin-bottom':'0.9em','padding-top':'0.8em','margin-top':'1em'}} width="117.5em" height="90em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Education Tour</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Education Tour</span>
 			      </Row>
 			      </center>
 			      </Col>
 			      <Col md={1}></Col>
-			      </Row><br />
+			      </Row><br /><br /><br /><br />
 			      <Row>
 			   	  <Col md={1}></Col>
 			      <Col xs={12} md={2}>
 			      <center>
 			      <Row>
-			      <Image src={forexcard} style={{'margin-left':'1em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={forexcard} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Forex Card</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Forex Card</span>
 			      </Row>
 			      </center>
 			      </Col>
 			      <Col md={2}>
 			      <center>
 			      <Row>
-			      <Image src={overseaseducation} style={{'margin-left':'0.5em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+			      <Image src={overseaseducation} style={{'margin-left':'0.5em','margin-bottom':'0.9em'}} width="117.5em" height="90em" />
 			      </Row>
 			      <Row>
-			      <span style={{'font-size': '0.9em'}}>Overseas Education</span>
+			      <span style={{'color':'black','font-size': '1.5em'}}>Overseas Education</span>
 			      </Row>
 			      </center>
 			      </Col>
 				      <Col md={2}>
 			      	  <center>
 				      <Row>
-				      <Image src={careercounselling} style={{'margin-left':'2em','margin-bottom':'0.5em'}} width="45em" height="40em" />
+				      <Image src={careercounselling} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 				      </Row>
 				      <Row>
 				      <center>
-				      <span style={{'font-size': '0.9em'}}>Career Counselling</span>
+				      <span style={{'color':'black','font-size': '1.5em'}}>Career Counselling</span>
 				      </center>
 				      </Row>
 				      </center>
 				    </Col>
 				    <Col md={5}></Col>
 			    </Row>
-			    <br />
+			    <br /><br />
 			    </a>
 			 </Grid>
 			</div>
@@ -2909,8 +2910,7 @@ var App = React.createClass({
           fixtures={fixtures}
           onSuggestSelect={this.onSuggestSelect}
           location={new window.google.maps.LatLng(53.558572, 9.9278215)}
-          radius="20" />
-
+          radius="20" />  
         <button onClick={()=>this._geoSuggest.focus()}>Focus</button>
         <button onClick={()=>this._geoSuggest.update('New Zeland')}>Update</button>
         <button onClick={()=>this._geoSuggest.clear()}>Clear</button>
@@ -2929,12 +2929,30 @@ var App = React.createClass({
 
 var Homepage = React.createClass({
 
+	getInitialState: function() {
+		return {
+			data: <FormGet />,
+		}
+	},
+
+	changeview: function(value) {
+
+		if(value==1)
+		{
+			this.setState({ data: null });
+		}
+		else if(value==0)
+		{
+			this.setState({ data: <FormGet />});
+		}
+	},
+
 	render: function() {
 
 		return (
 			<div>
-			    <PayFeesDrawer />
-				<FormGet/>
+			    <PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
+				{this.state.data}
 				<DailyNeeds />
 {/*				<App />*/}
 				<Discount />
