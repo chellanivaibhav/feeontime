@@ -982,6 +982,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 				var c = data[i];
 				data2.push(c);
 			}
+
 		}
 
 		$.ajax({
@@ -1002,6 +1003,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 		});
 
 		this.setState({data: data2});
+		data2.push('t');
 		return data2;
 	},
 
@@ -1131,6 +1133,8 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 					    <div style={{ 'margin-left':'30px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
 						<Row style={styles.formstyle}>
 							<Col xs="12" md="12">
+								{
+									this.state.enrollmentno=='' &&	
 								<Row>
 								<AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -1146,6 +1150,13 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 						          fullWidth={true}					
 						        />
 								</Row>
+								}
+								{
+									this.state.enrollmentno!='' && 	
+								<Row>
+									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
+								</Row>
+								}
 								<div style={playschoolstyle}>
 								<Row>
 								<AutoComplete
@@ -1167,6 +1178,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</div>
 								</Row>
+
 								<Row>
 									<div style={otpstyle}>
 									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
