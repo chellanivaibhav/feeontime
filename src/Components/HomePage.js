@@ -899,7 +899,16 @@ var Playschool = React.createClass({
 
 		return data2;
 	},
+	getlength: function()
+	{
+		if (this.state.enrollmentno>=5) {
+			alert(true);
 
+			return true;
+
+		}
+		
+	},
 	getinsdata1: function()
 	{
 		/*
@@ -1006,6 +1015,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 		data2.push('t');
 		return data2;
 	},
+
 
 	proceedbutfunc: function()
 	{
@@ -1134,7 +1144,8 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 						<Row style={styles.formstyle}>
 							<Col xs="12" md="12">
 								{
-									this.state.enrollmentno=='' &&	
+									this.getlength &&
+								<div>	
 								<Row>
 								<AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -1150,14 +1161,6 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 						          fullWidth={true}					
 						        />
 								</Row>
-								}
-								{
-									this.state.enrollmentno!='' && 	
-								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
-								</Row>
-								}
-								<div style={playschoolstyle}>
 								<Row>
 								<AutoComplete
 								  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -1178,16 +1181,19 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
 									</div>
 								</Row>
-
-								<Row>
-									<div style={otpstyle}>
-									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
-									</div>
-								</Row>
 								</div>
-								<div style={studdetailsstyle}>
+								}
+								{
+									this.getlength && 	
+								<div>
 								<Row>
-									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentname} name="studentname" onChange={this.handleChange} floatingLabelText="Student Name" />
+									<TextField style={styles.textfieldstyle} 
+									floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+									underlineFocusStyle={styles.underlineFocusStyle} 
+									value={this.state.studentname} 
+									name="studentname" 
+									onChange={this.handleChange} 
+									floatingLabelText="Student Name" />
 								</Row>
 								<Row>
 									<Col xs="12" md="6">
@@ -1201,9 +1207,24 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 									<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fees" />
 								</Row>
 								</div>
+								}
+								<div style={playschoolstyle}>
+								
+								
+
+								<Row>
+									<div style={otpstyle}>
+									<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
+									</div>
+								</Row>
+								</div>
+								<div style={studdetailsstyle}>
+								
+								
+								</div>
 								<div style={proceedstyle}>
 								<Row>
-									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+									<a href="/coupon"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
 								</Row>
 								</div>
 							</Col>
