@@ -4,6 +4,7 @@ import {RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Dra
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
 import LoginSignup from './LoginSignupButton.js';
+import LoginSignupButton from './LoginSignupButton.js';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -14,6 +15,7 @@ var MyDrawer = React.createClass({
 		return {
 			open: false,
 			active: 0,
+			loggedin: Cookies.get('isloggedin'),
 		};
 	},
 
@@ -28,7 +30,11 @@ var MyDrawer = React.createClass({
 		}
 		this.props.maindrawer(value);
 	},
-
+	changelogin: function(data)
+	{
+		this.setState({loggedin: data});
+		
+	},
  	handleToggle :function() { this.setState({open: !this.state.open}) },
 
  	handleClose : function() { this.setState({open: false}) },
@@ -88,29 +94,48 @@ var MyDrawer = React.createClass({
 			    	'font-size': '110%'
 			  	}
 		  	}
+		  		  		
+		  	if(this.state.loggedin)
+		  	{
+		  		var mywalletstyle={
+		  			backgroundColor: '#4688C7',
+			    	color: 'white',
+			    	'font-size': '110%',
+		  			'display':'block'
+		  		}
+
+		  	}
+		  	else
+		  	{
+		  		var mywalletstyle=
+		  		{
+		  			'display':'none'
+		  		}		  		
+		  	}
+
 
 
 		return (
 			<div>
-			  <AppBar title={<img src={logo} style={styles.logostyle} />} onLeftIconButtonTouchTap={this.handleToggle} style={styles.appbarstyle}>
+			  <AppBar title={<img src={logo} style={styles.logostyle} />}  style={styles.appbarstyle}>
 			   <Toolbar style={styles.appbarstyle}>
 			   <ToolbarGroup>
 			   <FlatButton onClick={() => this.clickbutton(0)} style={appbarstyleactive}>Pay Fees Here</FlatButton>
 			   <FlatButton onClick={() => this.clickbutton(1)} style={appbarstyleactive1}>Daily Needs</FlatButton>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={mywalletstyle}>My Wallet</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Help</FlatButton>
 			   <LoginSignup />
 			   </ToolbarGroup>
 			   </Toolbar>
 			  </AppBar>
-			  <Drawer
+			  {/*<Drawer
 	           docked={false}
 	           open={this.state.open}
 	           onRequestChange={(open) => this.setState({open})}
           	  >
 			  <MenuItem onTouchTap={this.handleClose} >Menu Item</MenuItem>
 			  <MenuItem onTouchTap={this.handleClose} >Menu Item 2</MenuItem>
-			  </Drawer>
+			  </Drawer>*/}
 			</div>
 
 		);

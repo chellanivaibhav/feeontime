@@ -804,7 +804,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true, selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -841,6 +841,7 @@ var Playschool = React.createClass({
 		{
 			this.setState({dispotp:true});
 			this.setState({dispproceed: false});
+
 		}
 		else
 		{
@@ -901,11 +902,15 @@ var Playschool = React.createClass({
 	},
 	getlength: function()
 	{
-		if (this.state.enrollmentno>=5) {
-			alert(true);
+		if (this.state.enrollmentno.length>=5) {
+			
 
 			return true;
 
+		}
+		else
+		{
+			return false;
 		}
 		
 	},
@@ -1184,7 +1189,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 								</div>
 								}
 								{
-									this.getlength && 	
+									this.state.enrollmentno.length>=5 && 	
 								<div>
 								<Row>
 									<TextField style={styles.textfieldstyle} 
@@ -1224,7 +1229,7 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 								</div>
 								<div style={proceedstyle}>
 								<Row>
-									<a href="/coupon"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+									<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
 								</Row>
 								</div>
 							</Col>

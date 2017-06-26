@@ -48,19 +48,19 @@ var MyDrawer = React.createClass({
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Pay Fees Here</FlatButton>
 			   <FlatButton containerElement={<Link to="/dailyneeds" />} style={styles.appbarstyle}>Daily Needs</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Offers</FlatButton>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Updates</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Help</FlatButton>
 			   <LoginSignup loggedin={false}/>
 			   </ToolbarGroup>
 			   </Toolbar>
 			  </AppBar>
-			  <Drawer
+			  {/*<Drawer
 	           docked={false}
 	           open={this.state.open}
 	           onRequestChange={(open) => this.setState({open})}
           	  >
 			  <MenuItem onTouchTap={this.handleClose} >Menu Item</MenuItem>
 			  <MenuItem onTouchTap={this.handleClose} >Menu Item 2</MenuItem>
-			  </Drawer>
+			  </Drawer>*/}
 			</div>
 
 		);

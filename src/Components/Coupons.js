@@ -15,7 +15,7 @@ var Component = React.createClass({
 
 	getInitialState: function()
 	{
-		return { value : 1, amount: Cookies.get('studentfees'), pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'delhi' }
+		return { value : 1, amount: Cookies.get('studentfees'),noofcoupons:0, pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'Delhi',institutename:'Darshan Academy' }
 	},
 
 	componentDidMount: function()
@@ -27,7 +27,17 @@ var Component = React.createClass({
 	{
 		this.setState({value});
 	},
-
+	clickbutton: function(value) {
+		if(value==0)
+		{
+			
+		}
+		else if(value==1)
+		{
+			
+		}
+		
+	},
 	fetchcouponsdata: function()
 	{
 		var mydata={
@@ -127,19 +137,17 @@ var Component = React.createClass({
 
 	return (
 			<div>
-			<br />
+			<br/>
 			<Grid bsClass="container">
 			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Total Amount: &#8377;{this.state.amount}</span>
-			</Row>
-			<Row>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Transaction ID: 123456</span>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>{this.state.institutename} , {this.state.city}</span>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}> &#8377;{this.state.amount}</span>
 			</Row>
 			</Col>
-			<Col xs="12" md="4" style={{'padding-top':'0.5em'}}>
+			<Col xs="12" md="4" style={{'padding-top':'0.5em'}} >
 			<a href="/transaction"><RaisedButton bsStyle="primary" buttonStyle={styles.proceedtopay} labelStyle={styles.proceedtopay}>Proceed to Pay</RaisedButton></a>
 			</Col>
 			</Row>
@@ -149,6 +157,23 @@ var Component = React.createClass({
 			<Grid bsClass="container">
 			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
 			<Row>
+
+
+			<Col xs="12" md="3">
+			<Grid bsClass="container-fluid" style={styles.couponstyle}>
+			<Row>
+			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			</Row>
+			<Row style={{'background':'#4688C7'}}>
+			<FlatButton onClick={() => this.clickbutton(0)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			</Row>
+			</Grid>
+			</Col>
+
+
+
+
+
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
@@ -159,16 +184,9 @@ var Component = React.createClass({
 			</Row>
 			</Grid>
 			</Col>
-			<Col xs="12" md="3">
-			<Grid bsClass="container-fluid" style={styles.couponstyle}>
-			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
-			</Row>
-			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
-			</Row>
-			</Grid>
-			</Col>
+
+
+
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
