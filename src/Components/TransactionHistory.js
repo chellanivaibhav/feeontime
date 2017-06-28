@@ -3,16 +3,76 @@ import ReactDOM from 'react-dom';
 import MyDrawer from './Drawer.js';
 import {FontIcon, Tabs, Tab, RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal} from 'react-bootstrap';
+import Cookies from 'js-cookie';
+
 import physicsbook from '../images/physicsbook.png';
 import SwipeableViews from 'react-swipeable-views';
 import visa from '../images/visa.gif';
 import darshan from '../images/darshan.png';
 import address from '../images/address.png';
-
+var $ = require ('jquery');	
 var PersonalDetails = React.createClass({
+	
+
+		getInitialState:function()
+		{
+			var p=this.getapidata();
+			return {id:'',p:p };
+			
+
+		},
+
+		getapidata: function()
+		{
+		var mydata={
+			//tochange
+			//'user_id':Cookies.get('userid')
+			'user_id':82
+		}
+		var data2=[];
+		var id=[];
+		var 
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{	
+				var c = data[i].id;
+				id.push(c);
+				
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/all_transaction',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{	
+				
+				var data1 = data.message;
+				do_the_stuff(data1);
+
+			},
+			error: function (error) 
+			{
+				alert(JSON.stringify(error));
+			}			
+		});
+		 
+		this.setState({id:data2});
+		return 0;
+
+	},
+
+
+
+
 
 	render: function() {
-
+		alert(this.state.p);
 		const styles = {
 
 			line: {
@@ -98,6 +158,57 @@ var PersonalDetails = React.createClass({
 
 });
 
+
+
+
+var Fees = React.createClass({
+
+	getInitialState: function() {
+		
+	},
+
+	
+
+	render: function() {
+		const styles = {
+
+			
+
+		}
+		return (
+			<div>
+				
+			</div>
+		);
+	}
+
+});
+
+
+var Fees = React.createClass({
+
+	getInitialState: function() {
+		
+	},
+
+	
+
+	render: function() {
+		const styles = {
+
+			
+
+		}
+		return (
+			<div>
+				
+			</div>
+		);
+	}
+
+});
+
+
 var Container = React.createClass({
 
 	getInitialState: function() {
@@ -120,7 +231,7 @@ var Container = React.createClass({
 				'margin-left':'9em',
 				'width':"85%",
 				
-				'margin-top':'12.7em'
+				'margin-top':'6.7em'
 			},
 			tabs: {
 				'background': '#4688c7'

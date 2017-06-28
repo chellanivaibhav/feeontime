@@ -1135,6 +1135,7 @@ var Playschool = React.createClass({
 		this.setState({selectedloclat:chosenRequest.lat});
 		this.setState({selectedloclong:chosenRequest.long});
 		var q = this.getinsdata();
+		var p =this.getinsdata1();
 		this.setState({ institutes: q });
 	},
 
@@ -1209,12 +1210,17 @@ var Playschool = React.createClass({
 		  alert(JSON.stringify(res.body));
 		  alert(JSON.stringify(err));
 		});*/
-		var request = require('superagent');
+
+
+
+		/*var request = require('superagent');
 		request
 		.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.state.selectedloclong+'/50000')
 		.end(function(err, res){
 			alert(JSON.stringify(res.Results));
-  });/*		var request = require('axios');
+*/
+
+ /* });/*		var request = require('axios');
 	    var path=require('path');
 	    var lib=path.join(path.dirname(require.resolve('axios')),'lib/adapters/http');
 	    var http=require(lib);
@@ -1261,6 +1267,47 @@ request.get('https://localhost:3001/maps/'+this.state.selectedloclat+','+this.st
 		});
 
 		return data2;*/
+
+
+
+
+
+		var mydata={};
+		var data2=[];
+		var mydata={
+			type:'school',
+			location:this.state.locationname
+		};
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i];
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=28.7041,77.1025&radius=5000&types=school&key=AIzaSyDnqi1xCzY34Ydwb_77g7QcW24Un2BxEos',
+			dataType: 'json',
+			async: false,
+			//data: mydata,
+			success: function(data)
+			{	
+				var data1 = data.message;
+
+				alert(data.results[0].name);
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{	alert('alert');
+				alert(JSON.stringify(error));
+			}			
+		});
+
+		return data2;
 	},
 
 	getapidata: function()
@@ -3715,7 +3762,7 @@ var Content = React.createClass({
 			<div id="main1">
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Playschool />)} >
 			<Row>
-			<Image style={{'margin-bottom':'0.5em','margin-left':'1em'}} src={playschool} width="40%" height="40em" />
+			<Image style={{'margin-bottom':'0.5em','margin-left':'1em'}} src={playschool} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '10dp'}}>Play School</span>
@@ -3725,7 +3772,7 @@ var Content = React.createClass({
 			<div id="main2" onClick={() => this.hello(2)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<School />)} >
 			<Row>
-			<Image src={school} style={{'margin-bottom':'0.5em','margin-left':'0.5em'}} width="40%" height="40em" />
+			<Image src={school} style={{'margin-bottom':'0.5em','margin-left':'0.5em'}} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'0.6em'}}>School</span>
@@ -3735,7 +3782,7 @@ var Content = React.createClass({
 			<div id="main3" onClick={() => this.hello(3)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<College />)} >
 			<Row>
-			<Image src={college} style={{'margin-bottom':'0.5em'}} width="60%" height="40em" />
+			<Image src={college} style={{'margin-bottom':'0.5em'}} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'0.5em'}}>College</span>
@@ -3744,7 +3791,7 @@ var Content = React.createClass({
 			</div>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Coaching />)} >
 			<Row>
-			<Image src={coaching} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
+			<Image src={coaching} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'0.4em'}}>Coaching</span>
@@ -3752,7 +3799,7 @@ var Content = React.createClass({
 			</Col>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Tutor />)} >
 			<Row>
-			<Image src={tutor} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
+			<Image src={tutor} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'1em'}}>Tutor</span>
@@ -3760,7 +3807,7 @@ var Content = React.createClass({
 			</Col>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Admissions />)} >
 			<Row>
-			<Image src={admissions} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="40em" />
+			<Image src={admissions} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="40em" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'0.1em'}}>Admission</span>
@@ -3768,7 +3815,7 @@ var Content = React.createClass({
 			</Col>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Workshops />)} >
 			<Row>
-			<Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}} width="30em" height="40em" />
+			<Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}} width="90%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '10dp'}}>Workshops</span>
@@ -3776,7 +3823,7 @@ var Content = React.createClass({
 			</Col>  
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
-			<Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}} width="35%" height="40em" />
+			<Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}} width="35%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-left':'1.2em'}}>Skills &</span>
@@ -3787,7 +3834,7 @@ var Content = React.createClass({
 			</Col>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
-			<Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="28%" height="40em" />
+			<Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}} width="28%" height="60em" />
 			</Row>
 			<Row>
 			<span style={{'font-size': '1em','margin-right':'2em'}}>Donations</span>

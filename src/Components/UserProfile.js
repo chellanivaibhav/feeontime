@@ -152,7 +152,7 @@ var ChangePassword = React.createClass({
     
   },
   onBlurold: function(event) {
-    this.setState({old: true});
+    this.setState({old: !this.state.old});
     
   },
   reset :function()
