@@ -114,6 +114,14 @@ var Container = React.createClass({
 	render: function() {
 		const styles = {
 
+			gridstyle:
+			{
+				'margin-right':'2em',
+				'margin-left':'9em',
+				'width':"85%",
+				
+				'margin-top':'12.7em'
+			},
 			tabs: {
 				'background': '#4688c7'
 			},

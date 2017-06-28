@@ -22,7 +22,7 @@ var Dropdownhead = React.createClass({
 		}
 		return (
 			<div>
-			<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;&nbsp;
+			<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;
 			</div>
 		);
 	}
@@ -303,8 +303,8 @@ var LoginSignup = React.createClass({
 				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
 				<MenuItem href="/profile" >View Profile</MenuItem>
 				<MenuItem href="/transactionhistory">Transaction History</MenuItem>
-				<MenuItem >Your Cart</MenuItem>
-				<MenuItem >Your Wishlist</MenuItem>
+				{/*<MenuItem >Your Cart</MenuItem>
+				<MenuItem >Your Wishlist</MenuItem>*/}
 				<MenuItem onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
