@@ -1090,8 +1090,8 @@ var DailyNeeds = React.createClass({
 var Otp = React.createClass({
 
 	getInitialState: function()
-	{
-		return {showotp: false, showsnackbar:false, otp: ''};
+	{ 
+		return {showotp: false , blah:false , showsnackbar:false, otp: ''};
 	},
 
 	handleChange: function(event)
@@ -1152,20 +1152,32 @@ var Otp = React.createClass({
 	fetchstudentdetails: function()
 	{
 		let t = this;
-
+		alert(this.props.studentregnum);
 		var mydata = {
 			regnum: this.props.studentregnum,
 			instituteid: this.props.studentinsid,
 		};
 
+
 		function setstudentdata(data)
-		{
+		{	alert(data[0].section);
+			t.setState({blah: true});
+			Cookies.set('enrollmentno', this.props.studentregnum);
+
 			var data1=[];
 			data1['p']='hehe';
 			data1['studentname'] = data[0].name;
 			data1['studentclass'] = data[0].class;
 			data1['studentsection'] = data[0].section;
 			data1['studentfees'] = data[0].fee;
+			data1['enrollmentno'] = this.props.studentregnum;
+			alert(data1['enrollmentno']);
+			Cookies.set('studentname', data[0].name);
+			Cookies.set('studentclass', data[0].class);
+			Cookies.set('studentsection', data[0].section);
+			Cookies.set('studentfees', data[0].fee);
+			Cookies.set('insname', this.props.insname);
+			Cookies.set('insid', this.props.studentinsid);
 			t.props.setdata(data1);
 		}
 
@@ -1193,6 +1205,10 @@ var Otp = React.createClass({
 			}						
 		})
 	},
+	pre:function()
+	{
+
+	},
 
 	verifyotp: function()
 	{
@@ -1218,7 +1234,7 @@ var Otp = React.createClass({
 			data: mydata,
 			success: function(data)
 			{
-				if(data.success==true)
+				if(data.success!=true)
 				{
 					setstudentdata();
 					alert(data.message);
@@ -1292,12 +1308,584 @@ var Otp = React.createClass({
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
 			</Dialog>
-			<Button bsStyle="primary" onClick={this.open} style={styles.proceed}><b>Get Otp</b></Button>
+
+			{ this.state.blah ? (
+
+				<a href="/coupons"><Button bsStyle="primary" onClick={this.pre} style={styles.proceed} ><b>Proceed</b></Button></a>
+
+				):(<Button bsStyle="primary" onClick={this.open} style={styles.proceed}><b>Get Otp</b></Button>)}
+			
 			</div>
 			);
 	}
 
 });
+
+var School = React.createClass({
+		getInitialState : function() {		
+		var p = this.getapidata();
+		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+	},
+
+	handleChange: function(event) {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
+	},
+
+	onsetstudentdata: function(data) {
+
+		this.setState({
+			studentname : data['studentname'],
+			studentclass : data['studentclass'],
+			studentsection : data['studentsection'],
+			studentfees : data['studentfees'],
+			enrollmentno:data['enrollmentno']
+		});
+	},
+
+	handleUpdateInput : function(searchText) {
+		this.setState({
+			locationname: searchText,
+		});
+	},
+
+	newRequestOtp: function(chosenRequest) {
+		this.setState({
+			insid: chosenRequest.id,
+		});
+		if(chosenRequest.verified==0)
+		{
+			this.setState({dispotp:true});
+			this.setState({dispproceed: false});
+
+		}
+		else
+		{
+			this.setState({dispproceed:true});
+			this.setState({dispotp:false});
+		}
+		//var p =this.getinsdata1();
+		//alert(p);
+		//var q = this.state.institutes + p;
+		//alert
+		//this.setState({ institutes: q });
+		//alert(this.state.institutes);
+	},
+
+	newRequestPlaySchool: function(chosenRequest) {
+		this.setState({selectedloclat:chosenRequest.lat});
+		this.setState({selectedloclong:chosenRequest.long});
+		var q = this.getinsdata();
+		//var p =this.getinsdata1();
+		alert(q);
+
+		var p =this.getinsdata1();
+		//alert(p);
+		var n = q + p;
+		//alert(n);
+		q.push.apply(q,p);
+		alert(q);
+		this.setState({ institutes: q });
+		
+	},
+
+	handleUpdateInput1 : function(searchText) {
+		this.setState({
+			insname: searchText,
+		});
+	},
+
+	getinsdata: function()
+	{	
+		//alert('isnide insti');
+		var mydata={};
+		var data2=[];
+		var mydata={
+			type:'school',
+			location:this.state.locationname
+
+		};
+
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i];
+				//alert(c);
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_institute',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{
+				alert(JSON.stringify(error));
+			}			
+		});
+
+		return data2;
+	},
+	getnext: function()
+	{
+		if(this.state.dispnext==false)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+		
+	},
+	getinsdata1: function()
+	{
+		alert('inside insti 1');
+		var mydata={};
+		var data2=[];
+		var mydata={
+			type:'school',
+			lat:this.state.selectedloclat,
+			long:this.state.selectedloclong
+		};
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].name;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'GET',
+			url: 'http://localhost/map/index.php/Map/getinstitute',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{	
+				var data1 = data.results;
+
+				
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{	//alert('alert');
+			alert(JSON.stringify(error));
+		}			
+	});
+		//alert(data2);
+		return data2;
+	},
+
+	getapidata: function()
+	{	
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i];
+				
+				data2.push(c);
+			}
+
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{	
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{
+				alert(JSON.stringify(error));
+			}			
+		});
+
+		//this.setState({data: data2});
+		//data2.push('t');
+		//alert(data2);
+		return data2;
+	},
+
+	changedispnext :function()
+	{
+		this.setState({dispnext: !this.state.dispnext});
+	},
+	changenext :function()
+	{
+		this.setState({next: !this.state.next});
+	},
+	proceedbutfunc: function()
+	{
+	},
+
+	preproceedbutfunc: function()
+	{
+		Cookies.set('studentfees', this.state.studentfees);
+		Cookies.set('insid', this.state.insid);
+		Cookies.set('insname',this.state.insname);
+		Cookies.set('enrollmentno',this.state.enrollmentno);
+		Cookies.set('benificiaryname',this.state.benificiaryname);
+		Cookies.set('accountno',this.state.accountno);
+		Cookies.set('ifsccode',this.state.ifsccode);
+	},
+
+	render: function() {
+
+		var letter = {
+			padding: 10,
+			margin: 10,
+			backgroundColor: "#ffde00",
+			color: "#333",
+			display: "inline-block",
+			fontFamily: "monospace",
+			fontSize: "32",
+			textAlign: "center"
+		};
+
+		const dataSourceConfig = {
+			text: 'name',
+			'font-size':'5.5em',
+			value: 'id',
+		};
+
+		const dataSourceConfig1 = {
+			text: 'LocationName',
+			'font-size':'5.5em',
+			value: 'Location_id',
+		};
+
+		var studdetailsstyle = {
+			'display': 'none',
+		};
+
+		var otpstyle = {
+			'display': 'none',
+		};
+
+		var proceedstyle = {
+			'display': 'none',
+		};
+
+		var playschoolstyle = {
+			'display': 'block',
+		};
+
+		var enrollmentnostyle = {
+			'display': 'block',
+		};
+
+		if(this.state.dispotp)
+		{
+			var otpstyle = {
+				'display': 'block',
+			};
+		}
+
+		if(this.state.dispproceed)
+		{
+			var proceedstyle = {
+				'display': 'block',
+			};
+		}
+
+		const styles = {
+
+			row : {
+				'padding':'2em',
+				'background-color': '#f3f3f3',
+				'padding-bottom':'1em'
+			},
+
+			carousel: {
+				'margin-top':'5em',
+			},
+
+			h2: {
+				color:'#8E9295',
+				///'font-size': '0.9em'
+			},
+
+			floatingLabelFocusStyle: {
+				'padding':'-1.9em',
+				color: '#4688C7',
+				'font-size':'0.9em'
+			},
+
+			underlineFocusStyle: {
+				'font-size':'0.9em',
+				borderColor: '#4688C7'
+			},
+			auto:{
+				'font-size':'0.9em',
+				'height':'1.3em'
+
+			},
+
+			textfieldstyle: {
+				height:'3.5em',
+				width:'100%',
+				'padding-bottom':'0.4em',
+				'font-size':'0.9em',
+				background:'#ffffff'
+			},
+
+			formstyle: {
+				//changes characteristics of form  
+				'font-size':'2em',
+				'fontFamily':'ProximaNova',
+				'padding-top':'1.3em',
+				'padding-left':'10%',
+				'padding-right':'10%',
+				'padding-bottom':'1em'
+			},
+
+			proceed: {
+				'float':'right',
+				'background': '#4688C7',
+				'width':"50%",
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			},
+			proceed1: {
+				'float':'right',
+				'background': '#4688C7',
+				'width':"100%",
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			},
+			back: {
+				'float':'left',
+				'background': '#ffffff',
+				'width':"45%",
+				'color':'#4688C7',
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			}
+
+		}
+
+		return (
+			<div>
+			<Grid bsClass="container-fluid" >
+			<Row style={styles.row}>
+			<Col xs="12" md="8">
+			<Grid bsClass="container-fluid" style={{'padding-bottom':'10em', 'margin-left':'6em','width':'50em'}}>
+			<Card >
+			<div style={{ 'margin-left':'65px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
+			<Row style={styles.formstyle}>
+			<Col xs="12" md="12">
+			{
+				!this.state.dispnext ? (
+					<div>	
+					<Row>
+					<AutoComplete
+					
+					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+					underlineFocusStyle={styles.underlineFocusStyle} 
+					dataSource={this.state.data}
+					textFieldStyle={styles.textfieldstyle}
+					dataSourceConfig={dataSourceConfig1}
+					onUpdateInput={this.handleUpdateInput}
+					filter={AutoComplete.fuzzyFilter}
+					openOnFocus={true}
+					name="selectlocation"
+					onNewRequest={this.newRequestPlaySchool}
+					floatingLabelText="Select Location"
+					fullWidth={true}					
+					/>
+					</Row>
+					<Row>
+					<AutoComplete
+					
+					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+					underlineFocusStyle={styles.underlineFocusStyle} 
+					dataSource={this.state.institutes}
+					dataSourceConfig={dataSourceConfig}
+					textFieldStyle={styles.textfieldstyle}
+					onUpdateInput={this.handleUpdateInput1}
+					filter={AutoComplete.fuzzyFilter}
+					name="selectplayschool"
+					onNewRequest={this.newRequestOtp}
+					openOnFocus={true}
+					floatingLabelText="Select School"
+					fullWidth={true}					
+					/>
+					</Row>
+					<Row>
+					<div style={enrollmentnostyle}>
+					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+					</div>
+					</Row>
+					</div>
+					)
+
+				:
+
+				(	
+					this.state.next ?
+					(
+						<div>	
+						<Row>
+						<TextField style={styles.textfieldstyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						underlineFocusStyle={styles.underlineFocusStyle} 
+						value={this.state.benificiaryname} 
+						name="benificiaryname" 
+						onChange={this.handleChange} 
+						floatingLabelText="Benificiary Name" />
+						</Row>
+						<Row>
+						<TextField style={styles.textfieldstyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						underlineFocusStyle={styles.underlineFocusStyle} 
+						value={this.state.accountno} 
+						name="accountno" 
+						onChange={this.handleChange} 
+						floatingLabelText="Benificiary Account Number" />
+						</Row>
+						<Row>
+						<TextField style={styles.textfieldstyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						underlineFocusStyle={styles.underlineFocusStyle} 
+						value={this.state.ifsccode} 
+						name="ifsccode" 
+						onChange={this.handleChange} 
+						floatingLabelText="IFSC Code" />
+						</Row>
+						</div>
+
+						)
+					:
+					(<div>
+						
+						<Row>
+						<TextField style={styles.textfieldstyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						underlineFocusStyle={styles.underlineFocusStyle} 
+						value={this.state.studentname} 
+						name="studentname" 
+						onChange={this.handleChange} 
+						floatingLabelText="Student Name" />
+						</Row>
+						<Row>
+						<Col xs="12" md="6">
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						</Col>
+						<Col xs="12" md="6">
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						</Col>
+						</Row>
+						<Row>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						</Row>
+						</div>)
+					)}
+				<div style={playschoolstyle}>
+
+
+				<Row>
+				<div style={otpstyle}>
+				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} insname={this.state.insname} setdata={this.onsetstudentdata} />
+				
+				</div>
+				</Row>
+				</div>
+
+				
+				<div style={studdetailsstyle}>
+
+
+				</div>
+				<div style={proceedstyle}>
+				<Row>
+			{/*at one proceed need to change state at other need to move to /coupons*/}
+
+			{
+				!this.state.dispnext ?
+				(
+					<Button bsStyle="primary" onClick={this.changedispnext} style={styles.proceed1} ><b>Next</b></Button>)
+				:
+				(
+					!this.state.next ?
+					(<div>
+						<Button bsStyle="primary" onClick={this.changedispnext} style={styles.back} ><b>Back</b></Button>
+						<Button bsStyle="primary" onClick={this.changenext} style={styles.proceed} ><b>Next</b></Button>
+						</div>
+						)	
+					:
+					(	<div>
+						<Button bsStyle="primary" onClick={this.changenext} style={styles.back} ><b>Back</b></Button>
+						<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+						</div>
+						)
+
+					)
+			}
+			</Row>
+			</div>
+			</Col>
+			</Row>
+			</Card>
+			</Grid>
+			</Col>
+			<Col xs="12" md="4">
+			<img src={banner} style={{'margin-left':'-12em'}}/>
+			{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
+			<Carousel.Item>
+			<Image src={carouselimage} />
+			<Carousel.Caption>
+			</Carousel.Caption>
+			</Carousel.Item>
+			<Carousel.Item>
+			<Image src={carouselimage} />
+			<Carousel.Caption>
+			</Carousel.Caption>
+			</Carousel.Item>
+			<Carousel.Item>
+			<Image src={carouselimage} />
+			<Carousel.Caption>
+			</Carousel.Caption>
+			</Carousel.Item>
+			</Carousel>*/}
+			</Col>
+			</Row>
+			</Grid>
+			</div>
+			);
+}
+	
+
+});
+
+
 
 var Playschool = React.createClass({
 
@@ -1323,6 +1911,7 @@ var Playschool = React.createClass({
 			studentclass : data['studentclass'],
 			studentsection : data['studentsection'],
 			studentfees : data['studentfees'],
+			//enrollmentno: data['enrollmentno']
 		});
 	},
 
@@ -1859,566 +2448,6 @@ var Playschool = React.createClass({
 
 });
 
-var School = React.createClass({
-		getInitialState : function() {		
-		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
-	},
-
-	handleChange: function(event) {
-		const target = event.target;
-		const value = target.value;
-		const name = target.name;
-
-		this.setState({
-			[name]: value
-		});
-	},
-
-	onsetstudentdata: function(data) {
-
-		this.setState({
-			studentname : data['studentname'],
-			studentclass : data['studentclass'],
-			studentsection : data['studentsection'],
-			studentfees : data['studentfees'],
-		});
-	},
-
-	handleUpdateInput : function(searchText) {
-		this.setState({
-			locationname: searchText,
-		});
-	},
-
-	newRequestOtp: function(chosenRequest) {
-		this.setState({
-			insid: chosenRequest.id,
-		});
-		if(chosenRequest.verified==0)
-		{
-			this.setState({dispotp:true});
-			this.setState({dispproceed: false});
-
-		}
-		else
-		{
-			this.setState({dispproceed:true});
-			this.setState({dispotp:false});
-		}
-		//var p =this.getinsdata1();
-		//alert(p);
-		//var q = this.state.institutes + p;
-		//alert
-		//this.setState({ institutes: q });
-		//alert(this.state.institutes);
-	},
-
-	newRequestPlaySchool: function(chosenRequest) {
-		this.setState({selectedloclat:chosenRequest.lat});
-		this.setState({selectedloclong:chosenRequest.long});
-		var q = this.getinsdata();
-		//var p =this.getinsdata1();
-		alert(q);
-
-		var p =this.getinsdata1();
-		//alert(p);
-		var n = q + p;
-		//alert(n);
-		q.push.apply(q,p);
-		alert(q);
-		this.setState({ institutes: q });
-		
-	},
-
-	handleUpdateInput1 : function(searchText) {
-		this.setState({
-			insname: searchText,
-		});
-	},
-
-	getinsdata: function()
-	{	
-		//alert('isnide insti');
-		var mydata={};
-		var data2=[];
-		var mydata={
-			type:'school',
-			location:this.state.locationname
-
-		};
-
-
-		function do_the_stuff(data)
-		{
-			for(var i=0;i<data.length;i++)
-			{
-				var c = data[i];
-				//alert(c);
-				data2.push(c);
-			}
-		}
-
-		$.ajax({
-			type: 'POST',
-			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_institute',
-			dataType: 'json',
-			async: false,
-			data: mydata,
-			success: function(data)
-			{
-				var data1 = data.message;
-				do_the_stuff(data1);
-			},
-			error: function (error) 
-			{
-				alert(JSON.stringify(error));
-			}			
-		});
-
-		return data2;
-	},
-	getnext: function()
-	{
-		if(this.state.dispnext==false)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-		
-	},
-	getinsdata1: function()
-	{
-		alert('inside insti 1');
-		var mydata={};
-		var data2=[];
-		var mydata={
-			type:'school',
-			lat:this.state.selectedloclat,
-			long:this.state.selectedloclong
-		};
-
-		function do_the_stuff(data)
-		{
-			for(var i=0;i<data.length;i++)
-			{
-				var c = data[i].name;
-				data2.push(c);
-			}
-		}
-
-		$.ajax({
-			type: 'GET',
-			url: 'http://localhost/map/index.php/Map/getinstitute',
-			dataType: 'json',
-			async: false,
-			data: mydata,
-			success: function(data)
-			{	
-				var data1 = data.results;
-
-				
-				do_the_stuff(data1);
-			},
-			error: function (error) 
-			{	//alert('alert');
-			alert(JSON.stringify(error));
-		}			
-	});
-		//alert(data2);
-		return data2;
-	},
-
-	getapidata: function()
-	{	
-		var mydata={};
-		var data2=[];
-
-		function do_the_stuff(data)
-		{
-			for(var i=0;i<data.length;i++)
-			{
-				var c = data[i];
-				
-				data2.push(c);
-			}
-
-		}
-
-		$.ajax({
-			type: 'POST',
-			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
-			dataType: 'json',
-			async: false,
-			data: mydata,
-			success: function(data)
-			{	
-				var data1 = data.message;
-				do_the_stuff(data1);
-			},
-			error: function (error) 
-			{
-				alert(JSON.stringify(error));
-			}			
-		});
-
-		//this.setState({data: data2});
-		//data2.push('t');
-		//alert(data2);
-		return data2;
-	},
-
-	changedispnext :function()
-	{
-		this.setState({dispnext: !this.state.dispnext});
-	},
-	changenext :function()
-	{
-		this.setState({next: !this.state.next});
-	},
-	proceedbutfunc: function()
-	{
-	},
-
-	preproceedbutfunc: function()
-	{
-		Cookies.set('studentfees', this.state.studentfees);
-		Cookies.set('insid', this.state.insid);
-		Cookies.set('insname',this.state.insname);
-		Cookies.set('enrollmentno',this.state.enrollmentno);
-		Cookies.set('benificiaryname',this.state.benificiaryname);
-		Cookies.set('accountno',this.state.accountno);
-		Cookies.set('ifsccode',this.state.ifsccode);
-	},
-
-	render: function() {
-
-		var letter = {
-			padding: 10,
-			margin: 10,
-			backgroundColor: "#ffde00",
-			color: "#333",
-			display: "inline-block",
-			fontFamily: "monospace",
-			fontSize: "32",
-			textAlign: "center"
-		};
-
-		const dataSourceConfig = {
-			text: 'name',
-			'font-size':'5.5em',
-			value: 'id',
-		};
-
-		const dataSourceConfig1 = {
-			text: 'LocationName',
-			'font-size':'5.5em',
-			value: 'Location_id',
-		};
-
-		var studdetailsstyle = {
-			'display': 'none',
-		};
-
-		var otpstyle = {
-			'display': 'none',
-		};
-
-		var proceedstyle = {
-			'display': 'none',
-		};
-
-		var playschoolstyle = {
-			'display': 'block',
-		};
-
-		var enrollmentnostyle = {
-			'display': 'block',
-		};
-
-		if(this.state.dispotp)
-		{
-			var otpstyle = {
-				'display': 'block',
-			};
-		}
-
-		if(this.state.dispproceed)
-		{
-			var proceedstyle = {
-				'display': 'block',
-			};
-		}
-
-		const styles = {
-
-			row : {
-				'padding':'2em',
-				'background-color': '#f3f3f3',
-				'padding-bottom':'1em'
-			},
-
-			carousel: {
-				'margin-top':'5em',
-			},
-
-			h2: {
-				color:'#8E9295',
-				///'font-size': '0.9em'
-			},
-
-			floatingLabelFocusStyle: {
-				'padding':'-1.9em',
-				color: '#4688C7',
-				'font-size':'0.9em'
-			},
-
-			underlineFocusStyle: {
-				'font-size':'0.9em',
-				borderColor: '#4688C7'
-			},
-			auto:{
-				'font-size':'0.9em',
-				'height':'1.3em'
-
-			},
-
-			textfieldstyle: {
-				height:'3.5em',
-				width:'100%',
-				'padding-bottom':'0.4em',
-				'font-size':'0.9em',
-				background:'#ffffff'
-			},
-
-			formstyle: {
-				//changes characteristics of form  
-				'font-size':'2em',
-				'fontFamily':'ProximaNova',
-				'padding-top':'1.3em',
-				'padding-left':'10%',
-				'padding-right':'10%',
-				'padding-bottom':'1em'
-			},
-
-			proceed: {
-				'float':'right',
-				'background': '#4688C7',
-				'width':"50%",
-				'margin-top':'1em',
-				'font-size':'1.2em'
-			},
-			proceed1: {
-				'float':'right',
-				'background': '#4688C7',
-				'width':"100%",
-				'margin-top':'1em',
-				'font-size':'1.2em'
-			},
-			back: {
-				'float':'left',
-				'background': '#ffffff',
-				'width':"45%",
-				'color':'#4688C7',
-				'margin-top':'1em',
-				'font-size':'1.2em'
-			}
-
-		}
-
-		return (
-			<div>
-			<Grid bsClass="container-fluid" >
-			<Row style={styles.row}>
-			<Col xs="12" md="8">
-			<Grid bsClass="container-fluid" style={{'padding-bottom':'10em', 'margin-left':'6em','width':'50em'}}>
-			<Card >
-			<div style={{ 'margin-left':'65px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
-			<Row style={styles.formstyle}>
-			<Col xs="12" md="12">
-			{
-				!this.state.dispnext ? (
-					<div>	
-					<Row>
-					<AutoComplete
-					
-					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-					underlineFocusStyle={styles.underlineFocusStyle} 
-					dataSource={this.state.data}
-					textFieldStyle={styles.textfieldstyle}
-					dataSourceConfig={dataSourceConfig1}
-					onUpdateInput={this.handleUpdateInput}
-					filter={AutoComplete.fuzzyFilter}
-					openOnFocus={true}
-					name="selectlocation"
-					onNewRequest={this.newRequestPlaySchool}
-					floatingLabelText="Select Location"
-					fullWidth={true}					
-					/>
-					</Row>
-					<Row>
-					<AutoComplete
-					
-					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-					underlineFocusStyle={styles.underlineFocusStyle} 
-					dataSource={this.state.institutes}
-					dataSourceConfig={dataSourceConfig}
-					textFieldStyle={styles.textfieldstyle}
-					onUpdateInput={this.handleUpdateInput1}
-					filter={AutoComplete.fuzzyFilter}
-					name="selectplayschool"
-					onNewRequest={this.newRequestOtp}
-					openOnFocus={true}
-					floatingLabelText="Select School"
-					fullWidth={true}					
-					/>
-					</Row>
-					<Row>
-					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
-					</div>
-					</Row>
-					</div>
-					)
-
-				:
-
-				(	
-					this.state.next ?
-					(
-						<div>	
-						<Row>
-						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
-						underlineFocusStyle={styles.underlineFocusStyle} 
-						value={this.state.benificiaryname} 
-						name="benificiaryname" 
-						onChange={this.handleChange} 
-						floatingLabelText="Benificiary Name" />
-						</Row>
-						<Row>
-						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
-						underlineFocusStyle={styles.underlineFocusStyle} 
-						value={this.state.accountno} 
-						name="accountno" 
-						onChange={this.handleChange} 
-						floatingLabelText="Benificiary Account Number" />
-						</Row>
-						<Row>
-						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
-						underlineFocusStyle={styles.underlineFocusStyle} 
-						value={this.state.ifsccode} 
-						name="ifsccode" 
-						onChange={this.handleChange} 
-						floatingLabelText="IFSC Code" />
-						</Row>
-						</div>
-
-						)
-					:
-					(<div>
-						
-						<Row>
-						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
-						underlineFocusStyle={styles.underlineFocusStyle} 
-						value={this.state.studentname} 
-						name="studentname" 
-						onChange={this.handleChange} 
-						floatingLabelText="Student Name" />
-						</Row>
-						<Row>
-						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
-						</Col>
-						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
-						</Col>
-						</Row>
-						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
-						</Row>
-						</div>)
-					)}
-				<div style={playschoolstyle}>
-
-
-
-				<Row>
-				<div style={otpstyle}>
-				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
-				</div>
-				</Row>
-				</div>
-				<div style={studdetailsstyle}>
-
-
-				</div>
-				<div style={proceedstyle}>
-				<Row>
-			{/*at one proceed need to change state at other need to move to /coupons*/}
-
-			{
-				!this.state.dispnext ?
-				(
-					<Button bsStyle="primary" onClick={this.changedispnext} style={styles.proceed1} ><b>Next</b></Button>)
-				:
-				(
-					!this.state.next ?
-					(<div>
-						<Button bsStyle="primary" onClick={this.changedispnext} style={styles.back} ><b>Back</b></Button>
-						<Button bsStyle="primary" onClick={this.changenext} style={styles.proceed} ><b>Next</b></Button>
-						</div>
-						)	
-					:
-					(	<div>
-						<Button bsStyle="primary" onClick={this.changenext} style={styles.back} ><b>Back</b></Button>
-						<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
-						</div>
-						)
-
-					)
-			}
-			</Row>
-			</div>
-			</Col>
-			</Row>
-			</Card>
-			</Grid>
-			</Col>
-			<Col xs="12" md="4">
-			<img src={banner} style={{'margin-left':'-12em'}}/>
-			{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			</Carousel.Caption>
-			</Carousel.Item>
-			</Carousel>*/}
-			</Col>
-			</Row>
-			</Grid>
-			</div>
-			);
-}
-	
-
-});
 
 var College = React.createClass({
 
