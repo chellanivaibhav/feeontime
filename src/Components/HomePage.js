@@ -627,7 +627,7 @@ var Otp = React.createClass({
 	{
 		var mydata={};
 		var mydata={
-			user_id: Cookies.get('userid')
+			number: 8826394469,
 		};
 
 		$.ajax({
@@ -700,10 +700,12 @@ var Otp = React.createClass({
 
 		let p = this;
 
-		var mydata={
-			user_id: Cookies.get('userid'),
+		
+			var mydata={
+			number: 8826394469,
 			otp: this.state.otp
 		};
+		
 
 		function setstudentdata()
 		{
