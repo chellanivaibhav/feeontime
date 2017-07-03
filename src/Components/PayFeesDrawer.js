@@ -45,12 +45,22 @@ var MyDrawer = React.createClass({
 		   	
 		    logostyle:
 		    {
-		    	width:'30%'
+		    	/*width:'16%',
+		    	height:'50px'*/
+		    },
+		    help:{
+		    	backgroundColor: '#4688C7',
+			    	color: 'white',
+			    	'font-size': '150%',
+		  			'display':'block'
+
 		    },
 		  	appbarstyle:
 		  	{
+		  		
 		    	backgroundColor: '#4688C7',
 		    	color: 'white',
+		    	'padding':'1.2em',
 		    	'font-size': '110%'
 		    },
 		  };
@@ -58,17 +68,19 @@ var MyDrawer = React.createClass({
 		  	var appbarstyleactive =  {
 
 		    	backgroundColor: '#4688C7',
+		    	'padding-bottom':'1.7em',
 		    	color: 'white',
 			  	'-moz-border-bottom-colors':'#4688C7',
-		    	'font-size': '110%'
+		    	'font-size': '150%'
 		  	}
 
 		  	var appbarstyleactive1 =  {
 
 		    	backgroundColor: '#4688C7',
+		    	'padding-bottom':'1.7em',
 		    	color: 'white',
 			  	'-moz-border-bottom-colors':'#4688C7',
-		    	'font-size': '110%'
+		    	'font-size': '150%'
 		  	}
 
 		  	if(this.state.active==0)
@@ -77,9 +89,10 @@ var MyDrawer = React.createClass({
 
 			  		'border-bottom-width':'2px',
 			  		'border-bottom-style':'solid',
+			  		'padding-bottom':'1.7em',
 			    	backgroundColor: '#4688C7',
 			    	color: 'white',
-			    	'font-size': '110%'
+			    	'font-size': '150%'
 			  	}
 		  	}
 
@@ -89,9 +102,10 @@ var MyDrawer = React.createClass({
 
 			  		'border-bottom-width':'2px',
 			  		'border-bottom-style':'solid',
+			  		'padding-bottom':'1.7em',
 			    	backgroundColor: '#4688C7',
 			    	color: 'white',
-			    	'font-size': '110%'
+			    	'font-size': '150%'
 			  	}
 		  	}
 		  		  		
@@ -100,7 +114,7 @@ var MyDrawer = React.createClass({
 		  		var mywalletstyle={
 		  			backgroundColor: '#4688C7',
 			    	color: 'white',
-			    	'font-size': '110%',
+			    	'font-size': '150%',
 		  			'display':'block'
 		  		}
 
@@ -123,7 +137,7 @@ var MyDrawer = React.createClass({
 			   <FlatButton onClick={() => this.clickbutton(0)} style={appbarstyleactive}>Pay Fees Here</FlatButton>
 			   <FlatButton onClick={() => this.clickbutton(1)} style={appbarstyleactive1}>Daily Needs</FlatButton>
 			   <FlatButton containerElement={<Link to="/" />} style={mywalletstyle}>My Wallet</FlatButton>
-			   <FlatButton containerElement={<Link to="/" />} style={styles.appbarstyle}>Help</FlatButton>
+			   <FlatButton containerElement={<Link to="/" />} style={styles.help}>Help</FlatButton>
 			   <LoginSignup />
 			   </ToolbarGroup>
 			   </Toolbar>

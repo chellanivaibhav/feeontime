@@ -15,7 +15,7 @@ var Component = React.createClass({
 
 	getInitialState: function()
 	{
-		return { value : 1, amount: Cookies.get('studentfees'),noofcoupons:0, pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'Delhi',institutename:'Darshan Academy' }
+		return { value : 1, amount: Cookies.get('studentfees'),noofcoupons:0, pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'Delhi',institutename:'' }
 	},
 
 	componentDidMount: function()
@@ -143,7 +143,7 @@ var Component = React.createClass({
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}>{this.state.institutename} , {this.state.city}</span>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>{Cookies.get('insname')} , {this.state.city}</span>
 			<span style={{'margin-left':'2em','font-size':'1.5em'}}> &#8377;{this.state.amount}</span>
 			</Row>
 			</Col>

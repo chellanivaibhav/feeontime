@@ -21,8 +21,9 @@ var Dropdownhead = React.createClass({
 			}
 		}
 		return (
-			<div>
-			<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;
+			<div style={{'font-size':'1.5em'}}>
+			{/*<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;*/}
+			{name}
 			</div>
 		);
 	}
@@ -74,6 +75,7 @@ var LoginSignupButton = React.createClass({
 					Cookies.set('isloggedin',true);
 					Cookies.set('username',t.state.name);
 					Cookies.set('userid',data.message);
+					Cookies.set('phone',t.state.phone);
 				}
 			},
 		    error: function (error) 
@@ -107,6 +109,7 @@ var LoginSignupButton = React.createClass({
 				var p = data.message;
 				Cookies.set('username',p[0].name);
 				Cookies.set('userid',p[0].id);
+				Cookies.set('phone',p[0].phone);
 			},
 		    error: function (error) 
 		    {
@@ -301,11 +304,11 @@ var LoginSignup = React.createClass({
 		{
 			hehe = (
 				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
-				<MenuItem href="/profile" >View Profile</MenuItem>
-				<MenuItem href="/transactionhistory">Transaction History</MenuItem>
+				<MenuItem href="/profile" style={{'font-size':'0.9em'}} >View Profile</MenuItem>
+				<MenuItem href="/transactionhistory" style={{'font-size':'0.9em'}}>Transaction History</MenuItem>
 				{/*<MenuItem >Your Cart</MenuItem>
 				<MenuItem >Your Wishlist</MenuItem>*/}
-				<MenuItem onClick={() => this.changelogin(false)} >Logout</MenuItem>
+				<MenuItem style={{'font-size':'0.9em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
 		}

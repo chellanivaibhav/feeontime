@@ -157,6 +157,7 @@ var ChangePassword = React.createClass({
   },
   reset :function()
   {	
+  	
   	var data2=[];
   	var mydata={
 			user_id:Cookies.get('userid'),
@@ -174,6 +175,7 @@ var ChangePassword = React.createClass({
 
 				var data1 = data.message;
 				
+					
 				data2=data1;
 				
 			},
@@ -182,12 +184,12 @@ var ChangePassword = React.createClass({
 				alert(JSON.stringify(error));
 			}			
 		});
-		alert(data2.message);
-		this.setState({status:data2.message});
+	
+		this.setState({status:data2});
   },
   handleTouch : function()
   {
-  	if(this.state.old)
+  	if(!this.state.old)
   	{
 
   		if(this.state.onepassword==this.state.secondpassword)
@@ -213,7 +215,6 @@ var ChangePassword = React.createClass({
 		this.setState({
 			[password]: value
 		});
-		alert(this.state.password);
 	},
 
 	render: function() {
@@ -238,7 +239,21 @@ var ChangePassword = React.createClass({
 		return (
 			<div>
 				<Grid bsClass="container-fluid">
-					<Row>
+					{
+
+						this.state.status ? 
+
+						(
+						<div style={{'float':'center','margin-right':'5em'}}>
+						<Row >
+						<Col>Successful attempt</Col>
+						</Row>
+						</div>
+						)
+						:
+						(
+						<div>
+						<Row>
 						<Col xs="12" md="12">
 							<TextField type="password" underlineFocusStyle={styles.floatstyle} floatingLabelStyle={styles.floatstyle} floatingLabelText="Old Password" fullWidth={true} />
 						</Col>
@@ -259,6 +274,11 @@ var ChangePassword = React.createClass({
 							<RaisedButton label="Save" onTouchTap={this.handleTouch} buttonStyle={styles.savebutton} labelStyle={styles.savebuttontext} />
 						</Col>
 					</Row>
+					</div>
+						)
+
+
+					}
 					<br />
 				</Grid>
 			</div>

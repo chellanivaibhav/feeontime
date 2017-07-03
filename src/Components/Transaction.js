@@ -10,12 +10,15 @@ import upi from '../images/upi.png';
 import aadhar from '../images/aadhar.png';
 import Cookies from 'js-cookie';
 var $ = require('jquery');
+var sha512 = require('sha512')
+
+
 
 var Component = React.createClass({
 
 	getInitialState: function()
-	{
-		return { value : 1, amount: Cookies.get('studentfees'), pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'delhi' }
+	{	
+		return { value : 1,totalamount:100, amount: Cookies.get('studentfees'), pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'delhi',hash:'',insname:'',class:'',section:''}
 	},
 
 	componentDidMount: function()
@@ -31,26 +34,27 @@ var Component = React.createClass({
 	checkcc: function()
 	{
 		this.setState({ 
-			pcode: 'OPTCRDC'
+			pcode: 'cc'
 		 });
 	},
 	
 	checkdc: function()
 	{
 		this.setState({ 
-			pcode: 'OPTDBCRD'
+			pcode: 'dc'
 		 });
 	},
 
 	checknb: function()
 	{
 		this.setState({ 
-			pcode: 'OPTNBK'
+			pcode: 'nb'
 		 });
 	},
 
 	fetchuserdata: function()
 	{
+		alert('hi');
 		var mydata={
 			user_id: Cookies.get('userid')
 		};
@@ -66,12 +70,21 @@ var Component = React.createClass({
 				if(data.success==true)
 				{
 					var data1 = data.message;
+					var hash=sha512(t.state.totalamount+data1.name+data1.email+data1.phone);
+					alert('inside');
+					/*var hash=sha512(t.state.totalamount);
+					alert(t.state.totalamount);
+					alert(hash);*/
+					//var hash(t.state.totalamount+)
 					t.setState({
 						firstname: data1.name,
 						email: data1.email,
 						phone: data1.phone,
 						address: data1.address,
+						hash:hash
 					});
+
+					
 				}
 				else
 				{
@@ -133,6 +146,24 @@ var Component = React.createClass({
 			<Row>
 			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Transaction ID: 123456</span>
 			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Student Name : Vaibhav </span>
+			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>School Name : djksajdkas</span>
+			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>Fee amount</span>
+			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>internet handling charge</span>
+			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>GST : 55</span>
+			</Row>
+			<Row>
+			<span style={{'margin-left':'2em','font-size':'1.5em'}}>TOTAL</span>
+			</Row>
 			</Paper>
 			</Grid>
 			<br />
@@ -140,7 +171,7 @@ var Component = React.createClass({
 			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
 			<Row>
 			<Col md="3">
-			<List>
+			{/*<List>
 			<ListItem style={styles.list}>
 			<Row>
 			<Col md="3">
@@ -201,7 +232,7 @@ var Component = React.createClass({
 			</Col>
 			</Row>
 			</ListItem>
-			</List>
+			</List>*/}
 			</Col>
 			<Col md="9">
 			<Row>
@@ -211,7 +242,7 @@ var Component = React.createClass({
 			<RadioButton onClick={this.checknb} label="Net Banking" style={{'float':'left', 'width':'20em'}} value="netbanking" />
 			</RadioButtonGroup>
 			</Row>
-			<Row>
+			{/*<Row>
 			<TextField floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} textFieldStyle={styles.textFieldStyle} floatingLabelText="Card Number" type="number"/><br />
 			</Row>
 			<Row>
@@ -256,18 +287,22 @@ var Component = React.createClass({
 			</Row>
 			<Row>
 			<TextField floatingLabelText="CVV" floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} textFieldStyle={styles.textFieldStyle} type="number"/><br />
-			</Row>
+			</Row>*/}
 			<Row>
-			<form method="POST" action="http://52.36.30.121/api/dataForm.php">
-			<input type="hidden" name="amount" value={Cookies.get('studentfees')} />
+			<form method="POST" action="http://52.41.82.157/Feeontime/HDFC/example_2.php/">
+			<input type="hidden" name="lastname" value={Cookies.get('studentfees')} />
+			<input type="hidden" name="amount" value={this.state.totalamount} />
 			<input type="hidden" name="firstname" value={this.state.firstname} />
 			<input type="hidden" name="email" value={this.state.email} />
 			<input type="hidden" name="phone" value={this.state.phone} />
-			<input type="hidden" name="udf1" value={Cookies.get('insid')} />
-			<input type="hidden" name="udf2" value={Cookies.get('insname')} />
-			<input type="hidden" name="udf3" value={Cookies.get('enrollmentno')} />
-			<input type="hidden" name="address1" value={this.state.address} />
+			<input type="hidden" name="udf3" value={this.state.hash} />
+			<input type="hidden" name="udf2" value={Cookies.get('userid')} />
+			<input type="hidden" name="udf1" value={Cookies.get('enrollmentno')} />
+			<input type="hidden" name="address2" value={this.state.institute_type} />
+			<input type="hidden" name="iname" value={this.state.ins }/>
 			<input type="hidden" name="city" value={this.state.city} />
+			<input type="hidden" name="state" value='2' />
+		<input type="hidden" name="country" value='A' />
 			<input type="hidden" name="enforce_paymethod" value={this.state.pcode} />
 			<RaisedButton type="submit" style={styles.button1}  buttonStyle={styles.button}>Pay Now</RaisedButton>
 			</form>
