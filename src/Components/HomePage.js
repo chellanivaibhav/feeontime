@@ -1252,7 +1252,7 @@ var Otp = React.createClass({
 			data: mydata,
 			success: function(data)
 			{
-				if(data.success!=true)
+				if(data.success==true)
 				{
 					setstudentdata();
 					alert(data.message);
@@ -1494,7 +1494,7 @@ var School = React.createClass({
 
 		$.ajax({
 			type: 'GET',
-			url: 'http://localhost/map/index.php/Map/getinstitute',
+			url: 'http://52.41.82.157/map/index.php/Map/getinstitute',
 			dataType: 'json',
 			async: false,
 			data: mydata,
