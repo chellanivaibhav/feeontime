@@ -271,6 +271,7 @@ var LoginSignup = React.createClass({
 			Cookies.remove('username');
 			Cookies.remove('userid');
 			Cookies.remove('isloggedin');
+			Cookies.remove('enrollmentno');
 		}
 	},
 

@@ -14,8 +14,9 @@ var $ = require('jquery');
 var Component = React.createClass({
 
 	getInitialState: function()
-	{
-		return { value : 1, amount: Cookies.get('studentfees'),noofcoupons:0, pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'Delhi',institutename:'' }
+	{	
+		var image=this.fetchcouponsdata();
+		return { value : 1, amount: Cookies.get('studentfees'),noofcoupons:0, pcode: '', firstname: '', email: '', phone: '', address: 'delhi', city: 'Delhi',institutename:'',img:image,enable:[false,false,false,false,false,false,false,false]}
 	},
 
 	componentDidMount: function()
@@ -30,19 +31,22 @@ var Component = React.createClass({
 	clickbutton: function(value) {
 		if(value==0)
 		{
-			
+			this.setState({noofcoupons:this.state.noofcoupons+1});
+			this.setState({enable:[true,false,false,false,false,false,false,false]});
 		}
 		else if(value==1)
 		{
-			
+			this.setState({noofcoupons:this.state.noofcoupons+1});
+			this.setState({enable:[false,true,false,false,false,false,false,false]});
 		}
 		
 	},
 	fetchcouponsdata: function()
 	{
 		var mydata={
-			limit: 10
+			limit: 8
 		};
+		var img=[];
 
 		var data2=[];
 
@@ -50,8 +54,10 @@ var Component = React.createClass({
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i];
-				data2.push(c);
+				var c = data[i].coupon_image;
+				img.push(c);
+
+
 			}
 		}
 
@@ -78,8 +84,8 @@ var Component = React.createClass({
 				alert(JSON.stringify(error));
 		    }			
 		});
-
-		return data2;
+		alert(img[5]);
+		return img;
 	},
 
 	render: function() {
@@ -145,7 +151,10 @@ var Component = React.createClass({
 			<Row>
 			<span style={{'margin-left':'2em','font-size':'1.5em'}}>{Cookies.get('insname')} , {this.state.city}</span>
 			<span style={{'margin-left':'2em','font-size':'1.5em'}}> &#8377;{this.state.amount}</span>
+			<span style={{'margin-left':'4em','font-size':'1.5em'}}> Coupons Selected : {this.state.noofcoupons}</span>
+
 			</Row>
+
 			</Col>
 			<Col xs="12" md="4" style={{'padding-top':'0.5em'}} >
 			<a href="/transaction"><RaisedButton bsStyle="primary" buttonStyle={styles.proceedtopay} labelStyle={styles.proceedtopay}>Proceed to Pay</RaisedButton></a>
@@ -162,7 +171,7 @@ var Component = React.createClass({
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[0]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
 			<FlatButton onClick={() => this.clickbutton(0)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
@@ -177,10 +186,10 @@ var Component = React.createClass({
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[1]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(1)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
@@ -190,20 +199,20 @@ var Component = React.createClass({
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[2]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(2)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[3]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(3)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
@@ -212,40 +221,40 @@ var Component = React.createClass({
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[4]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(4)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[5]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(5)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[6]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(6)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>
 			<Col xs="12" md="3">
 			<Grid bsClass="container-fluid" style={styles.couponstyle}>
 			<Row>
-			<Image src="http://media.dontpayfull.com/media/deals/walmart-coupons.jpg" width="100%" />
+			<Image src={this.state.img[7]} height="123px" width="100%" />
 			</Row>
 			<Row style={{'background':'#4688C7'}}>
-			<FlatButton style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
+			<FlatButton onClick={() => this.clickbutton(7)} style={{'color':'white','text-align':'center','width':'100%'}}>Save</FlatButton>
 			</Row>
 			</Grid>
 			</Col>

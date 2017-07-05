@@ -437,7 +437,8 @@ var Whyuse = React.createClass({
 				'font-size':'1.8em',
 				'overflow': 'hidden',
 				'white-space': 'nowrap',
-				'color':'#ffde00'
+			
+				'color':'#8E9295'
 			},
 			line: {
 				'background-color':'#D4DAE0'
@@ -497,22 +498,23 @@ var Whyuse = React.createClass({
 
 			<center>
 			<Col sm='4'>
-			<img src={payfees} style={{'margin-left':'3em','width':'85%', 'height':'500px','margin-bottom':'3em'}} />
-			<span style={{'overflow': 'hidden',
-			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>Pay Fees Here</span>
+			<img src={payfees} style={{'margin-left':'3em','width':'60%', 'height':'350px','margin-bottom':'3em'}} />
+			<span style={{'overflow': 'hidden','color':'#8E9295',
+			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Pay Fees Here</span>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={searchservies} style={{'margin-right':'2em','width':'85%', 'height':'500px','margin-bottom':'3em'}} />
-			<span style={{'font-size':'350%','margin-bottom':'13em',color:'#817e7e'}}>Search Services</span>
+			<img src={searchservies} style={{'margin-right':'2em','width':'60%', 'height':'350px','margin-bottom':'3em'}} />
+			<span style={{'overflow': 'hidden','color':'#8E9295',
+			'white-space': 'nowrap','font-size':'250%','margin-bottom':'13em',color:'#817e7e'}}>Search Services</span>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={shop} style={{'margin-right':'2em','margin-bottom':'3em','width':'85%', 'height':'500px'}} />
-			<span style={{'overflow': 'hidden',
-			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>Shop Online</span>
+			<img src={shop} style={{'margin-right':'2em','margin-bottom':'3em','width':'65%', 'height':'350px'}} />
+			<span style={{'overflow': 'hidden','color':'#8E9295',
+			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Shop Online</span>
 			</Col>
 			</center>
 			
@@ -659,8 +661,8 @@ var Mobile = React.createClass({
 		return (
 			<div>
 			<Grid>
-			<Col md="6" style={{'margin-left':'2em'}} >
-			<Image src={mob} width="100%" height="650px" />
+			<Col md="6" style={{'margin-left':'-20em'}} >
+			<Image src={mob} width="100%" height="750px" />
 			</Col>
 			<div style={styles.head}>
 			Pay Fees - Search Service - Shop Online 
@@ -1036,7 +1038,7 @@ var DailyNeeds = React.createClass({
 				</Col>
 				<Col md={1}></Col>
 			</Row><br /><br /><br /><br />
-			<Row>
+			<Row style={{'margin-left':'10em'}}>
 				<Col xs={12} md={2}>
 				<Col md={1}></Col>
 					<center>
@@ -1091,7 +1093,7 @@ var Otp = React.createClass({
 
 	getInitialState: function()
 	{ 
-		return {showotp: false , blah:false , showsnackbar:false, otp: ''};
+		return {showotp: false , blah:false , showsnackbar:false, otp: '',data:''};
 	},
 
 	handleChange: function(event)
@@ -1160,25 +1162,30 @@ var Otp = React.createClass({
 
 
 		function setstudentdata(data)
-		{	alert(data[0].section);
+		{	
+			//alert(data[0].section);
+			//alert('inside setstudent');
 			t.setState({blah: true});
-			Cookies.set('enrollmentno', this.props.studentregnum);
-
+			Cookies.set('enrollmentno', t.props.studentregnum);
+			//alert(Cookies.get('enrollmentno'));
 			var data1=[];
 			data1['p']='hehe';
 			data1['studentname'] = data[0].name;
 			data1['studentclass'] = data[0].class;
 			data1['studentsection'] = data[0].section;
 			data1['studentfees'] = data[0].fee;
-			data1['enrollmentno'] = this.props.studentregnum;
-			alert(data1['enrollmentno']);
+			//alert(data[0].fee);
+			//data1['enrollmentno'] = this.props.studentregnum;
+			//alert(data1['enrollmentno']);
 			Cookies.set('studentname', data[0].name);
 			Cookies.set('studentclass', data[0].class);
 			Cookies.set('studentsection', data[0].section);
 			Cookies.set('studentfees', data[0].fee);
-			Cookies.set('insname', this.props.insname);
-			Cookies.set('insid', this.props.studentinsid);
-			t.props.setdata(data1);
+			Cookies.set('insname', t.props.insname);
+			Cookies.set('insid', t.props.studentinsid);
+			Cookies.set('locationname',t.props.locationname);
+			Cookies.set('type',t.props.type);
+			t.state.setdata(data1);
 		}
 
 		$.ajax({
@@ -1206,7 +1213,18 @@ var Otp = React.createClass({
 		})
 	},
 	pre:function()
-	{
+	{	
+		/*alert('inside otp pre');
+		alert(this.state.data[0].name);
+		alert(this.state.data[0].class);
+		Cookies.set('enrollmentno',this.props.enrollmentno);*/
+		/*Cookies.set('studentname', this.state.data[0].name);
+		console.log(Cookies.get('studentname'));
+			Cookies.set('studentclass', this.state.data[0].class);
+			Cookies.set('studentsection', this.state.data[0].section);
+			Cookies.set('studentfees', this.state.data[0].fee);
+			Cookies.set('insname', this.props.insname);
+			Cookies.set('insid', this.props.studentinsid);*/
 
 	},
 
@@ -1324,7 +1342,7 @@ var Otp = React.createClass({
 var School = React.createClass({
 		getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -1338,7 +1356,7 @@ var School = React.createClass({
 	},
 
 	onsetstudentdata: function(data) {
-
+		alert('inside onsetstudentdata');
 		this.setState({
 			studentname : data['studentname'],
 			studentclass : data['studentclass'],
@@ -1382,14 +1400,14 @@ var School = React.createClass({
 		this.setState({selectedloclong:chosenRequest.long});
 		var q = this.getinsdata();
 		//var p =this.getinsdata1();
-		alert(q);
+		//alert(q);
 
 		var p =this.getinsdata1();
 		//alert(p);
 		var n = q + p;
 		//alert(n);
 		q.push.apply(q,p);
-		alert(q);
+		//alert(q);
 		this.setState({ institutes: q });
 		
 	},
@@ -1410,6 +1428,7 @@ var School = React.createClass({
 			location:this.state.locationname
 
 		};
+		//alert(this.state.locationname);
 
 
 		function do_the_stuff(data)
@@ -1548,6 +1567,7 @@ var School = React.createClass({
 
 	preproceedbutfunc: function()
 	{
+		alert('isnide preproceedbutfunc');
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
 		Cookies.set('insname',this.state.insname);
@@ -1555,6 +1575,7 @@ var School = React.createClass({
 		Cookies.set('benificiaryname',this.state.benificiaryname);
 		Cookies.set('accountno',this.state.accountno);
 		Cookies.set('ifsccode',this.state.ifsccode);
+		
 	},
 
 	render: function() {
@@ -1813,7 +1834,7 @@ var School = React.createClass({
 
 				<Row>
 				<div style={otpstyle}>
-				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} insname={this.state.insname} setdata={this.onsetstudentdata} />
+				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} insname={this.state.insname} locationname={this.state.locationname} type={this.state.type} setdata={this.onsetstudentdata} />
 				
 				</div>
 				</Row>
@@ -1984,7 +2005,7 @@ var Playschool = React.createClass({
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i].name;
+				var c = data[i];
 				data2.push(c);
 			}
 		}
@@ -4298,77 +4319,198 @@ var App = React.createClass({
 });
 
 
-var Bar=React.createClass({
-	
-	
-	render:function(){
-		const styles = {
-			di:
-			{
-				backgroundColor:'#f3f3f4'
-			}
-		}
-		return
-		(
-			<div >
-			
-			<Col md="2" xs="12" />
-			
+var Bar = React.createClass({
+
+	render:function()
+	{
+		return(
+			<div>
+			<div style={{'background-color':'#f8f8f8'}}>
+			<br>
+				
+
+
+			</br>
+			<br>
+				
+
+
+
+			</br>
 			</div>
-			);
-	}
+			</div>
+
+
+			)
+	},
+
+
+
 });
 var Secure=React.createClass({
 	
 	
-	render:function(){
+	render: function() {
+
 		const styles = {
-			
+			row:
+			{
+				'margin-top':'3em'
+			},
+			text:{
+				'padding-right':'10em',
+				'padding-left':'2em',
+				'padding-bottom':'8em',
+				'padding-top':'2em',
+				'width':'100%',
+				'font-size':'1.8em',
+				'overflow': 'hidden',
+				'white-space': 'nowrap',
+				'color':'#ffde00'
+			},
+			line: {
+				'background-color':'#D4DAE0'
+			},
+			shophead: {
+				
+			},
+			discount1: {
+				'float':'left',
+				'padding-top':'2em',
+				'padding-bottom':'2em',
+				'padding-left':'5em',
+				'padding-right':'5em'
+			},
+			discount2: {
+				'float':'center',
+				'padding-top':'2em',
+				'padding-bottom':'2em',
+				'padding-left':'5em',
+				'padding-right':'5em'
+			},
+			discount3: {
+				
+				'float':'right',
+
+				'padding-top':'2em',
+				'padding-bottom':'2em',
+				'padding-left':'5em',
+				'padding-right':'5em'
+			},
+			row1:
+			{
+				'backgroundColor':'#ffffff'
+			},
+			line: {
+				'background-color':'#ffffff'
+			},
+			leftpad: {
+				
+			},
 			info:{
 				'height': 'auto',
 				'position': 'relative',
 				'z-index':'1',
 				'margin-bottom':'13em',
-				'background-color':'#f8f8f8',
+				'background-color':'#ffffff',
 				'padding-top':'40px'
-
-			},
+			}
 
 		}
-		return
-		(
+		return (
+			
+
 			<div style={styles.info}>
 			<Grid bsClass="container-fluid">
 			<Row style={{'margin-top':'5em'}}>
 
 			<center>
 			<Col sm='4'>
-			<img src={secure} style={{'margin-left':'3em','width':'85%', 'height':'500px','margin-bottom':'3em'}} />
-			<span style={{'overflow': 'hidden',
-			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>100 % Secure</span>
+			<img src={secure} style={{'margin-left':'3em','width':'30%', 'height':'180px','margin-bottom':'3em'}} />
+			<Row>
+			<span style={{'overflow': 'hidden','color':'#f2f2f2',
+			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>100% Secure</span>
+			</Row>
 			</Col>
+
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={trust} style={{'margin-right':'2em','width':'85%', 'height':'500px','margin-bottom':'3em'}} />
-			<span style={{'font-size':'350%','margin-bottom':'13em',color:'#817e7e'}}>Seal Of Trust</span>
+			<img src={trust} style={{'margin-right':'2em','width':'30%', 'height':'180px','margin-bottom':'3em'}} />
+			<Row>
+			<span style={{'overflow': 'hidden','color':'#8E9295',
+			'white-space': 'nowrap','font-size':'350%','margin-bottom':'13em',color:'#817e7e'}}>Seal Of Trust</span>
+			</Row>
 			</Col>
+
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={support} style={{'margin-right':'2em','margin-bottom':'3em','width':'85%', 'height':'500px'}} />
-			<span style={{'overflow': 'hidden',
+			<img src={support} style={{'margin-right':'2em','margin-bottom':'3em','width':'30%', 'height':'180px'}} />
+			<Row>
+			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>24/7 Support</span>
+			</Row>
 			</Col>
 			</center>
 			
+						{/*<center>
+							<div class="col-sm-4">
+								<img src="search.png" style="width: 60%; height: 60%" />
+								<p style="font-size:150%;margin-top:20px;color:#817e7e">Search Services</p>
+							</div>
+						</center>
+	
+					  <center>
+						<div class="col-sm-4">
+							<img src="shoponline.png" style="width: 60%; height: 60%" />
+								<p style="font-size:150%;margin-top:20px;color:#817e7e">Shop Online</p>
+							</div>
+						</center>*/}
 
+						</Row>
+						</Grid>
+						</div>
+
+			/*<Grid>
+			<Row style={styles.row1}>
+			<Col xs="12" md="12" style={styles.line}/>
+			</Row>
+			<Row style={styles.row}>
+			<Col xs="12" md="4" style={styles.discount1}>
+			<Row>
+			<Image src={payfees} width="100%" />
+			</Row>
+			<Row style={styles.text} >
+			<div >Pay Fees Here</div>
+			</Row>
+
+			</Col>
+			<Col xs="12" md="4" style={styles.discount2}>
+			<Row>
+			<Image src={searchservies} width="100%" />
+			</Row>
+			<Row style={styles.text}>
+			Search Services
+			</Row>
+			</Col>
+			<Col xs="12" md="4" style={styles.discount3}>
+			<Row>
+			<Image src={shop} width="100%" />
+			</Row>
+			<Row style={styles.text}>
+			Shop Online
+			</Row>
+			</Col>
 
 			</Row>
-			</Grid>
-			</div>
+			</Grid>*/
+
+
+			
 			);
 	}
+
 });
 
 var Homepage = React.createClass({
@@ -4398,12 +4540,15 @@ var Homepage = React.createClass({
 			<PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
 			{this.state.data}
 			<DailyNeeds />
+			<Bar/>
 		{/*				<App />*/}
 	{/*<Discount />*/}
 	<Whyuse />
-{/*<Bar/>*/}
+<Bar/>
 <Mobile />
-{/*<Secure/>*/}
+<Bar/>
+<Secure/>
+<Bar/>
 <Footer/>
 
 </div>
