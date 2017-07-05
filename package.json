@@ -2,6 +2,9 @@
   "name": "feeontime",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.x"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "google-maps-react": "^1.0.19",
