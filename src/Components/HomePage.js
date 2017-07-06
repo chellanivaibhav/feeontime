@@ -818,7 +818,7 @@ var Footer=React.createClass({
 						</Row>
 
 						<Row>
-							<img src={payment} height="200px" width="500px"/>
+							<img src={payment} />
 						</Row>
 					</Grid>
 				</Col>
