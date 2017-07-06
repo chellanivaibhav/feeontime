@@ -21,7 +21,7 @@ var Dropdownhead = React.createClass({
 			}
 		}
 		return (
-			<div style={{'font-size':'1.5em'}}>
+			<div style={{'font-size':'1.8em'}}>
 			{/*<Image src={logoimage} style={styles.profilepic} circle/>&nbsp;{name}&nbsp;*/}
 			{name}
 			</div>
@@ -305,11 +305,11 @@ var LoginSignup = React.createClass({
 		{
 			hehe = (
 				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
-				<MenuItem href="/profile" style={{'font-size':'0.9em'}} >View Profile</MenuItem>
-				<MenuItem href="/transactionhistory" style={{'font-size':'0.9em'}}>Transaction History</MenuItem>
+				<MenuItem href="/profile" style={{'font-size':'1.7em'}} >View Profile</MenuItem>
+				<MenuItem href="/transactionhistory" style={{'font-size':'1.6em'}}>Transaction History</MenuItem>
 				{/*<MenuItem >Your Cart</MenuItem>
 				<MenuItem >Your Wishlist</MenuItem>*/}
-				<MenuItem style={{'font-size':'0.9em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
+				<MenuItem style={{'font-size':'1.7em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
 		}

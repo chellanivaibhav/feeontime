@@ -22,6 +22,7 @@ import sports from '../images/sports.png';
 import toys from '../images/toys.png';
 import stationary from '../images/stationary.png';
 import playstore from '../images/assets/play.png';
+import appstore from '../images/ios.png'
 import uniform from '../images/uniforms.png';
 import shoes from '../images/shoes.png';
 import payfees from '../images/payfees.png';
@@ -498,21 +499,21 @@ var Whyuse = React.createClass({
 
 			<center>
 			<Col sm='4'>
-			<img src={payfees} style={{'margin-left':'3em','width':'60%', 'height':'350px','margin-bottom':'3em'}} />
+			<img src={payfees} style={{'margin-left':'3em','margin-bottom':'3em'}} />
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Pay Fees Here</span>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={searchservies} style={{'margin-right':'2em','width':'60%', 'height':'350px','margin-bottom':'3em'}} />
+			<img src={searchservies} style={{'margin-right':'2em','margin-bottom':'3em'}} />
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-bottom':'13em',color:'#817e7e'}}>Search Services</span>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={shop} style={{'margin-right':'2em','margin-bottom':'3em','width':'65%', 'height':'350px'}} />
+			<img src={shop} style={{'margin-right':'2em','margin-bottom':'3em'}} />
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Shop Online</span>
 			</Col>
@@ -614,88 +615,89 @@ var Mobile = React.createClass({
 				
 			},
 			buttonsidetext:{
-				'margin-top':'2.0em',
-				'margin-left':'45px',
+				//'margin-top':'2.0em',
+				'margin-left':'25px',
 				'color':'#C0C0C0',
-				'font-size':'1.5em',
+				'font-size':'2.5em',
+				'white-space': 'nowrap',
+				//'display':'inline',
 				'float':'left'
 			},
 			button:
 			{	
 				'background': '#4688C7',
-				'width':'15%',
+				'white-space': 'nowrap',
+				'width':'35%',
 				'color':'#ffffff',
 				'float':'right',
-				'margin-left':'17em',
-				'margin-top':'-1.7em',
-				'font-size':'1.5em'
+				'margin-right':'-7em',
+				//'margin-top':'-1.7em',
+				'font-size':'2.5em'
 			},
 			normaltext:{
-				'font-size' : '1.5em',
+				'font-size' : '2.0em',
 				'text-align' :'center',
 				'color':'#696969',
-
+				'padding-bottom':'0.5',
 				'margin-left' : '0.2em',
 				'padding-top' : '0.5em'
 			},
 			head:{
-				'font-size' : '2.5em',
+				'font-size' : '2.8em',
 				'text-align' :'center',
 				'color':'#696969',
-				'margin-left' : '0.2em',
+				'margin-left' : '1.2em',
 				'padding-top' : '3em',
 				'padding-bottom' : '1.0em'
 			},
 			play:{
-				'margin-top':'7.2em',
+				//'margin-top':'7.2em',
 				'float':'right'
 			},
 			app:{
 				'float':'left',
 				'margin-left':'5em',
-				'margin-top':'-5.0em',
+				//'margin-top':'-5.0em',
 
 			}
 
 		}
 		return (
 			<div>
-			<Grid>
-			<Col md="6" style={{'margin-left':'-20em'}} >
+	<Grid>
+		<Col md="6" style={{'margin-left':'-20em'}} >
 			<Image src={mob} width="100%" height="750px" />
-			</Col>
-			<div style={styles.head}>
+		</Col>
+		<div style={styles.head}>
 			Pay Fees - Search Service - Shop Online 
-			</div>
-			<div style={styles.normaltext}>
+		</div>
+		<div style={styles.normaltext}>
 			Download Our Top Rated App , Made Just For You !!
-			</div>
-			<div style={styles.normaltext}>
+		</div>
+		<div style={styles.normaltext}>
 			It`s free , easy and smart  
-			</div>
-			<div >
-
-			<div style={styles.buttonsidetext}>Enter your mobile number
-			</div>
+		</div>
+		<div style={{'border':'1px'}}>
+			<Row style={{'margin-top':'7em','width':'75%','height':'50px'}}>
+				<div style={styles.buttonsidetext}>Enter your mobile number
+				</div>
 			<Button style={styles.button} >Send App Link</Button>
-			</div>
-			<div>
-			<div style={styles.play}>
-			<Image src={playstore} width="70%" height='65px' />
-			</div>
+			</Row>
+		</div>
+		<div>
+		<Row style={{'margin-top':'5em','margin-left':'2em'}}>
+			<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
+				<div style={styles.play}>
+					<Image src={playstore}  />
+				</div>
+			</a>
 			<div style={styles.app}>
-			<Image src={playstore} width="70%" height='65px'/>
+				<Image src={appstore} />
 			</div>
-			</div>
-
-
-
-
-
-
-
-			</Grid>
-			</div>
+		</Row>
+		</div>
+	</Grid>
+</div>
 
 			);
 	}
@@ -714,7 +716,7 @@ var Footer=React.createClass({
 			
 			'footer': {
 				'height': 'auto',
-				'position': 'relative',
+				//'position': 'relative',
 				'z-index': '1',
 				'background-color':'#f8f8f8',
 				'padding-top':'20px'
@@ -809,7 +811,7 @@ var Footer=React.createClass({
 							<Col sm="2" style={{'margin-right':'5em'}}>
 								<p style={{'font-size':'1.5em', 'color':'#4588c8'}}>Get In Touch</p>
 								<ul style={{'color':'white'}} >
-									<ul style={{'margin-right':'25em'}} ><a href="#" >Blog</a></ul>
+									<ul style={{'marginRight':'5em'}} ><a href="#" >Blog</a></ul>
 									<ul><a href="#" >Subscribe to Newsletter</a></ul>
 								</ul>
 							</Col>
@@ -843,8 +845,9 @@ var Footer=React.createClass({
 								} height="40px" width="150px" style={{'margin-left':'-40px'}}/></a>
 							</div>
 
+
 							<div class="col-sm-6">
-								<a href="#"><img src={playstore
+								<a href="#"><img src={appstore
 								} height="40px" width="150px" style={{'margin-left':'10px'}}/></a>
 							</div>
 						</div>
@@ -1174,6 +1177,7 @@ var Otp = React.createClass({
 			data1['studentclass'] = data[0].class;
 			data1['studentsection'] = data[0].section;
 			data1['studentfees'] = data[0].fee;
+			//data1['studentphone']=data[0].Phone;
 			//alert(data[0].fee);
 			//data1['enrollmentno'] = this.props.studentregnum;
 			//alert(data1['enrollmentno']);
@@ -1181,6 +1185,7 @@ var Otp = React.createClass({
 			Cookies.set('studentclass', data[0].class);
 			Cookies.set('studentsection', data[0].section);
 			Cookies.set('studentfees', data[0].fee);
+			//Cookies.set('studentphone',data[0].Phone);
 			Cookies.set('insname', t.props.insname);
 			Cookies.set('insid', t.props.studentinsid);
 			Cookies.set('locationname',t.props.locationname);
@@ -1328,8 +1333,14 @@ var Otp = React.createClass({
 			</Dialog>
 
 			{ this.state.blah ? (
-
+				<div>
+				<Row>
+					<div /*style={enrollmentnostyle}*/>
+					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} /*value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}*/ floatingLabelText="Enrollment Number" />
+					</div>
+					</Row>
 				<a href="/coupons"><Button bsStyle="primary" onClick={this.pre} style={styles.proceed} ><b>Proceed</b></Button></a>
+				</div>
 
 				):(<Button bsStyle="primary" onClick={this.open} style={styles.proceed}><b>Get Otp</b></Button>)}
 			
@@ -1494,7 +1505,7 @@ var School = React.createClass({
 
 		$.ajax({
 			type: 'GET',
-			url: 'http://52.41.82.157/map/index.php/Map/getinstitute',
+			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitute',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -1567,7 +1578,7 @@ var School = React.createClass({
 
 	preproceedbutfunc: function()
 	{
-		alert('isnide preproceedbutfunc');
+		//alert('isnide preproceedbutfunc');
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
 		Cookies.set('insname',this.state.insname);
@@ -2063,7 +2074,7 @@ var Playschool = React.createClass({
 
 		$.ajax({
 			type: 'GET',
-			url: 'http://localhost/map/index.php/Map/getinstitute',
+			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitute',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -2488,7 +2499,7 @@ var College = React.createClass({
 	},
 
 	onsetstudentdata: function(data) {
-		alert('hi');
+		//alert('hi');
 		this.setState({
 			studentname : data['studentname'],
 			studentclass : data['studentclass'],
@@ -2623,7 +2634,7 @@ var College = React.createClass({
 
 		$.ajax({
 			type: 'GET',
-			url: 'http://localhost/map/index.php/Map/getinstitute',
+			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitutewhy',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -4426,17 +4437,17 @@ var Secure=React.createClass({
 
 			<center>
 			<Col sm='4'>
-			<img src={secure} style={{'margin-left':'3em','width':'30%', 'height':'180px','margin-bottom':'3em'}} />
+			<img src={secure} style={{'margin-left':'3em','margin-bottom':'4em'}} />
 			<Row>
 			<span style={{'overflow': 'hidden','color':'#f2f2f2',
-			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>100% Secure</span>
+			'white-space': 'nowrap','font-size':'350%','margin-top':'13.5em',color:'#817e7e'}}>100% Secure</span>
 			</Row>
 			</Col>
 
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={trust} style={{'margin-right':'2em','width':'30%', 'height':'180px','margin-bottom':'3em'}} />
+			<img src={trust} style={{'margin-right':'2em','margin-bottom':'3em'}} />
 			<Row>
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'350%','margin-bottom':'13em',color:'#817e7e'}}>Seal Of Trust</span>
@@ -4446,10 +4457,10 @@ var Secure=React.createClass({
 			</center>
 			<center>
 			<Col sm='4'>
-			<img src={support} style={{'margin-right':'2em','margin-bottom':'3em','width':'30%', 'height':'180px'}} />
+			<img src={support} style={{'margin-right':'2em','margin-bottom':'4em'}} />
 			<Row>
 			<span style={{'overflow': 'hidden','color':'#8E9295',
-			'white-space': 'nowrap','font-size':'350%','margin-top':'13em',color:'#817e7e'}}>24/7 Support</span>
+			'white-space': 'nowrap','font-size':'350%','margin-top':'13.5em',color:'#817e7e'}}>24/7 Support</span>
 			</Row>
 			</Col>
 			</center>

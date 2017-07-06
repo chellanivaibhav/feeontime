@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyDrawer from './Drawer.js';
+//import MyDrawer from './Drawer.js';
+import MyDrawer from './PayFeesDrawer.js';
+
 import {FontIcon, Tabs, Tab, RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal} from 'react-bootstrap';
 import Cookies from 'js-cookie';
@@ -29,8 +31,8 @@ var PersonalDetails = React.createClass({
 		{
 		var mydata={
 			//tochange
-			//'user_id':Cookies.get('userid')
-			'user_id':82
+			'user_id':Cookies.get('userid')
+			//'user_id':82
 		}
 		var id=[];
 		var data2=[];
@@ -234,8 +236,8 @@ var PersonalDetailsComponent=React.createClass({
 		{
 		var mydata={
 			//tochange
-			//'user_id':Cookies.get('userid')
-			'user_id':82
+			'user_id':Cookies.get('userid')
+			//'user_id':82
 		}
 		var id=[];
 		var data2=[];
@@ -454,10 +456,14 @@ var PersonalDetailsComponent=React.createClass({
 											<span style={styles.rupees}> {
 
 												this.state.amount[index]==''?
-												(<div></div>)
+												(<div>{this.state.vendor_type[index]}</div>)
 												:
 												(
+													<div>
+													<div>Successful Transaction 
+													</div>
 													<div>&#8377;{this.state.amount[index]}
+													</div>
 													</div>
 												)
 											}
@@ -559,7 +565,7 @@ var Fees = React.createClass({
 				var c=data[i].name;
 				student_name.push(c); 
 
-				var c=data[i].Time;
+				var c=data[i].time;
 				timestamp.push(c);
 
 				
@@ -582,7 +588,7 @@ var Fees = React.createClass({
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/all_transaction',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/show_transaction_history',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -624,7 +630,7 @@ var Fees = React.createClass({
 	render: function() {
 		const styles = {
 
-			line: {
+			/*line: {
 				'border-top': '1px solid #e5e5e5',
 				'border-bottom': '1px solid #e5e5e5',
 				'font-size': '1.5em'
@@ -663,7 +669,49 @@ var Fees = React.createClass({
 			srow: {
 				'padding-top': '0.2em',
 				'padding-bottom': '1em'
+			}*/
+
+			line: {
+				'border-top': '1px solid #e5e5e5',
+				'border-bottom': '1px solid #e5e5e5',
+				'padding-top':'0.3em',
+				'font-size': '0.5em'
+			},
+			date: {
+				'color': '#a2a2a2'
+			},
+			transaction: {
+				'color': '#5b5b5b'
+			},
+			image: {
+				'width': '100%',
+				'padding-bottom':'0.5em'
+			},
+			ttext: {
+				'padding-top':'0.8em'
+			},
+			institute: {
+				'color': '#5a95cd'
+			},
+			classp: {
+				'color': '#a2a2a2'
+			},
+			rupees: {
+				'float':'right'
+			},
+			label: {
+				'color':'#5a95cd'
+			},
+			repeatbut: {
+				'border-radius': '20px',
+				'border': '1px solid #5a95cd'
+			},
+			srow: {
+				'padding-top': '0.2em',
+				'padding-bottom': '1em'
 			}
+
+
 
 		}
 		return (
@@ -710,7 +758,7 @@ var Fees = React.createClass({
 													<div>&#8377;{this.state.amount[index]}
 													</div>
 												
-											}
+											
 
 
 
@@ -915,8 +963,8 @@ var Container = React.createClass({
 							<SwipeableViews index={this.state.slideIndex} onChangeIndex={this.handleChange}>
 								<div><PersonalDetailsComponent /></div>
 								<div><h1><Fees/></h1></div>
-								<div><h1><DailyNeeds /></h1></div>
-								<div><h1>Shop</h1></div>
+								<div><h1>COMING SOON !</h1></div>
+								<div><h1>COMING SOON !</h1></div>
 							</SwipeableViews>
 						</Col>
 					</Row>

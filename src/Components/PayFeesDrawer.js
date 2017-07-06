@@ -131,7 +131,7 @@ var MyDrawer = React.createClass({
 
 		return (
 			<div>
-			  <AppBar title={<img src={logo} style={styles.logostyle} />}  style={styles.appbarstyle}>
+			  <AppBar title={<img src={logo}  style={styles.logostyle} />}  style={styles.appbarstyle} showMenuIconButton={false}>
 			   <Toolbar style={styles.appbarstyle}>
 			   <ToolbarGroup>
 			   <FlatButton onClick={() => this.clickbutton(0)} style={appbarstyleactive}>Pay Fees Here</FlatButton>
