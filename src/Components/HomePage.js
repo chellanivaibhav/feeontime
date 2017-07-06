@@ -1382,7 +1382,7 @@ var School = React.createClass({
 			locationname: searchText,
 		});
 	},
-
+	//just a cooment
 	newRequestOtp: function(chosenRequest) {
 		this.setState({
 			insid: chosenRequest.id,
@@ -1395,6 +1395,7 @@ var School = React.createClass({
 		}
 		else
 		{
+
 			this.setState({dispproceed:true});
 			this.setState({dispotp:false});
 		}
