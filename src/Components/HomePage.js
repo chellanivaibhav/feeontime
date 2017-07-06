@@ -1185,7 +1185,7 @@ var Otp = React.createClass({
 			Cookies.set('studentclass', data[0].class);
 			Cookies.set('studentsection', data[0].section);
 			Cookies.set('studentfees', data[0].fee);
-			//Cookies.set('studentphone',data[0].Phone);
+			Cookies.set('studentphone',data[0].Phone);
 			Cookies.set('insname', t.props.insname);
 			Cookies.set('insid', t.props.studentinsid);
 			Cookies.set('locationname',t.props.locationname);
@@ -1335,10 +1335,25 @@ var Otp = React.createClass({
 			{ this.state.blah ? (
 				<div>
 				<Row>
-					<div /*style={enrollmentnostyle}*/>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} /*value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}*/ floatingLabelText="Enrollment Number" />
-					</div>
-					</Row>
+						<TextField style={styles.textfieldstyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						underlineFocusStyle={styles.underlineFocusStyle} 
+						value={this.state.studentname} 
+						name="studentname" 
+						onChange={this.handleChange} 
+						floatingLabelText="Student Name" />
+						</Row>
+						<Row>
+						<Col xs="12" md="6">
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						</Col>
+						<Col xs="12" md="6">
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						</Col>
+						</Row>
+						<Row>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						</Row>
 				<a href="/coupons"><Button bsStyle="primary" onClick={this.pre} style={styles.proceed} ><b>Proceed</b></Button></a>
 				</div>
 
@@ -1367,7 +1382,7 @@ var School = React.createClass({
 	},
 
 	onsetstudentdata: function(data) {
-		alert('inside onsetstudentdata');
+		//alert('inside onsetstudentdata');
 		this.setState({
 			studentname : data['studentname'],
 			studentclass : data['studentclass'],
@@ -1486,7 +1501,7 @@ var School = React.createClass({
 	},
 	getinsdata1: function()
 	{
-		alert('inside insti 1');
+		//alert('inside insti 1');
 		var mydata={};
 		var data2=[];
 		var mydata={
