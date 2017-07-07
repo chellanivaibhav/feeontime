@@ -4567,7 +4567,7 @@ var Homepage = React.createClass({
 	render: function() {
 
 		return (
-			<div>
+			<div style={{'zoom':'80%'}}>
 			<PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
 			{this.state.data}
 			<DailyNeeds />
