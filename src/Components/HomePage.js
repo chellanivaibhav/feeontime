@@ -1326,8 +1326,9 @@ var Otp = React.createClass({
 			onChange={this.handleChange}
 			name="otp"
 			hintText="Enter OTP"
+
 			></TextField>
-			<h5>Haven't Received OTP ? <a href="#" onClick={this.sendotp} ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
+			<h5>Haven't Received OTP ? <a onClick={this.sendotp} ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
 			</Dialog>
@@ -1352,7 +1353,7 @@ var Otp = React.createClass({
 						</Col>
 						</Row>
 						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees}  name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
 						</Row>
 				<a href="/coupons"><Button bsStyle="primary" onClick={this.pre} style={styles.proceed} ><b>Proceed</b></Button></a>
 				</div>
@@ -1789,7 +1790,7 @@ var School = React.createClass({
 					</Row>
 					<Row>
 					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} label="blahvlah" floatingLabelText="Enrollment Number" />
 					</div>
 					</Row>
 					</div>
