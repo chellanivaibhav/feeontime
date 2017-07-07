@@ -1327,7 +1327,7 @@ var Otp = React.createClass({
 			name="otp"
 			hintText="Enter OTP"
 			></TextField>
-			<h5>Haven't Received OTP ? <a href="#" ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
+			<h5>Haven't Received OTP ? <a href="#" onClick={this.sendotp} ><span style={{color: '#4688C7'}}>Resend</span></a></h5>
 			<Button bsStyle="primary" style={styles.otpbtn} onClick={this.verifyotp} >Submit</Button>
 			</center>
 			</Dialog>
