@@ -1339,21 +1339,22 @@ var Otp = React.createClass({
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
-						value={this.state.studentname} 
+						inputStyle={{  cursor: 'none' }}
+						value={Cookies.get('studentname')} 
 						name="studentname" 
-						onChange={this.handleChange} 
+						//onChange={this.handleChange} 
 						floatingLabelText="Student Name" />
 						</Row>
 						<Row>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={Cookies.get('studentclass')} name="studentclass" floatingLabelText="Class" />
 						</Col>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={Cookies.get('studentsection')} name="studentsection"  floatingLabelText="Section" />
 						</Col>
 						</Row>
 						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees}  name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={Cookies.get('studentfees')}  name="studentfees"  floatingLabelText="Fee Amount" />
 						</Row>
 				<a href="/coupons"><Button bsStyle="primary" onClick={this.pre} style={styles.proceed} ><b>Proceed</b></Button></a>
 				</div>
@@ -1767,7 +1768,7 @@ var School = React.createClass({
 					openOnFocus={true}
 					name="selectlocation"
 					onNewRequest={this.newRequestPlaySchool}
-					floatingLabelText="Select Location"
+					floatingLabelText="Location"
 					fullWidth={true}					
 					/>
 					</Row>
@@ -1790,7 +1791,9 @@ var School = React.createClass({
 					</Row>
 					<Row>
 					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} label="blahvlah" floatingLabelText="Enrollment Number" />
+					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} 
+						//inputStyle={{ textAlign: 'center', cursor: 'none' }}
+					value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}  floatingLabelText="Enrollment Number" />
 					</div>
 					</Row>
 					</div>
