@@ -147,8 +147,8 @@ var LoginSignupButton = React.createClass({
 
 			logoimagestyle: {
 				'margin':'0',
-				//'height':'500px',
-				//'width':'50%',
+				'height':'400px',
+				'width':'50%',
 				'padding-top': '30%'
 			},
 
@@ -213,15 +213,15 @@ var LoginSignupButton = React.createClass({
 					<Grid bsClass="container-fluid">
 						<Row>
 							
-								<Col xs="12" md="6" style={styles.modalfirstpart}>
+								<Col xs="12" md="6" >
 								<center>
-								<Image src={logoimage} style={styles.logoimagestyle} />
+								{/*<Image src={logoimage} style={styles.logoimagestyle} />
 								<h3 style={styles.h3}><br />Pay Fees Online</h3><br />
 								<h3 style={Object.assign({},styles.h3,styles.bottompad)}>#gocashless</h3>
-								<br />
+								<br />*/}
 								
-								{/*<Image src={logo} style={styles.logoimagestyle} />*/}
-								{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
+								{/*<Image src={logo}  />*/}
+								<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
 								<Carousel.Item>
 									<Image src={payfees} style={styles.logoimagestyle} />
 								
@@ -234,7 +234,7 @@ var LoginSignupButton = React.createClass({
 									<Image src={shoponline} style={styles.logoimagestyle} />
 								
 								</Carousel.Item>
-								</Carousel>*/}
+								</Carousel>
 								
 								</center>
 							</Col>

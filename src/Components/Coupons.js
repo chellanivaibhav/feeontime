@@ -126,6 +126,11 @@ var Component = React.createClass({
 
 		proceedtopay: {
 			'color':'white',
+			'font-size':'2.5em',
+			'height':'1.5em',
+			//'padding-top':'0.5em',
+			//'padding-bottom':'0.5em',
+			'borderRadius':'0.3em',
 			'padding-left':'1.5em',
 			'padding-right':'1.5em',
 			'background-color':'#4688C7',
@@ -145,13 +150,13 @@ var Component = React.createClass({
 			<div>
 			<br/>
 			<Grid bsClass="container">
-			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
+			<Paper zDepth="1" style={{'width':'160%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-25em'}}>
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}>{Cookies.get('insname')} , {this.state.city}</span>
-			<span style={{'margin-left':'2em','font-size':'1.5em'}}> &#8377;{this.state.amount}</span>
-			<span style={{'margin-left':'4em','font-size':'1.5em'}}> Coupons Selected : {this.state.noofcoupons}</span>
+			<span style={{'margin-left':'17em','font-size':'1.5em', 'width':'60%','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
+			<span style={{'margin-left':'5em','width':'15%','font-size':'1.5em','color':'#797979'}}> &#8377;{this.state.amount}</span>
+			<span style={{'margin-left':'5em','font-size':'1.5em','color':'#797979'}}> Coupons Selected : {this.state.noofcoupons}</span>
 
 			</Row>
 

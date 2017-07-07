@@ -4608,7 +4608,7 @@ var Homepage = React.createClass({
 <Bar/>
 <Secure/>
 <Bar/>
-<Footer/>
+{/*<Footer/>*/}
 
 </div>
 );

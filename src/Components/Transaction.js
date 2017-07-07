@@ -19,7 +19,7 @@ var Component = React.createClass({
 	getInitialState : function() {		
 		
 		return {
-value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: 'delhi', city: 'delhi',hash:'',insname:'',class:'',section:'',cccharge:'',dccharge:'',netcharge:'',internetcharge:0,totalamount:0
+value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: 'delhi', city: 'delhi',hash:'',insname:'',class:'',section:'',cccharge:0,dccharge:'',netcharge:0,internetcharge:0,totalamount:0
 
 		};
 	},
@@ -45,7 +45,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 		//does fucntion execution after setstate  has completed
 		this.setState({ 
 			pcode: 'cc',
-			internetcharge: this.state.cccharge
+			internetcharge:( this.state.cccharge/100)*Cookies.get('studentfees')
 		 }, () => { 
 		    
 		    this.aftercheck(); 
@@ -67,7 +67,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			
 		this.setState({ 
 			pcode: 'dc',
-			internetcharge: this.state.dccharge
+			internetcharge:( this.state.dccharge/100)*Cookies.get('studentfees')
 		 }, () => { 
 		    
 		    this.aftercheck(); 
@@ -294,6 +294,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 	    	'background-color':'#4688C7',
 	    	'padding-left':'2em',
 	    	'padding-bottom':'0.3em',
+	    	'borderRound':'1em',
 	    	'font-size':'2.5em',
 	    	'padding-right':'2em',
 	    },
@@ -302,7 +303,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 	    	'width':'55%',
 	    	'height':'1.5em',
 	    	'margin-top':'7em',
-
+	    	'borderRound':'1em',
 	    	'margin-left':'13em'
 	    },
 
@@ -327,7 +328,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<div>
 			<br />
 			<Grid bsClass="container">
-			<Paper zDepth="1" style={{'width':'160%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-25em'}}>
+			{/*<Paper zDepth="1" style={{'width':'160%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-25em'}}>
 			
 			
 			
@@ -338,7 +339,26 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<Row>
 			<span style={{'margin-left':'14em','font-size':'3.5em','float':'center'}}>Total Amount: &#8377;{this.state.totalamount}</span>
 			</Row>
+			</Paper>*/}
+
+			<Paper zDepth="1" style={{'width':'160%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-25em'}}>
+			<Row>
+			<Col xs="12" md="8">
+			<Row>
+			<span style={{'margin-left':'10em','font-size':'2.5em', 'width':'60%','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
+			<span style={{'margin-left':'5em','width':'15%','font-size':'2.5em','color':'#797979'}}> &#8377;{this.state.totalamount}</span>
+			{/*<span style={{'margin-left':'5em','font-size':'1.5em','color':'#797979'}}> Coupons Selected : {this.state.noofcoupons}</span>*/}
+
+			</Row>
+
+			</Col>
+			<Col xs="12" md="4" style={{'font-size':'2.5em','color':'#797979'}} >
+				Just A Click Away !
+			</Col>
+			</Row>
 			</Paper>
+
+
 			</Grid>
 			<br />
 			<Grid bsClass="container">
@@ -423,30 +443,30 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<Col md="9">
 			<hr></hr>
 			<Row>
-			<span style={{'margin-left':'2em','font-size':'2em'}}>{Cookies.get('type')}     {Cookies.get('insname')}</span>
-			<span style={{'margin-left':'4em','font-size':'2em'}}>Student Name        {Cookies.get('studentname')}</span>
+			<span style={{'margin-left':'9em','color':'#919191','font-size':'2em', 'width':'40%'}}>Student Name</span>
+			<span style={{'margin-left':'4em','font-size':'2em','color':'#919191','width':'60%'}}>    {Cookies.get('studentname')}</span>
 		
 			</Row>
 			<hr></hr>
 			<Row>
-			<span align="center" style={{'margin-left':'8.3em','font-size':'2.5em'}}>Fees
+			<span align="center" style={{'margin-left':'8.3em','font-size':'2.5em','color':'#919191','padding-bottom':'1em'}}>Fees
 			</span>
-			<span align="center" style={{'margin-left':'11.7em','font-size':'2.5em'}}>&#8377;{Cookies.get('studentfees')}
+			<span align="center" style={{'margin-left':'11.7em','font-size':'2.5em','color':'#919191','padding-bottom':'1em'}}>&#8377;{Cookies.get('studentfees')}
 			</span>
 			</Row>
 			<Row >
-			<span align="center" style={{'margin-left':'14em','font-size':'1.5em'}}>Internet Handling Charge </span>
-			<span align="center" style={{'margin-left':'12.5em','font-size':'1.5em'}}>&#8377; {this.state.internetcharge}</span>
+			<span align="center" style={{'margin-left':'14em','font-size':'1.5em','color':'#919191','margin-top':'20em'}}>Internet Handling Charge </span>
+			<span align="center" style={{'margin-left':'12.5em','font-size':'1.5em','color':'#919191'}}>&#8377; {this.state.internetcharge}</span>
 			</Row>
 			<Row>
-			<span style={{'margin-left':'14em','font-size':'1.5em'}}>GST </span>
-			<span style={{'margin-left':'22em','font-size':'1.5em'}}> &#8377;{(this.state.internetcharge*0.18).toFixed(2)}</span>
+			<span style={{'margin-left':'14em','font-size':'1.5em','color':'#919191'}}>GST </span>
+			<span style={{'margin-left':'22em','font-size':'1.5em','color':'#919191'}}> &#8377;{(this.state.internetcharge*0.18).toFixed(2)}</span>
 			</Row>
 			<hr></hr>
 			<Row>
-			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em'}}>Total Amount
+			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em','color':'#919191'}}>Total Amount
 			</span>
-			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em'}}>&#8377;{this.state.totalamount}
+			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em','color':'#919191'}}>&#8377;{this.state.totalamount}
 			</span>
 			</Row>
 			<hr></hr>
@@ -539,7 +559,7 @@ var Transaction = React.createClass({
 	
 	render: function() {
 		return (
-			<div>
+			<div style={{'zoom':'70%'}}>
 			<PayFeesDrawer />
 			<Component />
 			</div>

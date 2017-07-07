@@ -34,8 +34,11 @@ getsub_id : function()
     var regex = /\d+/g;
     var array=p.match(regex);
     var sub_id=array[array.length-1];
-    
+    this.setState({sub_id:sub_id},
+      ()=>{
+
     return sub_id;
+    });
 
   },
   choose : function () {
@@ -672,7 +675,7 @@ var Leadgen = React.createClass({
 	render: function() {
 		return (
 			<div>
-      <div id="leadgenimage">
+      <div id="leadgenimage" style={{'zoom':'75%'}}>
 				<DailyNeedsDrawer />
 				<HorizontalLinearStepper />
         <br /><br />
