@@ -3,6 +3,12 @@ import {MenuItem, DropdownButton,Grid,Row,Col,Image,Carousel,ButtonToolbar,Butto
 import {Tabs,Tab,Dialog,Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
+import payfees from '../images/login/pay fees.png';
+ 
+import searchservice from '../images/login/search service.png';
+import shoponline from '../images/login/shop online.png';
+
+
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 var $ = require ('jquery');
@@ -141,6 +147,8 @@ var LoginSignupButton = React.createClass({
 
 			logoimagestyle: {
 				'margin':'0',
+				//'height':'500px',
+				//'width':'50%',
 				'padding-top': '30%'
 			},
 
@@ -180,6 +188,10 @@ var LoginSignupButton = React.createClass({
 		    	'background-color':'#4688C7',
 		    	'border-color':'white'
 		    },
+		    carousel:
+		    {
+		    	'width':'100%'
+		    },
 		    gridstyle: {
 		    	'padding':'0',
 		    	'margin':'0',
@@ -200,12 +212,30 @@ var LoginSignupButton = React.createClass({
 	        >
 					<Grid bsClass="container-fluid">
 						<Row>
-							<Col xs="12" md="6" style={styles.modalfirstpart}>
+							
+								<Col xs="12" md="6" style={styles.modalfirstpart}>
 								<center>
 								<Image src={logoimage} style={styles.logoimagestyle} />
 								<h3 style={styles.h3}><br />Pay Fees Online</h3><br />
 								<h3 style={Object.assign({},styles.h3,styles.bottompad)}>#gocashless</h3>
 								<br />
+								
+								{/*<Image src={logo} style={styles.logoimagestyle} />*/}
+								{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
+								<Carousel.Item>
+									<Image src={payfees} style={styles.logoimagestyle} />
+								
+								</Carousel.Item>
+								<Carousel.Item>
+									<Image src={searchservice} style={styles.logoimagestyle}/>
+								
+								</Carousel.Item>
+								<Carousel.Item>
+									<Image src={shoponline} style={styles.logoimagestyle} />
+								
+								</Carousel.Item>
+								</Carousel>*/}
+								
 								</center>
 							</Col>
 							<Col xs="12" md="6">

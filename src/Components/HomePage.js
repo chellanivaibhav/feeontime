@@ -438,7 +438,7 @@ var Whyuse = React.createClass({
 				'font-size':'1.8em',
 				'overflow': 'hidden',
 				'white-space': 'nowrap',
-			
+				
 				'color':'#8E9295'
 			},
 			line: {
@@ -500,22 +500,28 @@ var Whyuse = React.createClass({
 			<center>
 			<Col sm='4'>
 			<img src={payfees} style={{'margin-left':'3em','margin-bottom':'3em'}} />
+			<Row>
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Pay Fees Here</span>
+			</Row>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
 			<img src={searchservies} style={{'margin-right':'2em','margin-bottom':'3em'}} />
+			<Row>
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-bottom':'13em',color:'#817e7e'}}>Search Services</span>
+			</Row>
 			</Col>
 			</center>
 			<center>
 			<Col sm='4'>
 			<img src={shop} style={{'margin-right':'2em','margin-bottom':'3em'}} />
+			<Row>
 			<span style={{'overflow': 'hidden','color':'#8E9295',
 			'white-space': 'nowrap','font-size':'250%','margin-top':'13em',color:'#817e7e'}}>Shop Online</span>
+			</Row>
 			</Col>
 			</center>
 			
@@ -1283,6 +1289,7 @@ var Otp = React.createClass({
 				'background': '#4688C7',
 				'width':"100%",
 				'margin-top':'1em',
+				 'fontFamily':'proxima nova',
 				'font-size':'1.2em'
 			},
 
@@ -1294,11 +1301,29 @@ var Otp = React.createClass({
 
 				'width': '50%'
 			},
+			floatingLabelFocusStyle: {
+				'padding':'-1.9em',
+				color: '#4688C7',
+				'font-size':'0.9em'
+			},
+
+			underlineFocusStyle: {
+				'font-size':'0.9em',
+				borderColor: '#4688C7'
+			},
+			textfieldstyle: {
+				height:'3.5em',
+				width:'100%',
+				'padding-bottom':'0.4em',
+				'font-size':'0.9em',
+				background:'#ffffff'
+			},
 
 			otpbtn: {
 				'background': '#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em',
+				'fontFamily':'proxima nova',
 				'padding-left':'4em',
 				'padding-right':'4em'
 			}
@@ -1615,7 +1640,7 @@ var School = React.createClass({
 			backgroundColor: "#ffde00",
 			color: "#333",
 			display: "inline-block",
-			fontFamily: "monospace",
+			'fontFamily':'proxima nova',
 			fontSize: "32",
 			textAlign: "center"
 		};
@@ -1720,6 +1745,7 @@ var School = React.createClass({
 			proceed: {
 				'float':'right',
 				'background': '#4688C7',
+				'fontFamily':'proxima nova',
 				'width':"50%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
@@ -1727,6 +1753,7 @@ var School = React.createClass({
 			proceed1: {
 				'float':'right',
 				'background': '#4688C7',
+				'fontFamily':'proxima nova',
 				'width':"100%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
@@ -1735,6 +1762,7 @@ var School = React.createClass({
 				'float':'left',
 				'background': '#ffffff',
 				'width':"45%",
+				'fontFamily':'proxima nova',
 				'color':'#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em'
@@ -4567,7 +4595,7 @@ var Homepage = React.createClass({
 	render: function() {
 
 		return (
-			<div style={{'zoom':'80%'}}>
+			<div style={{'zoom':'75%'}}>
 			<PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
 			{this.state.data}
 			<DailyNeeds />
