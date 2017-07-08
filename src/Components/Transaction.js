@@ -308,7 +308,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 	    {
 	    	'width':'55%',
 	    	'height':'1.5em',
-	    	'margin-top':'7em',
+	    	'margin-top':'4em',
 	    	'borderRound':'1em',
 	    	'margin-left':'13em'
 	    },
@@ -347,12 +347,16 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			</Row>
 			</Paper>*/}
 
-			<Paper zDepth="1" style={{'width':'160%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-25em'}}>
+
+
+
+
+			<Paper zDepth="1" style={{'width':'210%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-40em'}}>
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'10em','font-size':'2.5em', 'width':'60%','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
-			<span style={{'margin-left':'5em','width':'15%','font-size':'2.5em','color':'#797979'}}> &#8377;{this.state.totalamount}</span>
+			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
+			<span style={{'margin-left':'5em','display': 'inline-block','width':'160px','font-size':'2.0em','color':'#797979'}}> &#8377;{this.state.totalamount}</span>
 			{/*<span style={{'margin-left':'5em','font-size':'1.5em','color':'#797979'}}> Coupons Selected : {this.state.noofcoupons}</span>*/}
 
 			</Row>
@@ -365,10 +369,12 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			</Paper>
 
 
+
+
 			</Grid>
 			<br />
 			<Grid bsClass="container">
-			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em','marginBottom':'-2em','width':'160%','margin-left':'-25em','height':'625px'}}>
+			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'4em','marginBottom':'-2em','width':'160%','margin-left':'-25em','height':'625px'}}>
 			<Row>
 			<Col md="3">
 
@@ -444,35 +450,35 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			</Row>
 			</ListItem>
 			</List>
-
 			</Col>
+
 			<Col md="9">
 			<hr></hr>
-			<Row>
+			<Row style={{'padding':'1.5em'}}>
 			<span style={{'margin-left':'9em','color':'#919191','font-size':'2em', 'width':'40%'}}>Student Name</span>
 			<span style={{'margin-left':'4em','font-size':'2em','color':'#919191','width':'60%'}}>    {Cookies.get('studentname')}</span>
 		
 			</Row>
 			<hr></hr>
-			<Row>
-			<span align="center" style={{'margin-left':'8.3em','font-size':'2.5em','color':'#919191','padding-bottom':'1em'}}>Fees
+			<Row style={{'padding-bottom':'2.0em'}}>
+			<span align="center" style={{'margin-left':'7.5em','font-size':'2.5em','color':'#919191','padding':'1em'}}>Fees
 			</span>
-			<span align="center" style={{'margin-left':'11.7em','font-size':'2.5em','color':'#919191','padding-bottom':'1em'}}>&#8377;{Cookies.get('studentfees')}
+			<span align="center" style={{'margin-left':'8.7em','font-size':'2.5em','color':'#919191','padding':'1em'}}>&#8377;{Cookies.get('studentfees')}
 			</span>
 			</Row>
-			<Row >
+			<Row style={{'padding-bottom':'1em'}}>
 			<span align="center" style={{'margin-left':'14em','font-size':'1.5em','color':'#919191','margin-top':'20em'}}>Internet Handling Charge </span>
 			<span align="center" style={{'margin-left':'12.5em','font-size':'1.5em','color':'#919191'}}>&#8377; {this.state.internetcharge}</span>
 			</Row>
-			<Row>
+			<Row style={{'padding-bottom':'1em'}}>
 			<span style={{'margin-left':'14em','font-size':'1.5em','color':'#919191'}}>GST </span>
 			<span style={{'margin-left':'22em','font-size':'1.5em','color':'#919191'}}> &#8377;{(this.state.internetcharge*0.18).toFixed(2)}</span>
 			</Row>
 			<hr></hr>
-			<Row>
+			<Row style={{'padding-bottom':'2em'}}>
 			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em','color':'#919191'}}>Total Amount
 			</span>
-			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em','color':'#919191'}}>&#8377;{this.state.totalamount}
+			<span align="center" style={{'margin-left':'6.4em','font-size':'2.5em','color':'#919191'}}>&#8377;{this.state.totalamount}
 			</span>
 			</Row>
 			<hr></hr>

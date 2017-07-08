@@ -834,30 +834,27 @@ var Footer=React.createClass({
 
 				<Col sm='4'>
 					<p style={{'color':'#4588c8' ,'margin-left':'15em'}}>Awards</p>
-					<img src={awards} height="80px" width="150px" style={{'margin-left':'-75px'}}/>
+					<img src={awards} height="80px" width="150px" style={{'margin-left':'205px'}}/>
 				</Col>
 
 				<Col sm='5'>
 					<p style={{'color':'#4588c8'}}>Connect With Us</p>
-
+					<Row>
+					<img src={facebook}/><img src={google}/><img src={linkedin}/><img src={twitter}/><img src={insta}/><img src={youtube}/>
+					</Row>
 				</Col>
 
 				<Col sm='3'>
 					<p style={{'color':'#4588c8'}}>Download App</p>
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-6">
+						<Row>
 								<a href="#"><img src={playstore
 								} height="40px" width="150px" style={{'margin-left':'-40px'}}/></a>
-							</div>
 
 
-							<div class="col-sm-6">
 								<a href="#"><img src={appstore
 								} height="40px" width="150px" style={{'margin-left':'10px'}}/></a>
-							</div>
-						</div>
-					</div>
+						</Row>
+					
 				</Col>
 			</Row>
 		</div>
@@ -1126,17 +1123,62 @@ var Otp = React.createClass({
 		if(Cookies.get('isloggedin')!=undefined)
 		{
 			this.setState({ showotp: true });
+			this.getno();
 			this.sendotp();
 		}
 		else
 			this.setState({ showsnackbar: true });
+	},
+	getno :function()
+	{
+		let t = this;
+		//alert(this.props.studentregnum);
+		var mydata = {
+			regnum: this.props.studentregnum,
+			instituteid: this.props.studentinsid,
+		};
+
+
+		function setstudentdata(data)
+		{	
+			
+			Cookies.set('studentphone',data[0].Phone);
+			
+		}
+
+		$.ajax({
+
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_student_detail',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{
+				if(data.success==true)
+				{
+					setstudentdata(data.message);
+				}
+				else
+				{
+					alert("student data not available");
+				}
+			},
+			error: function (error) 
+			{
+				alert(JSON.stringify(error));
+			}						
+		})
+
+
+
 	},
 
 	sendotp: function()
 	{	
 		var mydata={};
 		var mydata={
-			number: Cookies.get('phone')
+			number: Cookies.get('studentphone')
 		};
 
 		$.ajax({
@@ -1245,7 +1287,7 @@ var Otp = React.createClass({
 		let p = this;
 
 		var mydata={
-			number: Cookies.get('phone'),
+			number: Cookies.get('studentphone'),
 			otp: this.state.otp
 		};
 
@@ -2336,11 +2378,13 @@ var Playschool = React.createClass({
 				'color':'#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em'
-			}
+			},
+
 
 		}
 
 		return (
+
 			<div>
 			<Grid bsClass="container-fluid" >
 			<Row style={styles.row}>
@@ -2373,6 +2417,7 @@ var Playschool = React.createClass({
 					fullWidth={true}					
 					/>
 					</Row>
+
 					<Row>
 					<AutoComplete
 					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}

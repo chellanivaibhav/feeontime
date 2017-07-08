@@ -312,7 +312,7 @@ var LoginSignup = React.createClass({
 		const styles = {
 
 				navdrophead : {
-					'margin-right': '0',
+					'margin-right': '5',
 					'padding': '0',
 					'margin-top': '5px',
 					'color': 'white',
@@ -335,11 +335,11 @@ var LoginSignup = React.createClass({
 		{
 			hehe = (
 				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
-				<MenuItem href="/profile" style={{'font-size':'1.7em'}} >View Profile</MenuItem>
-				<MenuItem href="/transactionhistory" style={{'font-size':'1.6em'}}>Transaction History</MenuItem>
+				<MenuItem href="/profile" style={{'font-size':'1.7em','margin-right':'6em'}} >View Profile</MenuItem>
+				<MenuItem href="/transactionhistory" style={{'font-size':'1.6em','float':'left','margin-right':'6em'}}>Transaction History</MenuItem>
 				{/*<MenuItem >Your Cart</MenuItem>
 				<MenuItem >Your Wishlist</MenuItem>*/}
-				<MenuItem style={{'font-size':'1.7em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
+				<MenuItem style={{'font-size':'1.7em','float':'left','margin-right':'6em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
 		}
