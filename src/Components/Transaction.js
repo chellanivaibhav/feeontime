@@ -247,8 +247,14 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 
 				}
 				else
-				{	
-					alert('not found');
+				{
+					t.setState({
+
+						cccharge: 1,
+						dccharge: 1,
+						netcharge: 10
+					});
+					//alert('not found');
 				}
 				
 			}

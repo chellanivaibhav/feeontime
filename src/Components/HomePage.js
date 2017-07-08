@@ -793,7 +793,7 @@ var Footer=React.createClass({
 
 				<Col sm='6'>
 
-					<Grid>
+					
 						<Row>
 							<Col sm="2">
 								<p style={{'font-size':'1.5em', 'color':'#4588c8','margin-left':'-4.2em'}}>About Us</p>
@@ -826,7 +826,7 @@ var Footer=React.createClass({
 						<Row>
 							<img src={payment} />
 						</Row>
-					</Grid>
+					
 				</Col>
 			</Row>	
 
@@ -1793,6 +1793,7 @@ var School = React.createClass({
 					dataSourceConfig={dataSourceConfig1}
 					onUpdateInput={this.handleUpdateInput}
 					filter={AutoComplete.fuzzyFilter}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'center',}}
 					openOnFocus={true}
 					name="selectlocation"
 					onNewRequest={this.newRequestPlaySchool}
@@ -1802,7 +1803,7 @@ var School = React.createClass({
 					</Row>
 					<Row>
 					<AutoComplete
-					
+					style={{}}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
@@ -2283,6 +2284,7 @@ var Playschool = React.createClass({
 				'padding':'-1.9em',
 				color: '#4688C7',
 				'font-size':'0.9em'
+				
 			},
 
 			underlineFocusStyle: {
@@ -2363,20 +2365,26 @@ var Playschool = React.createClass({
 					filter={AutoComplete.fuzzyFilter}
 					openOnFocus={true}
 					name="selectlocation"
+					style={{}}
 					onNewRequest={this.newRequestPlaySchool}
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					floatingLabelText="Select Location"
 					fullWidth={true}					
 					/>
 					</Row>
 					<Row>
 					<AutoComplete
-					
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
 					dataSourceConfig={dataSourceConfig}
 					textFieldStyle={styles.textfieldstyle}
 					onUpdateInput={this.handleUpdateInput1}
+
 					filter={AutoComplete.fuzzyFilter}
 					name="selectplayschool"
 					onNewRequest={this.newRequestOtp}
@@ -2533,7 +2541,7 @@ var College = React.createClass({
 
 		getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', course: '', year: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
 	},
 
 	handleChange: function(event) {
@@ -2547,12 +2555,13 @@ var College = React.createClass({
 	},
 
 	onsetstudentdata: function(data) {
-		//alert('hi');
+		//alert('inside onsetstudentdata');
 		this.setState({
 			studentname : data['studentname'],
 			studentclass : data['studentclass'],
 			studentsection : data['studentsection'],
 			studentfees : data['studentfees'],
+			enrollmentno:data['enrollmentno']
 		});
 	},
 
@@ -2561,7 +2570,7 @@ var College = React.createClass({
 			locationname: searchText,
 		});
 	},
-
+	//just a cooment
 	newRequestOtp: function(chosenRequest) {
 		this.setState({
 			insid: chosenRequest.id,
@@ -2574,6 +2583,7 @@ var College = React.createClass({
 		}
 		else
 		{
+
 			this.setState({dispproceed:true});
 			this.setState({dispotp:false});
 		}
@@ -2590,14 +2600,14 @@ var College = React.createClass({
 		this.setState({selectedloclong:chosenRequest.long});
 		var q = this.getinsdata();
 		//var p =this.getinsdata1();
-		alert(q);
+		//alert(q);
 
 		var p =this.getinsdata1();
 		//alert(p);
 		var n = q + p;
 		//alert(n);
 		q.push.apply(q,p);
-		alert(q);
+		//alert(q);
 		this.setState({ institutes: q });
 		
 	},
@@ -2614,17 +2624,19 @@ var College = React.createClass({
 		var mydata={};
 		var data2=[];
 		var mydata={
-			type:'College',
+			type:'college',
 			location:this.state.locationname
 
 		};
+		//alert(this.state.locationname);
 
 
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i].name;
+				var c = data[i];
+				//alert(c);
 				data2.push(c);
 			}
 		}
@@ -2662,7 +2674,7 @@ var College = React.createClass({
 	},
 	getinsdata1: function()
 	{
-		alert('inside insti 1');
+		//alert('inside insti 1');
 		var mydata={};
 		var data2=[];
 		var mydata={
@@ -2682,7 +2694,7 @@ var College = React.createClass({
 
 		$.ajax({
 			type: 'GET',
-			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitutewhy',
+			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitute',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -2703,7 +2715,7 @@ var College = React.createClass({
 	},
 
 	getapidata: function()
-	{
+	{	
 		var mydata={};
 		var data2=[];
 
@@ -2712,6 +2724,7 @@ var College = React.createClass({
 			for(var i=0;i<data.length;i++)
 			{
 				var c = data[i];
+				
 				data2.push(c);
 			}
 
@@ -2724,7 +2737,7 @@ var College = React.createClass({
 			async: false,
 			data: mydata,
 			success: function(data)
-			{
+			{	
 				var data1 = data.message;
 				do_the_stuff(data1);
 			},
@@ -2736,6 +2749,7 @@ var College = React.createClass({
 
 		//this.setState({data: data2});
 		//data2.push('t');
+		//alert(data2);
 		return data2;
 	},
 
@@ -2753,6 +2767,7 @@ var College = React.createClass({
 
 	preproceedbutfunc: function()
 	{
+		//alert('isnide preproceedbutfunc');
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
 		Cookies.set('insname',this.state.insname);
@@ -2760,8 +2775,8 @@ var College = React.createClass({
 		Cookies.set('benificiaryname',this.state.benificiaryname);
 		Cookies.set('accountno',this.state.accountno);
 		Cookies.set('ifsccode',this.state.ifsccode);
+		
 	},
-
 	render: function() {
 
 		var letter = {
@@ -2920,16 +2935,17 @@ var College = React.createClass({
 					dataSourceConfig={dataSourceConfig1}
 					onUpdateInput={this.handleUpdateInput}
 					filter={AutoComplete.fuzzyFilter}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'center',}}
 					openOnFocus={true}
 					name="selectlocation"
 					onNewRequest={this.newRequestPlaySchool}
-					floatingLabelText="Select Location"
+					floatingLabelText="Location"
 					fullWidth={true}					
 					/>
 					</Row>
 					<Row>
 					<AutoComplete
-					
+					style={{}}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
@@ -2946,7 +2962,9 @@ var College = React.createClass({
 					</Row>
 					<Row>
 					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} 
+						//inputStyle={{ textAlign: 'center', cursor: 'none' }}
+					value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}  floatingLabelText="Enrollment Number" />
 					</div>
 					</Row>
 					</div>
@@ -3002,10 +3020,10 @@ var College = React.createClass({
 						</Row>
 						<Row>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.course} name="course" onChange={this.handleChange} floatingLabelText="Course" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Course" />
 						</Col>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.year} name="year" onChange={this.handleChange} floatingLabelText="Year" />
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Year" />
 						</Col>
 						</Row>
 						<Row>
@@ -3016,21 +3034,22 @@ var College = React.createClass({
 				<div style={playschoolstyle}>
 
 
-
 				<Row>
 				<div style={otpstyle}>
-				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} setdata={this.onsetstudentdata} />
-				<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} insname={this.state.insname} locationname={this.state.locationname} type={this.state.type} setdata={this.onsetstudentdata} />
+				
 				</div>
 				</Row>
 				</div>
+
+				
 				<div style={studdetailsstyle}>
 
 
 				</div>
 				<div style={proceedstyle}>
 				<Row>
-
+			{/*at one proceed need to change state at other need to move to /coupons*/}
 
 			{
 				!this.state.dispnext ?
@@ -3091,32 +3110,109 @@ var Coaching = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { controls: false, searchText: '', data:p};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+	},
+
+	handleChange: function(event) {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
+	},
+
+	onsetstudentdata: function(data) {
+		//alert('inside onsetstudentdata');
+		this.setState({
+			studentname : data['studentname'],
+			studentclass : data['studentclass'],
+			studentsection : data['studentsection'],
+			studentfees : data['studentfees'],
+			enrollmentno:data['enrollmentno']
+		});
 	},
 
 	handleUpdateInput : function(searchText) {
 		this.setState({
-			searchText: searchText,
+			locationname: searchText,
+		});
+	},
+	//just a cooment
+	newRequestOtp: function(chosenRequest) {
+		this.setState({
+			insid: chosenRequest.id,
+		});
+		if(chosenRequest.verified==0)
+		{
+			this.setState({dispotp:true});
+			this.setState({dispproceed: false});
+
+		}
+		else
+		{
+
+			this.setState({dispproceed:true});
+			this.setState({dispotp:false});
+		}
+		//var p =this.getinsdata1();
+		//alert(p);
+		//var q = this.state.institutes + p;
+		//alert
+		//this.setState({ institutes: q });
+		//alert(this.state.institutes);
+	},
+
+	newRequestPlaySchool: function(chosenRequest) {
+		this.setState({selectedloclat:chosenRequest.lat});
+		this.setState({selectedloclong:chosenRequest.long});
+		var q = this.getinsdata();
+		//var p =this.getinsdata1();
+		//alert(q);
+
+		//var p =this.getinsdata1();
+		//alert(p);
+		var n = q ;
+		//alert(n);
+		//q.push.apply(q,p);
+		//alert(q);
+		this.setState({ institutes: q });
+		
+	},
+
+	handleUpdateInput1 : function(searchText) {
+		this.setState({
+			insname: searchText,
 		});
 	},
 
-	getapidata: function()
-	{
+	getinsdata: function()
+	{	
+		//alert('isnide insti');
 		var mydata={};
 		var data2=[];
+		var mydata={
+			type:'Coaching',
+			location:this.state.locationname
+
+		};
+		//alert(this.state.locationname);
+
 
 		function do_the_stuff(data)
 		{
 			for(var i=0;i<data.length;i++)
 			{
-				var c = data[i].LocationName;
+				var c = data[i];
+				//alert(c);
 				data2.push(c);
 			}
 		}
 
 		$.ajax({
 			type: 'POST',
-			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_institute',
 			dataType: 'json',
 			async: false,
 			data: mydata,
@@ -3131,8 +3227,124 @@ var Coaching = React.createClass({
 			}			
 		});
 
-		this.setState({data: data2});
 		return data2;
+	},
+	getnext: function()
+	{
+		if(this.state.dispnext==false)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+		
+	},
+	getinsdata1: function()
+	{
+		//alert('inside insti 1');
+		var mydata={};
+		var data2=[];
+		var mydata={
+			type:'school',
+			lat:this.state.selectedloclat,
+			long:this.state.selectedloclong
+		};
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i].name;
+				data2.push(c);
+			}
+		}
+
+		$.ajax({
+			type: 'GET',
+			url: 'http://52.41.82.157/Feeontime/index.php/Map/getinstitute',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{	
+				var data1 = data.results;
+
+				
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{	//alert('alert');
+			alert(JSON.stringify(error));
+		}			
+	});
+		//alert(data2);
+		return data2;
+	},
+
+	getapidata: function()
+	{	
+		var mydata={};
+		var data2=[];
+
+		function do_the_stuff(data)
+		{
+			for(var i=0;i<data.length;i++)
+			{
+				var c = data[i];
+				
+				data2.push(c);
+			}
+
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://52.41.82.157/Feeontime/index.php/FeePayment/get_location',
+			dataType: 'json',
+			async: false,
+			data: mydata,
+			success: function(data)
+			{	
+				var data1 = data.message;
+				do_the_stuff(data1);
+			},
+			error: function (error) 
+			{
+				alert(JSON.stringify(error));
+			}			
+		});
+
+		//this.setState({data: data2});
+		//data2.push('t');
+		//alert(data2);
+		return data2;
+	},
+
+	changedispnext :function()
+	{
+		this.setState({dispnext: !this.state.dispnext});
+	},
+	changenext :function()
+	{
+		this.setState({next: !this.state.next});
+	},
+	proceedbutfunc: function()
+	{
+	},
+
+	preproceedbutfunc: function()
+	{
+		//alert('isnide preproceedbutfunc');
+		Cookies.set('studentfees', this.state.studentfees);
+		Cookies.set('insid', this.state.insid);
+		Cookies.set('insname',this.state.insname);
+		Cookies.set('enrollmentno',this.state.enrollmentno);
+		Cookies.set('benificiaryname',this.state.benificiaryname);
+		Cookies.set('accountno',this.state.accountno);
+		Cookies.set('ifsccode',this.state.ifsccode);
+		
 	},
 
 	render: function() {
@@ -3148,146 +3360,221 @@ var Coaching = React.createClass({
 			textAlign: "center"
 		};
 
+		const dataSourceConfig = {
+			text: 'name',
+			'font-size':'5.5em',
+			value: 'id',
+		};
+
+		const dataSourceConfig1 = {
+			text: 'LocationName',
+			'font-size':'5.5em',
+			value: 'Location_id',
+		};
+
+		var studdetailsstyle = {
+			'display': 'none',
+		};
+
+		var otpstyle = {
+			'display': 'none',
+		};
+
+		var proceedstyle = {
+			'display': 'none',
+		};
+
+		var playschoolstyle = {
+			'display': 'block',
+		};
+
+		var enrollmentnostyle = {
+			'display': 'block',
+		};
+
+		if(this.state.dispotp)
+		{
+			var otpstyle = {
+				'display': 'block',
+			};
+		}
+
+		if(this.state.dispproceed)
+		{
+			var proceedstyle = {
+				'display': 'block',
+			};
+		}
 
 		const styles = {
 
 			row : {
+				'padding':'2em',
+				'background-color': '#f3f3f3',
+				'padding-bottom':'1em'
 			},
 
 			carousel: {
-				height:'32.5em'
+				'margin-top':'5em',
 			},
 
 			h2: {
 				color:'#8E9295',
-				'font-size': '2em'
+				///'font-size': '0.9em'
 			},
 
 			floatingLabelFocusStyle: {
+				'padding':'-1.9em',
 				color: '#4688C7',
+				'font-size':'0.9em'
 			},
 
 			underlineFocusStyle: {
+				'font-size':'0.9em',
 				borderColor: '#4688C7'
+			},
+			auto:{
+				'font-size':'0.9em',
+				'height':'1.3em'
+
 			},
 
 			textfieldstyle: {
-				height:'4em',
+				height:'3.5em',
 				width:'100%',
-				background:'#dbe8f4'
+				'padding-bottom':'0.4em',
+				'font-size':'0.9em',
+				background:'#ffffff'
 			},
 
 			formstyle: {
-				'padding-left':'5%',
-				'padding-right':'5%',
-				'padding-bottom':'2%',
-				'background-color': '#dbe8f4',
-				'width':'50%'
+				//changes characteristics of form  
+				'font-size':'2em',
+				'fontFamily':'ProximaNova',
+				'padding-top':'1.3em',
+				'padding-left':'10%',
+				'padding-right':'10%',
+				'padding-bottom':'1em'
 			},
 
 			proceed: {
-				
+				'float':'right',
+				'background': '#4688C7',
+				'width':"50%",
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			},
+			proceed1: {
+				'float':'right',
 				'background': '#4688C7',
 				'width':"100%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
 			},
-
-			locationstyle: {
-				'background-color':'#fff'
-			},
-
-			locationstyle1: {
-				'background':'white',
-				'height': '32.5em'
+			back: {
+				'float':'left',
+				'background': '#ffffff',
+				'width':"45%",
+				'color':'#4688C7',
+				'margin-top':'1em',
+				'font-size':'1.2em'
 			}
 
 		}
 
 		return (
 			<div>
-			<Grid bsClass="container-fluid">
+			<Grid bsClass="container-fluid" >
 			<Row style={styles.row}>
 			<Col xs="12" md="8">
-			<Grid bsClass="container-fluid">
-			<Row>
-			<Col xs="12" md="6" style={styles.formstyle}>
-			<Row>
-			<AutoComplete
-			floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-			underlineFocusStyle={styles.underlineFocusStyle} 
-			dataSource={this.state.data}
-			onUpdateInput={this.handleUpdateInput}
-			filter={AutoComplete.fuzzyFilter}
-			openOnFocus={true}
-			floatingLabelText="Select Location"
-			fullWidth={true}					
-			/>
+			<Grid bsClass="container-fluid" style={{'padding-bottom':'10em', 'margin-left':'6em','width':'50em'}}>
+			<Card >
+			<div style={{ 'margin-left':'65px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
+			<Row style={styles.formstyle}>
+			<Col xs="12" md="12">
+			
+					<div>	
+					<Row>
+					<AutoComplete
+					
+					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+					underlineFocusStyle={styles.underlineFocusStyle} 
+					dataSource={this.state.data}
+					textFieldStyle={styles.textfieldstyle}
+					dataSourceConfig={dataSourceConfig1}
+					onUpdateInput={this.handleUpdateInput}
+					filter={AutoComplete.fuzzyFilter}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'center',}}
+					openOnFocus={true}
+					name="selectlocation"
+					onNewRequest={this.newRequestPlaySchool}
+					floatingLabelText="Location"
+					fullWidth={true}					
+					/>
+					</Row>
+					<Row>
+					<AutoComplete
+					style={{}}
+					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+					underlineFocusStyle={styles.underlineFocusStyle} 
+					dataSource={this.state.institutes}
+					dataSourceConfig={dataSourceConfig}
+					textFieldStyle={styles.textfieldstyle}
+					onUpdateInput={this.handleUpdateInput1}
+					filter={AutoComplete.fuzzyFilter}
+					name="selectplayschool"
+					onNewRequest={this.newRequestOtp}
+					openOnFocus={true}
+					floatingLabelText="Select Coaching"
+					fullWidth={true}					
+					/>
+					</Row>
+					<Row>
+					<div style={enrollmentnostyle}>
+					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} 
+						//inputStyle={{ textAlign: 'center', cursor: 'none' }}
+					value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}  floatingLabelText="Enrollment Number" />
+					</div>
+					</Row>
+					</div>
+					
+
+				<div style={playschoolstyle}>
+
+
+				<Row>
+				<div style={otpstyle}>
+				<Otp studentregnum={this.state.enrollmentno} studentinsid={this.state.insid} insname={this.state.insname} locationname={this.state.locationname} type={this.state.type} setdata={this.onsetstudentdata} />
+				
+				</div>
+				</Row>
+				</div>
+
+				
+				<div style={studdetailsstyle}>
+
+
+				</div>
+				<div style={proceedstyle}>
+				<Row>
+			{/*at one proceed need to change state at other need to move to /coupons*/}
+
+			
 			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Coaching" />
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" />
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" />
-			</Row>
-			<Row>
-			<Col xs="12" md="6">
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" />
+			</div>
 			</Col>
-			<Col xs="12" md="6">
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" />
-			</Col>
 			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
-			</Row>
-			<Row>
-			<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
-			</Row>
-			</Col>
-			<Col xs="12" md="6" style={styles.locationstyle1}>
-			<AutoComplete
-			floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-			underlineFocusStyle={styles.underlineFocusStyle} 
-			dataSource={this.state.data}
-			onUpdateInput={this.handleUpdateInput}
-			filter={AutoComplete.fuzzyFilter}
-			openOnFocus={true}
-			floatingLabelText="Search Location"
-			fullWidth={true}					
-			/>
-			</Col>
-			</Row>
+			</Card>
 			</Grid>
 			</Col>
 			<Col xs="12" md="4">
-			<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
-			</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
-			</Carousel.Caption>
-			</Carousel.Item>
-			<Carousel.Item>
-			<Image src={carouselimage} />
-			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
-			</Carousel.Caption>
-			</Carousel.Item>
-			</Carousel>
+			<img src={banner} style={{'margin-left':'-12em'}}/>
+			
 			</Col>
 			</Row>
 			</Grid>
 			</div>
+
 			);
 	}
 
@@ -3354,142 +3641,196 @@ var Tutor = React.createClass({
 			textAlign: "center"
 		};
 
+		const dataSourceConfig = {
+			text: 'name',
+			'font-size':'5.5em',
+			value: 'id',
+		};
+
+		const dataSourceConfig1 = {
+			text: 'LocationName',
+			'font-size':'5.5em',
+			value: 'Location_id',
+		};
+
+		var studdetailsstyle = {
+			'display': 'none',
+		};
+
+		var otpstyle = {
+			'display': 'none',
+		};
+
+		var proceedstyle = {
+			'display': 'none',
+		};
+
+		var playschoolstyle = {
+			'display': 'block',
+		};
+
+		var enrollmentnostyle = {
+			'display': 'block',
+		};
+
+		if(this.state.dispotp)
+		{
+			var otpstyle = {
+				'display': 'block',
+			};
+		}
+
+		if(this.state.dispproceed)
+		{
+			var proceedstyle = {
+				'display': 'block',
+			};
+		}
 
 		const styles = {
 
 			row : {
+				'padding':'2em',
+				'background-color': '#f3f3f3',
+				'padding-bottom':'1em'
 			},
 
 			carousel: {
-				height:'22.5em'
+				'margin-top':'5em',
 			},
 
 			h2: {
 				color:'#8E9295',
-				'font-size': '2em'
+				///'font-size': '0.9em'
 			},
 
 			floatingLabelFocusStyle: {
+				'padding':'-1.9em',
 				color: '#4688C7',
+				'font-size':'0.9em'
 			},
 
 			underlineFocusStyle: {
+				'font-size':'0.9em',
 				borderColor: '#4688C7'
+			},
+			auto:{
+				'font-size':'0.9em',
+				'height':'1.3em'
+
 			},
 
 			textfieldstyle: {
-				height:'4em',
+				height:'3.5em',
 				width:'100%',
-				background:'#dbe8f4'
+				'padding-bottom':'0.4em',
+				'font-size':'0.9em',
+				background:'#ffffff'
 			},
 
 			formstyle: {
-				'padding-left':'5%',
-				'padding-right':'5%',
-				'padding-bottom':'2%',
-				'background-color': '#dbe8f4',
-				'width':'50%'
+				//changes characteristics of form  
+				'font-size':'2em',
+				'fontFamily':'ProximaNova',
+				'padding-top':'1.3em',
+				'padding-left':'10%',
+				'padding-right':'10%',
+				'padding-bottom':'1em'
 			},
 
 			proceed: {
-				
+				'float':'right',
+				'background': '#4688C7',
+				'width':"50%",
+				'margin-top':'1em',
+				'font-size':'1.2em'
+			},
+			proceed1: {
+				'float':'right',
 				'background': '#4688C7',
 				'width':"100%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
 			},
-
-			locationstyle: {
-				'background-color':'#fff'
-			},
-
-			locationstyle1: {
-				'background':'white',
-				'height': '32.5em'
+			back: {
+				'float':'left',
+				'background': '#ffffff',
+				'width':"45%",
+				'color':'#4688C7',
+				'margin-top':'1em',
+				'font-size':'1.2em'
 			}
 
 		}
 
 		return (
 			<div>
-			<Grid bsClass="container-fluid">
+			<Grid bsClass="container-fluid" >
 			<Row style={styles.row}>
 			<Col xs="12" md="8">
-			<Grid bsClass="container-fluid">
-			<Row>
-			<Col xs="12" md="6" style={styles.formstyle}>
-			<Row>
-			<AutoComplete
-			floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-			underlineFocusStyle={styles.underlineFocusStyle} 
-			dataSource={this.state.data}
-			onUpdateInput={this.handleUpdateInput}
-			filter={AutoComplete.fuzzyFilter}
-			openOnFocus={true}
-			floatingLabelText="Select Location"
-			fullWidth={true}					
-			/>
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Select Tutor" />
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Enrollment Number" />
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Student Name" />
-			</Row>
-			<Row>
-			<Col xs="12" md="6">
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Class" />
-			</Col>
-			<Col xs="12" md="6">
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Section" />
-			</Col>
-			</Row>
-			<Row>
-			<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelText="Fees" />
-			</Row>
-			<Row>
-			<a href="/transaction"><Button bsStyle="primary" style={styles.proceed} >Proceed</Button></a>
-			</Row>
-			</Col>
-			<Col xs="12" md="6" style={styles.locationstyle1}>
-			<AutoComplete
-			floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-			underlineFocusStyle={styles.underlineFocusStyle} 
-			dataSource={this.state.data}
-			onUpdateInput={this.handleUpdateInput}
-			filter={AutoComplete.fuzzyFilter}
-			openOnFocus={true}
-			floatingLabelText="Search Location"
-			fullWidth={true}					
-			/>
+			<Grid bsClass="container-fluid" style={{'padding-bottom':'10em', 'margin-left':'6em','width':'50em'}}>
+			<Card >
+			<div style={{ 'margin-left':'65px', 'border-top': 'solid 30px','border-bottom': 'solid 30px','border-left': 'solid 20px','border-right': 'solid 20px', 'margin-top': '-60px','border-color': 'transparent transparent white transparent','position':'absolute'}}></div>
+			<Row style={styles.formstyle}>
+			<Col xs="12" md="12">
+			
+					<div>	
+					<Row>
+					<AutoComplete
+					
+					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+					underlineFocusStyle={styles.underlineFocusStyle} 
+					dataSource={this.state.data}
+					textFieldStyle={styles.textfieldstyle}
+					dataSourceConfig={dataSourceConfig1}
+					onUpdateInput={this.handleUpdateInput}
+					filter={AutoComplete.fuzzyFilter}
+					openOnFocus={true}
+					name="selectlocation"
+					onNewRequest={this.newRequestPlaySchool}
+					floatingLabelText="Select Location"
+					fullWidth={true}					
+					/>
+					</Row>
+					
+					<Row>
+					<div style={enrollmentnostyle}>
+					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Tutor" />
+					</div>
+					</Row>
+					<Row>
+					<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed1} ><b>Proceed</b></Button></a>
+						
+						</Row>
+					</div>
+
+					
+			
+			
 			</Col>
 			</Row>
+			</Card>
 			</Grid>
 			</Col>
 			<Col xs="12" md="4">
-			<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
+			<img src={banner} style={{'margin-left':'-12em'}}/>
+			{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
 			<Carousel.Item>
 			<Image src={carouselimage} />
 			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 			</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 			<Image src={carouselimage} />
 			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 			</Carousel.Caption>
 			</Carousel.Item>
 			<Carousel.Item>
 			<Image src={carouselimage} />
 			<Carousel.Caption>
-			<p style={styles.h2}>#gocashless <br /> <br /> Get Cashback <br /><br /></p>
 			</Carousel.Caption>
 			</Carousel.Item>
-			</Carousel>
+			</Carousel>*/}
 			</Col>
 			</Row>
 			</Grid>
@@ -4204,6 +4545,192 @@ var Content = React.createClass({
 				}
 			}
 		}
+		else if(pic==4)
+		{
+			if(this.state.activeid==4)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '4'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<Coaching />);
+				this.setState({activeid: '4'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<Coaching />);
+					this.setState({activeid: '4'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
+		else if(pic==5)
+		{
+			if(this.state.activeid==5)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '5'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<Tutor />);
+				this.setState({activeid: '5'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<Tutor />);
+					this.setState({activeid: '5'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
+		else if(pic==6)
+		{
+			if(this.state.activeid==6)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '6'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<Admissions />);
+				this.setState({activeid: '6'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<Admissions />);
+					this.setState({activeid: '6'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
+		else if(pic==7)
+		{
+			if(this.state.activeid==7)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '7'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<Workshops />);
+				this.setState({activeid: '7'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<Workshops />);
+					this.setState({activeid: '7'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
+		else if(pic==8)
+		{
+			if(this.state.activeid==8)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '8'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<Skills />);
+				this.setState({activeid: '8'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<Skills />);
+					this.setState({activeid: '8'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
+		else if(pic==9)
+		{
+			if(this.state.activeid==9)
+			{
+				this.changecontent(<Playschool />);
+				this.setState({activeid: '1'});
+				this.setState({replaceactiveid: '8'});
+				this.changepp(pic);				
+			}
+			else if(this.state.activeid==1)
+			{
+				this.changecontent(<College />);
+				this.setState({activeid: '8'});
+				this.setState({replaceactiveid: '1'});
+				this.changepp(pic);				
+			}
+			else
+			{
+				if(this.state.replaceactiveid==1)
+				{
+					this.changepp(this.state.activeid);
+					this.changecontent(<College />);
+					this.setState({activeid: '9'});
+					this.setState({replaceactiveid: '1'});
+					this.changepp(pic);				
+				}
+				else
+				{
+				}
+			}
+		}
 	},
 
 	render: function() {
@@ -4255,6 +4782,7 @@ var Content = React.createClass({
 			</Row>
 			</Col>
 			</div>
+			<div id="main4" onClick={() => this.hello(4)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Coaching />)} >
 			<Row>
 			<Image src={coaching} style={{'margin-bottom':'0.5em','margin-left':'1em'}}/>
@@ -4263,6 +4791,8 @@ var Content = React.createClass({
 			<span style={{'font-size': '1.5em','margin-top':'2em','margin-left':'0.4em' ,'color':'#8E9295'}}>Coaching</span>
 			</Row>
 			</Col>
+			</div>
+			<div id="main5" onClick={() => this.hello(5)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Tutor />)} >
 			<Row>
 			<Image src={tutor} style={{'margin-bottom':'0.5em','margin-left':'1em'}}/>
@@ -4271,6 +4801,8 @@ var Content = React.createClass({
 			<span style={{'font-size': '1.5em','margin-top':'2em','margin-left':'1.3em' ,'color':'#8E9295'}}>Tutor</span>
 			</Row>
 			</Col>
+			</div>
+			<div id="main5" onClick={() => this.hello(5)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Admissions />)} >
 			<Row>
 			<Image src={admissions} style={{'margin-bottom':'1.2em','margin-left':'1em'}}/>
@@ -4279,6 +4811,8 @@ var Content = React.createClass({
 			<span style={{'font-size': '1.5em','margin-top':'3em','margin-left':'0.1em' ,'color':'#8E9295'}}>Admission</span>
 			</Row>
 			</Col>
+			</div>
+			<div id="main6" onClick={() => this.hello(6)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Workshops />)} >
 			<Row>
 			<Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}}/>
@@ -4286,7 +4820,10 @@ var Content = React.createClass({
 			<Row>
 			<span style={{'font-size': '1.5em','margin-top':'2em','margin-left':'0.2em' ,'color':'#8E9295'}}>Workshops</span>
 			</Row>
-			</Col>  
+			</Col> 
+			</div> 
+			<div id="main7" onClick={() => this.hello(7)}>
+			
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
 			<Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}}/>
@@ -4294,10 +4831,13 @@ var Content = React.createClass({
 			<Row>
 			<span style={{'font-size': '1.5em','margin-top':'2em','margin-left':'1.2em' ,'color':'#8E9295'}}>Skills &</span>
 			</Row>
+
 			<Row>
 			<span style={{'font-size': '1.5em','margin-top':'2em' ,'color':'#8E9295'}}>Employability</span>
 			</Row>
 			</Col>
+			</div>
+			<div id="main8" onClick={() => this.hello(8)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
 			<Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}}/>
@@ -4306,6 +4846,7 @@ var Content = React.createClass({
 			<span style={{'font-size': '1.5em','margin-top':'2em','margin-left':'1.1em' ,'color':'#8E9295'}}>Donations</span>
 			</Row>
 			</Col>
+			</div>
 			<Col xs={12} md={1}>
 			</Col>
 			<Col xs={12} md={1}>
@@ -4595,7 +5136,7 @@ var Homepage = React.createClass({
 	render: function() {
 
 		return (
-			<div style={{'zoom':'75%'}}>
+	<div style={{'zoom':'75%'}}>
 			<PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
 			{this.state.data}
 			<DailyNeeds />
@@ -4608,7 +5149,7 @@ var Homepage = React.createClass({
 <Bar/>
 <Secure/>
 <Bar/>
-{/*<Footer/>*/}
+<Footer/>
 
 </div>
 );
