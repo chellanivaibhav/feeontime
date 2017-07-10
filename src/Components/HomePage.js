@@ -47,6 +47,10 @@ import support from '../images/assets/support.png';
 import trust from '../images/assets/trust.png';
 import banner from '../images/new/banner web.png';
 
+import {Validation, fieldValidatorCore} from "react-validation-framework";
+import validator from "validator";
+//import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 
 import {Card,RaisedButton, Dialog, PasswordField, Snackbar, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal, Tabs, Tab} from 'react-bootstrap';
@@ -635,8 +639,9 @@ var Mobile = React.createClass({
 				'white-space': 'nowrap',
 				'width':'35%',
 				'color':'#ffffff',
-				'float':'right',
+				'float':'center',
 				'margin-right':'-7em',
+				'margin-left':'1em',
 				//'margin-top':'-1.7em',
 				'font-size':'2.5em'
 			},
@@ -645,14 +650,17 @@ var Mobile = React.createClass({
 				'text-align' :'center',
 				'color':'#696969',
 				'padding-bottom':'0.5',
-				'margin-left' : '0.2em',
+				'margin-left' : '25.4em',
+				'margin-right':'-7.8em',
 				'padding-top' : '0.5em'
 			},
 			head:{
 				'font-size' : '2.8em',
 				'text-align' :'center',
-				'color':'#696969',
-				'margin-left' : '1.2em',
+				//'fontFamily':'proxima-nova',
+				'color':'#919191',
+				'margin-left' : '17.2em',
+				'margin-right':'-7.8em',
 				'padding-top' : '3em',
 				'padding-bottom' : '1.0em'
 			},
@@ -683,15 +691,15 @@ var Mobile = React.createClass({
 		<div style={styles.normaltext}>
 			It`s free , easy and smart  
 		</div>
-		<div style={{'border':'1px'}}>
-			<Row style={{'margin-top':'7em','width':'75%','height':'50px'}}>
+		<div style={{'border':'1px','margin-left': '52em', 'margin-right': '-25em','color':'#919191'}}>
+			<Row style={{'margin-top':'7em','width':'85%','height':'50px'}}>
 				<div style={styles.buttonsidetext}>Enter your mobile number
 				</div>
-			<Button style={styles.button} >Send App Link</Button>
+				<Button style={styles.button} >Send App Link</Button>
 			</Row>
 		</div>
-		<div>
-		<Row style={{'margin-top':'5em','margin-left':'2em'}}>
+		<div  style={{'margin-top':'15em','margin-right':'2em'}}>
+		<Row style={{'margin-top':'15em','margin-left':'2em'}}>
 			<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
 				<div style={styles.play}>
 					<Image src={playstore}  />
@@ -1437,7 +1445,7 @@ var Otp = React.createClass({
 var School = React.createClass({
 		getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: [''] ,move:false};
 	},
 
 	handleChange: function(event) {
@@ -1651,11 +1659,41 @@ var School = React.createClass({
 
 	changedispnext :function()
 	{
-		this.setState({dispnext: !this.state.dispnext});
+		if(this.state.enrollmentno=='')
+		{	
+			alert('Please Enter Enrollment Number ')
+
+		}	
+		else
+		{
+
+			this.setState({dispnext: !this.state.dispnext});
+		}
+
 	},
 	changenext :function()
 	{
-		this.setState({next: !this.state.next});
+		if(this.state.studentname=='')
+		{
+			alert("Please Enter Student Name");
+		}	
+		else if(this.state.studentclass=='')
+		{
+			alert("Please Enter Student Class");
+		}
+		else if(this.state.studentsection=='')
+		{
+			alert("Please Enter Student Section");
+		}
+		else if(this.state.studentfees=='')
+		{
+			alert("Please Enter Fee Amount");
+		}
+		else
+		{
+			this.setState({next: !this.state.next});
+		}
+
 	},
 	proceedbutfunc: function()
 	{
@@ -1664,6 +1702,22 @@ var School = React.createClass({
 	preproceedbutfunc: function()
 	{
 		//alert('isnide preproceedbutfunc');
+		if(this.state.benificiaryname=='')
+		{
+			alert("Please Enter Benificiary Name");
+		}
+		else if(this.state.accountno=='')
+		{
+			alert("Please Enter Account Number");
+		}
+		else if(this.state.ifsccode=='')
+		{
+			alert("Please Enter IFSC CODE");
+		}
+
+		else
+		{
+
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
 		Cookies.set('insname',this.state.insname);
@@ -1671,7 +1725,8 @@ var School = React.createClass({
 		Cookies.set('benificiaryname',this.state.benificiaryname);
 		Cookies.set('accountno',this.state.accountno);
 		Cookies.set('ifsccode',this.state.ifsccode);
-		
+		this.setState({move:true});
+		}
 	},
 
 	render: function() {
@@ -1808,6 +1863,10 @@ var School = React.createClass({
 				'color':'#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em'
+			},
+			errorstyle:{
+
+			'font-size':'1em','padding-top':'0.5em'
 			}
 
 		}
@@ -1826,6 +1885,8 @@ var School = React.createClass({
 				!this.state.dispnext ? (
 					<div>	
 					<Row>
+
+			
 					<AutoComplete
 					
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
@@ -1835,7 +1896,7 @@ var School = React.createClass({
 					dataSourceConfig={dataSourceConfig1}
 					onUpdateInput={this.handleUpdateInput}
 					filter={AutoComplete.fuzzyFilter}
-					anchorOrigin={{ vertical: 'bottom', horizontal: 'center',}}
+					anchorOrigin={{ vertical: 'bottom', horizontal: 'middle',}}
 					openOnFocus={true}
 					name="selectlocation"
 					onNewRequest={this.newRequestPlaySchool}
@@ -1861,10 +1922,23 @@ var School = React.createClass({
 					/>
 					</Row>
 					<Row>
+					
+		    
 					<div style={enrollmentnostyle}>
+	       			<Validation group="myGroup1"
+		    
+			        validators={[
+					{
+			         validator: (val) => !validator.isEmpty(val),
+			         errorMessage: "Cannot be left empty"
+			        }, {
+			         validator: (val) => validator.isNumeric(val),
+			         errorMessage: "Should be a numeric number"
+			        }, ]}>
 					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} 
-						//inputStyle={{ textAlign: 'center', cursor: 'none' }}
+						errorStyle={styles.errorstyle}						
 					value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}  floatingLabelText="Enrollment Number" />
+					</Validation>
 					</div>
 					</Row>
 					</div>
@@ -1877,31 +1951,41 @@ var School = React.createClass({
 					(
 						<div>	
 						<Row>
+						
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.benificiaryname} 
 						name="benificiaryname" 
+						errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="Benificiary Name" />
+						
 						</Row>
 						<Row>
+						
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.accountno} 
 						name="accountno" 
+						errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="Benificiary Account Number" />
+						
 						</Row>
 						<Row>
+						
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.ifsccode} 
 						name="ifsccode" 
+						errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="IFSC Code" />
+						
+						
 						</Row>
 						</div>
 
@@ -1910,25 +1994,67 @@ var School = React.createClass({
 					(<div>
 						
 						<Row>
+						<Validation group="myGroup"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isAlpha(val,'en-IN'),
+					         errorMessage: "Should not contain Numbers"
+					        }, ]}>
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.studentname} 
 						name="studentname" 
+						errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="Student Name" />
+						</Validation>
 						</Row>
 						<Row>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}errorStyle={styles.errorstyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						</Validation>
 						</Col>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						</Validation>
 						</Col>
 						</Row>
 						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						<Validation group="myGroup"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isNumeric(val),
+					         errorMessage: "Should be a numeric number"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}	underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.
+							handleChange} floatingLabelText="Fee Amount" />
+						</Validation>
 						</Row>
+
+
 						</div>)
 					)}
 				<div style={playschoolstyle}>
@@ -1966,7 +2092,10 @@ var School = React.createClass({
 					:
 					(	<div>
 						<Button bsStyle="primary" onClick={this.changenext} style={styles.back} ><b>Back</b></Button>
-						<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+						{
+							!this.state.move ? (<Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button>):(<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>)
+						}
+						
 						</div>
 						)
 
@@ -2225,6 +2354,7 @@ var Playschool = React.createClass({
 	changedispnext :function()
 	{
 		this.setState({dispnext: !this.state.dispnext});
+
 	},
 	changenext :function()
 	{
@@ -2267,7 +2397,7 @@ var Playschool = React.createClass({
 
 		const dataSourceConfig1 = {
 			text: 'LocationName',
-			'font-size':'5.5em',
+			'font-size':'10.5em',
 			value: 'Location_id',
 		};
 
@@ -5181,7 +5311,7 @@ var Homepage = React.createClass({
 	render: function() {
 
 		return (
-	<div style={{'zoom':'75%'}}>
+	<div style={{'zoom':'65%'}}>
 			<PayFeesDrawer initialview={this.state.data} maindrawer={this.changeview} />
 			{this.state.data}
 			<DailyNeeds />

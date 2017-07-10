@@ -200,9 +200,18 @@ var LoginSignupButton = React.createClass({
 		    	'background':'white',
 		    	'color':'black',
 		    },
+		    
+		    
+		    '.right.carousel-control' :{
+    				display: 'none'
+			
+		    },
+		    '.left.carousel-control': {
+   				 background:'none'
+			},
 		}
 		return (
-			<div>
+			<div style={{'zoom':'65%'}}>
 	        <Dialog
 	        titleStyle={styles.gridstyle}
 	        bodyStyle={styles.gridstyle}
@@ -221,7 +230,7 @@ var LoginSignupButton = React.createClass({
 								<br />*/}
 								
 								{/*<Image src={logo}  />*/}
-								<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
+								<Carousel className="letter" prevIcon={null} rightIcon={null}style={{}} controls={false} >
 								<Carousel.Item>
 									<Image src={payfees} style={styles.logoimagestyle} />
 								
@@ -346,7 +355,7 @@ var LoginSignup = React.createClass({
 
 		return (
 	
-			<div>{hehe}</div>
+			<div style={{zoom:'145%'}} >{hehe}</div>
 		);
 	}
 
