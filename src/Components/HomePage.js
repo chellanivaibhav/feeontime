@@ -1520,9 +1520,9 @@ var School = React.createClass({
 			var q = this.getinsdata();
 			//var p =this.getinsdata1();
 			//alert(q);
-			alert(q.name);
+			//alert(q.name);
 			var p =this.getinsdata1();
-			alert(p);
+			//alert(p);
 			//alert(p);
 			var insti=[];
 			/*for (var i = 0; i < q.length; i++) {
@@ -1568,7 +1568,7 @@ var School = React.createClass({
 			for(var i=0;i<data.length;i++)
 			{
 				var c = data[i];
-				alert(data[i]);
+				//alert(data[i]);
 				//alert(c);
 				data2.push(c);
 			}
