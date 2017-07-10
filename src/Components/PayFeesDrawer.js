@@ -44,7 +44,8 @@ var MyDrawer = React.createClass({
 		  const styles = {	 
 		   	
 		    logostyle:
-		    {
+		    {	
+		    	'padding-left':'2em'
 		    	/*width:'16%',
 		    	height:'50px'*/
 		    },

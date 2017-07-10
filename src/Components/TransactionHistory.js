@@ -12,6 +12,7 @@ import SwipeableViews from 'react-swipeable-views';
 import visa from '../images/visa.gif';
 import darshan from '../images/darshan.png';
 import address from '../images/address.png';
+import wallet from '../images/wallet.png';
 var $ = require ('jquery');	
 var PersonalDetails = React.createClass({
 	
@@ -142,7 +143,9 @@ var PersonalDetails = React.createClass({
 				'color': '#5b5b5b'
 			},
 			image: {
-				'width': '100%'
+				'padding-top':'0.5em',
+				'width': '100%',
+
 			},
 			ttext: {
 				'padding-top':'0.8em'
@@ -191,7 +194,7 @@ var PersonalDetails = React.createClass({
 							<Col md="8" xs="12">
 								<Row>
 								<Col md="2">
-									<Image src={darshan} style={styles.image} />
+									<Image src={wallet} style={styles.image} />
 								</Col>
 								<Col md="10" style={styles.ttext}>
 									<Row>
@@ -358,6 +361,7 @@ var PersonalDetailsComponent=React.createClass({
 				'color': '#5b5b5b'
 			},
 			image: {
+				'padding-top':'0.5em',
 				'width': '100%',
 				'padding-bottom':'0.5em'
 			},
@@ -448,7 +452,7 @@ var PersonalDetailsComponent=React.createClass({
 							<Col md="8" xs="12">
 								<Row>
 								<Col md="2">
-									<Image src={darshan} style={styles.image} />
+									<Image src={wallet} style={styles.image} />
 								</Col>
 								<Col md="10" style={styles.ttext}>
 									<Row>
@@ -479,7 +483,7 @@ var PersonalDetailsComponent=React.createClass({
 												(<div></div>)
 												:
 												(
-													<div>Class{this.state.student_class[index]}
+													<div>Class   {this.state.student_class[index]}
 													</div>
 												)
 											}
@@ -684,6 +688,7 @@ var Fees = React.createClass({
 				'color': '#5b5b5b'
 			},
 			image: {
+				'padding-top':'0.5em',
 				'width': '100%',
 				'padding-bottom':'0.5em'
 			},
@@ -747,7 +752,7 @@ var Fees = React.createClass({
 							<Col md="8" xs="12">
 								<Row>
 								<Col md="2">
-									<Image src={darshan} style={styles.image} />
+									<Image src={wallet} style={styles.image} />
 								</Col>
 								<Col md="10" style={styles.ttext}>
 									<Row>
@@ -980,7 +985,7 @@ var TransactionHistory = React.createClass({
 
 	render: function() {
 		return (
-			<div>
+			<div style={{'zoom':'65%'}}>
 				<MyDrawer />
 				<Container />
 			</div>

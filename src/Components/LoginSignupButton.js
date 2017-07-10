@@ -3,10 +3,10 @@ import {MenuItem, DropdownButton,Grid,Row,Col,Image,Carousel,ButtonToolbar,Butto
 import {Tabs,Tab,Dialog,Menu,Popover,RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import logoimage from '../images/logoimage.png';
 import logo from '../images/logo.png';
-import payfees from '../images/login/pay fees.png';
+import payfees from '../images/pay.png';
  
-import searchservice from '../images/login/search service.png';
-import shoponline from '../images/login/shop online.png';
+import searchservice from '../images/search.png';
+import shoponline from '../images/shop.png';
 
 
 import {BrowserRouter as Router, Route } from 'react-router-dom';
@@ -146,10 +146,10 @@ var LoginSignupButton = React.createClass({
 			},
 
 			logoimagestyle: {
-				'margin':'0',
-				'height':'400px',
-				'width':'50%',
-				'padding-top': '30%'
+
+				 'display': 'block',
+
+    				'margin': '0 auto',
 			},
 
 			h3: {
@@ -166,10 +166,12 @@ var LoginSignupButton = React.createClass({
 
 			floatingLabelFocusStyle: {
 				color: '#4688C7',
+				'font-weight':'50'
 			},
 
 			underlineFocusStyle: {
-				borderColor: '#4688C7'
+				borderColor: '#4688C7',
+				'font-weight':'50'
 			},
 
 			h6: {
@@ -177,6 +179,7 @@ var LoginSignupButton = React.createClass({
 			},
 
 			loginbutton: {
+				'margin-top':'3em',
 				background: '#4688C7',
 				width:"70%",
 				color:'white',
@@ -186,7 +189,8 @@ var LoginSignupButton = React.createClass({
 		    {
 		    	color:'white',
 		    	'background-color':'#4688C7',
-		    	'border-color':'white'
+		    	'border-color':'white',
+		    	'font-size':'1.4em'
 		    },
 		    carousel:
 		    {
@@ -258,7 +262,7 @@ var LoginSignupButton = React.createClass({
 											<TextField value={this.state.loginpassword} onChange={this.handleChange} name="loginpassword" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Password" type="password" />
 										</Row>
 										<Row>
-											<a href="#"><h6 style={styles.h6}>Trouble Logging in ?</h6></a>
+											<a href="#"><h6 style={styles.h6}>Forgot Password ?</h6></a>
 										</Row>
 										<Row>
 											<center><Button onClick={this.handleLogin} style={styles.loginbutton}>Login</Button></center>
@@ -343,19 +347,19 @@ var LoginSignup = React.createClass({
 		else 
 		{
 			hehe = (
-				<DropdownButton title={<Dropdownhead />} noCaret style={styles.navdrophead}>
-				<MenuItem href="/profile" style={{'font-size':'1.7em','margin-right':'6em'}} >View Profile</MenuItem>
-				<MenuItem href="/transactionhistory" style={{'font-size':'1.6em','float':'left','margin-right':'6em'}}>Transaction History</MenuItem>
-				{/*<MenuItem >Your Cart</MenuItem>
-				<MenuItem >Your Wishlist</MenuItem>*/}
-				<MenuItem style={{'font-size':'1.7em','float':'left','margin-right':'6em'}} onClick={() => this.changelogin(false)} >Logout</MenuItem>
+				<DropdownButton title={<Dropdownhead />} pullRight noCaret style={styles.navdrophead}>
+				<MenuItem href="/profile"   style={{'font-size':'1.7em'}} >View Profile</MenuItem>
+				
+							
+				<MenuItem href="/transactionhistory"  style={{'font-size':'1.6em','float':'left'}}>Transaction History</MenuItem>
+				<MenuItem style={{'font-size':'1.7em','float':'left'}}  onClick={() => this.changelogin(false)} >Logout</MenuItem>
 				</DropdownButton>
 				);
 		}
 
 		return (
 	
-			<div style={{zoom:'145%'}} >{hehe}</div>
+			<div style={{zoom:'100%'}} >{hehe}</div>
 		);
 	}
 

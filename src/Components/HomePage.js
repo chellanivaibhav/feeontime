@@ -640,7 +640,7 @@ var Mobile = React.createClass({
 				'width':'35%',
 				'color':'#ffffff',
 				'float':'center',
-				'margin-right':'-7em',
+				'margin-right':'-17em',
 				'margin-left':'1em',
 				//'margin-top':'-1.7em',
 				'font-size':'2.5em'
@@ -670,7 +670,7 @@ var Mobile = React.createClass({
 			},
 			app:{
 				'float':'left',
-				'margin-left':'5em',
+				'margin-left':'35em',
 				//'margin-top':'-5.0em',
 
 			}
@@ -692,14 +692,14 @@ var Mobile = React.createClass({
 			It`s free , easy and smart  
 		</div>
 		<div style={{'border':'1px','margin-left': '52em', 'margin-right': '-25em','color':'#919191'}}>
-			<Row style={{'margin-top':'7em','width':'85%','height':'50px'}}>
+			<Row style={{'margin-top':'7em','width':'95%','height':'50px'}}>
 				<div style={styles.buttonsidetext}>Enter your mobile number
 				</div>
 				<Button style={styles.button} >Send App Link</Button>
 			</Row>
 		</div>
-		<div  style={{'margin-top':'15em','margin-right':'2em'}}>
-		<Row style={{'margin-top':'15em','margin-left':'2em'}}>
+		<div  style={{'margin-top':'5em','margin-right':'-20em'}}>
+		<Row style={{'margin-top':'8em','margin-left':'2em'}}>
 			<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
 				<div style={styles.play}>
 					<Image src={playstore}  />
@@ -922,38 +922,38 @@ var DailyNeeds = React.createClass({
 				<Col md={1}></Col>
 				<Col xs={12} md={2}>
 					<center>
-		<a href="/leadgen?1" style={{'text-decoration':'none','color':'black'}}>
+		{/*<a href="/leadgen?1" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={searchtutor} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="105em" height="120em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Search Tutor</span>
 						</Row>
-				</a>
+				
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?2" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?2" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={aptitutetest} style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'1.3em'}} width="105em" height="97.5em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Aptitude Test</span>
 						</Row>
-				</a>
+				
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?3" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?3" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'0.7em'}} src={onlinetests} width="80em" height="105em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Online Test</span>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
@@ -1026,7 +1026,7 @@ var DailyNeeds = React.createClass({
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?9" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?9" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={educationloan} style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'2em'}} width="87.5em" height="75em" />
 						</Row>
@@ -1035,19 +1035,19 @@ var DailyNeeds = React.createClass({
 								<span style={{'color':'#8E9295','font-size': '1.7em'}}>Education Loan</span>
 							</center>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?10" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?10" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={educationtour} style={{'margin-left':'0.7em','margin-bottom':'0.9em','padding-top':'0.8em','margin-top':'1em'}} width="117.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Education Tour</span>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={1}></Col>
@@ -1056,31 +1056,31 @@ var DailyNeeds = React.createClass({
 				<Col xs={12} md={2}>
 				<Col md={1}></Col>
 					<center>
-				<a href="/leadgen?11" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?11" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={forexcard} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Forex Card</span>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={2}>
 					<center>
-				<a href="/leadgen?12" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?12" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={overseaseducation} style={{'margin-left':'5.5em','margin-bottom':'0.9em'}} width="117.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Overseas Education</span>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={2}>
 					<center>
-				<a href="/leadgen?13" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?13" style={{'text-decoration':'none','color':'black'}}>*/}
 						<Row>
 							<Image src={careercounselling} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 						</Row>
@@ -1089,7 +1089,7 @@ var DailyNeeds = React.createClass({
 								<span style={{'color':'#8E9295','font-size': '1.7em'}}>Career Counselling</span>
 							</center>
 						</Row>
-				</a>
+				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={5}></Col>
@@ -1130,9 +1130,18 @@ var Otp = React.createClass({
 	{
 		if(Cookies.get('isloggedin')!=undefined)
 		{
+			if(this.props.studentregnum=='')
+			{
+				alert("Please Enter Enrollmen Number ");
+
+			}
+			else
+			{
+
 			this.setState({ showotp: true });
 			this.getno();
 			this.sendotp();
+			}
 		}
 		else
 			this.setState({ showsnackbar: true });
@@ -1140,6 +1149,7 @@ var Otp = React.createClass({
 	getno :function()
 	{
 		let t = this;
+		
 		//alert(this.props.studentregnum);
 		var mydata = {
 			regnum: this.props.studentregnum,
@@ -1177,8 +1187,6 @@ var Otp = React.createClass({
 				alert(JSON.stringify(error));
 			}						
 		})
-
-
 
 	},
 
@@ -1339,7 +1347,7 @@ var Otp = React.createClass({
 				'background': '#4688C7',
 				'width':"100%",
 				'margin-top':'1em',
-				 'fontFamily':'proxima nova',
+				
 				'font-size':'1.2em'
 			},
 
@@ -1373,7 +1381,7 @@ var Otp = React.createClass({
 				'background': '#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em',
-				'fontFamily':'proxima nova',
+				'fontFamily':'Roboto',
 				'padding-left':'4em',
 				'padding-right':'4em'
 			}
@@ -1470,9 +1478,15 @@ var School = React.createClass({
 	},
 
 	handleUpdateInput : function(searchText) {
+		
+		
+		
+
 		this.setState({
 			locationname: searchText,
 		});
+	
+
 	},
 	//just a cooment
 	newRequestOtp: function(chosenRequest) {
@@ -1502,17 +1516,31 @@ var School = React.createClass({
 	newRequestPlaySchool: function(chosenRequest) {
 		this.setState({selectedloclat:chosenRequest.lat});
 		this.setState({selectedloclong:chosenRequest.long});
-		var q = this.getinsdata();
-		//var p =this.getinsdata1();
-		//alert(q);
+			//alert('hi');		
+			var q = this.getinsdata();
+			//var p =this.getinsdata1();
+			//alert(q);
+			alert(q.name);
+			var p =this.getinsdata1();
+			alert(p);
+			//alert(p);
+			var insti=[];
+			/*for (var i = 0; i < q.length; i++) {
+				for (var j = 0; j < p.length; j++) {
+					if(p[i]!=q[j])
+					{	alert()
+						q.push(p[i]);
+					}
+				}
+			}
+			alert(q);*/
 
-		var p =this.getinsdata1();
-		//alert(p);
-		var n = q + p;
-		//alert(n);
-		q.push.apply(q,p);
-		//alert(q);
-		this.setState({ institutes: q });
+			//alert(n);
+			q.push.apply(q,p);
+			//alert(q);
+			this.setState({ institutes: q });
+		
+
 		
 	},
 
@@ -1524,7 +1552,7 @@ var School = React.createClass({
 
 	getinsdata: function()
 	{	
-		//alert('isnide insti');
+		
 		var mydata={};
 		var data2=[];
 		var mydata={
@@ -1540,6 +1568,7 @@ var School = React.createClass({
 			for(var i=0;i<data.length;i++)
 			{
 				var c = data[i];
+				alert(data[i]);
 				//alert(c);
 				data2.push(c);
 			}
@@ -1563,6 +1592,7 @@ var School = React.createClass({
 		});
 
 		return data2;
+		
 	},
 	getnext: function()
 	{
@@ -1579,6 +1609,7 @@ var School = React.createClass({
 	getinsdata1: function()
 	{
 		//alert('inside insti 1');
+
 		var mydata={};
 		var data2=[];
 		var mydata={
@@ -1654,25 +1685,69 @@ var School = React.createClass({
 		//this.setState({data: data2});
 		//data2.push('t');
 		//alert(data2);
+		//alert(data2[1].LocationName);
 		return data2;
+	},
+	checklocation : function()
+	{	
+		var value = this.state.locationname;
+		var data=this.state.data;
+		for (var i = 0; i < data.length; i++) {
+		    if(	data[i].LocationName==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
+
 	},
 
 	changedispnext :function()
-	{
-		if(this.state.enrollmentno=='')
+	{	
+		if(!Cookies.get('isloggedin'))
+		{
+			alert("Please Login First");
+		}
+
+		else if(this.checklocation()==false)
 		{	
-			alert('Please Enter Enrollment Number ')
+			//alert(this.checklocation());
+			alert("Please Select From The List Of Locations");
+		}
+		else if(this.checkins()==false)
+		{
+			alert('Please Select Institute From The List');
+		}
+		else if(this.state.enrollmentno=='')
+		{	
+			alert('Please Enter Enrollment Number ');
 
 		}	
 		else
 		{
-
+			//alert(this.checklocation());
 			this.setState({dispnext: !this.state.dispnext});
 		}
 
 	},
+	checkins : function()
+	{	
+		var value = this.state.insname;
+		var data=this.state.institutes;
+		for (var i = 0; i < data.length; i++) {
+		    if(data[i]==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
+
+	},
 	changenext :function()
 	{
+		
 		if(this.state.studentname=='')
 		{
 			alert("Please Enter Student Name");
@@ -1689,6 +1764,7 @@ var School = React.createClass({
 		{
 			alert("Please Enter Fee Amount");
 		}
+		
 		else
 		{
 			this.setState({next: !this.state.next});
@@ -1737,7 +1813,7 @@ var School = React.createClass({
 			backgroundColor: "#ffde00",
 			color: "#333",
 			display: "inline-block",
-			'fontFamily':'proxima nova',
+			
 			fontSize: "32",
 			textAlign: "center"
 		};
@@ -1832,7 +1908,9 @@ var School = React.createClass({
 			formstyle: {
 				//changes characteristics of form  
 				'font-size':'2em',
-				'fontFamily':'ProximaNova',
+
+				//'zoom':'135%',
+				
 				'padding-top':'1.3em',
 				'padding-left':'10%',
 				'padding-right':'10%',
@@ -1842,7 +1920,7 @@ var School = React.createClass({
 			proceed: {
 				'float':'right',
 				'background': '#4688C7',
-				'fontFamily':'proxima nova',
+				
 				'width':"50%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
@@ -1850,7 +1928,7 @@ var School = React.createClass({
 			proceed1: {
 				'float':'right',
 				'background': '#4688C7',
-				'fontFamily':'proxima nova',
+				
 				'width':"100%",
 				'margin-top':'1em',
 				'font-size':'1.2em'
@@ -1859,20 +1937,26 @@ var School = React.createClass({
 				'float':'left',
 				'background': '#ffffff',
 				'width':"45%",
-				'fontFamily':'proxima nova',
+				
+
 				'color':'#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em'
 			},
 			errorstyle:{
 
-			'font-size':'1em','padding-top':'0.5em'
+			'font-size':'0.7em','padding-top':'0.5em'
+			},
+			menustyle:{
+				'font-size':'0.3em ',
+				'margin-left':'0.2em'
 			}
 
 		}
 
 		return (
-			<div>
+
+			<div >
 			<Grid bsClass="container-fluid" >
 			<Row style={styles.row}>
 			<Col xs="12" md="8">
@@ -1889,6 +1973,8 @@ var School = React.createClass({
 			
 					<AutoComplete
 					
+					menuStyle={{'margin-right':'2em' }}
+					listStyle={{ maxHeight: 200, overflow: 'auto','marginRight':'2em' }}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.data}
@@ -1896,7 +1982,8 @@ var School = React.createClass({
 					dataSourceConfig={dataSourceConfig1}
 					onUpdateInput={this.handleUpdateInput}
 					filter={AutoComplete.fuzzyFilter}
-					anchorOrigin={{ vertical: 'bottom', horizontal: 'middle',}}
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					openOnFocus={true}
 					name="selectlocation"
 					onNewRequest={this.newRequestPlaySchool}
@@ -1911,6 +1998,8 @@ var School = React.createClass({
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
 					dataSourceConfig={dataSourceConfig}
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					textFieldStyle={styles.textfieldstyle}
 					onUpdateInput={this.handleUpdateInput1}
 					filter={AutoComplete.fuzzyFilter}
@@ -2109,7 +2198,7 @@ var School = React.createClass({
 			</Grid>
 			</Col>
 			<Col xs="12" md="4">
-			<img src={banner} style={{'margin-left':'-12em'}}/>
+			<img src={banner} style={{'margin-left':'-12em',float:'right'}}/>
 			{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
 			<Carousel.Item>
 			<Image src={carouselimage} />
@@ -2143,7 +2232,7 @@ var Playschool = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false , selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: [''],move:false};
 	},
 
 	handleChange: function(event) {
@@ -2202,14 +2291,14 @@ var Playschool = React.createClass({
 		this.setState({selectedloclong:chosenRequest.long});
 		var q = this.getinsdata();
 		//var p =this.getinsdata1();
-		alert(q);
+		//alert(q);
 
 		var p =this.getinsdata1();
-		alert(p);
+		//alert(p);
 		var n = q + p;
 		//alert(n);
 		q.push.apply(q,p);
-		alert(q);
+		//alert(q);
 		this.setState({ institutes: q });
 		
 	},
@@ -2352,28 +2441,113 @@ var Playschool = React.createClass({
 	},
 
 	changedispnext :function()
-	{
-		this.setState({dispnext: !this.state.dispnext});
+	{	alert(Cookies.get('isloggedin'));
+		if(Cookies.get('isloggedin')!=true)
+		{
+			alert("Please Login First");
+		}
+		else if(this.state.enrollmentno=='')
+		{	
+			alert('Please Enter Enrollment Number ');
+
+		}
+		else if(this.checklocation()==false)
+		{	
+			//alert(this.checklocation());
+			alert("Please Select From The List Of Locations");
+		}
+		else if(this.checkins()==false)
+		{
+			alert('Please Select Institute From The List');
+		}	
+		else
+		{
+
+			this.setState({dispnext: !this.state.dispnext});
+		}
 
 	},
 	changenext :function()
 	{
-		this.setState({next: !this.state.next});
+		if(this.state.studentname=='')
+		{
+			alert("Please Enter Student Name");
+		}	
+		else if(this.state.studentclass=='')
+		{
+			alert("Please Enter Student Class");
+		}
+		else if(this.state.studentsection=='')
+		{
+			alert("Please Enter Student Section");
+		}
+		else if(this.state.studentfees=='')
+		{
+			alert("Please Enter Fee Amount");
+		}
+		else
+		{
+			this.setState({next: !this.state.next});
+		}
 	},
 	proceedbutfunc: function()
 	{
 	},
+	checklocation : function()
+	{	
+		var value = this.state.locationname;
+		var data=this.state.data;
+		for (var i = 0; i < data.length; i++) {
+		    if(	data[i].LocationName==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
 
+	},
+	checkins : function()
+	{	
+		var value = this.state.insname;
+		var data=this.state.institutes;
+		for (var i = 0; i < data.length; i++) {
+		    if(data[i]==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
+
+	},
 	preproceedbutfunc: function()
 	{
+		if(this.state.benificiaryname=='')
+		{
+			alert("Please Enter Benificiary Name");
+		}
+		else if(this.state.accountno=='')
+		{
+			alert("Please Enter Account Number");
+		}
+		else if(this.state.ifsccode=='')
+		{
+			alert("Please Enter IFSC CODE");
+		}
+
+		else
+		{
+
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
 		Cookies.set('insname',this.state.insname);
-		Cookies.set('studentname',this.state.studentname);
 		Cookies.set('enrollmentno',this.state.enrollmentno);
 		Cookies.set('benificiaryname',this.state.benificiaryname);
 		Cookies.set('accountno',this.state.accountno);
 		Cookies.set('ifsccode',this.state.ifsccode);
+		this.setState({move:true});
+		}
 	},
 
 	render: function() {
@@ -2384,7 +2558,7 @@ var Playschool = React.createClass({
 			backgroundColor: "#ffde00",
 			color: "#333",
 			display: "inline-block",
-			fontFamily: "monospace",
+			
 			fontSize: "32",
 			textAlign: "center"
 		};
@@ -2480,7 +2654,7 @@ var Playschool = React.createClass({
 			formstyle: {
 				//changes characteristics of form  
 				'font-size':'2em',
-				'fontFamily':'ProximaNova',
+				
 				'padding-top':'1.3em',
 				'padding-left':'10%',
 				'padding-right':'10%',
@@ -2670,7 +2844,10 @@ var Playschool = React.createClass({
 					:
 					(	<div>
 						<Button bsStyle="primary" onClick={this.changenext} style={styles.back} ><b>Back</b></Button>
-						<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+						{
+							!this.state.move ? (<Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button>):(<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>)
+						}
+						
 						</div>
 						)
 
@@ -2960,7 +3137,7 @@ var College = React.createClass({
 			backgroundColor: "#ffde00",
 			color: "#333",
 			display: "inline-block",
-			fontFamily: "monospace",
+			
 			fontSize: "32",
 			textAlign: "center"
 		};
@@ -3055,7 +3232,7 @@ var College = React.createClass({
 			formstyle: {
 				//changes characteristics of form  
 				'font-size':'2em',
-				'fontFamily':'ProximaNova',
+				
 				'padding-top':'1.3em',
 				'padding-left':'10%',
 				'padding-right':'10%',
@@ -3108,6 +3285,8 @@ var College = React.createClass({
 					dataSource={this.state.data}
 					textFieldStyle={styles.textfieldstyle}
 					dataSourceConfig={dataSourceConfig1}
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					onUpdateInput={this.handleUpdateInput}
 					filter={AutoComplete.fuzzyFilter}
 					anchorOrigin={{ vertical: 'bottom', horizontal: 'center',}}
@@ -3125,6 +3304,8 @@ var College = React.createClass({
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
 					dataSourceConfig={dataSourceConfig}
+					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
+					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					textFieldStyle={styles.textfieldstyle}
 					onUpdateInput={this.handleUpdateInput1}
 					filter={AutoComplete.fuzzyFilter}
@@ -3530,7 +3711,7 @@ var Coaching = React.createClass({
 			backgroundColor: "#ffde00",
 			color: "#333",
 			display: "inline-block",
-			fontFamily: "monospace",
+			
 			fontSize: "32",
 			textAlign: "center"
 		};
@@ -3625,7 +3806,7 @@ var Coaching = React.createClass({
 			formstyle: {
 				//changes characteristics of form  
 				'font-size':'2em',
-				'fontFamily':'ProximaNova',
+				
 				'padding-top':'1.3em',
 				'padding-left':'10%',
 				'padding-right':'10%',
@@ -4881,13 +5062,13 @@ var Content = React.createClass({
 			{
 				this.changecontent(<Playschool />);
 				this.setState({activeid: '1'});
-				this.setState({replaceactiveid: '8'});
+				this.setState({replaceactiveid: '9'});
 				this.changepp(pic);				
 			}
 			else if(this.state.activeid==1)
 			{
 				this.changecontent(<College />);
-				this.setState({activeid: '8'});
+				this.setState({activeid: '9'});
 				this.setState({replaceactiveid: '1'});
 				this.changepp(pic);				
 			}
@@ -4977,7 +5158,7 @@ var Content = React.createClass({
 			</Row>
 			</Col>
 			</div>
-			<div id="main5" onClick={() => this.hello(5)}>
+			<div id="main6" onClick={() => this.hello(6)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Admissions />)} >
 			<Row>
 			<Image src={admissions} style={{'margin-bottom':'1.2em','margin-left':'1em'}}/>
@@ -4987,7 +5168,7 @@ var Content = React.createClass({
 			</Row>
 			</Col>
 			</div>
-			<div id="main6" onClick={() => this.hello(6)}>
+			<div id="main7" onClick={() => this.hello(7)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Workshops />)} >
 			<Row>
 			<Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}}/>
@@ -4997,7 +5178,7 @@ var Content = React.createClass({
 			</Row>
 			</Col> 
 			</div> 
-			<div id="main7" onClick={() => this.hello(7)}>
+			<div id="main8" onClick={() => this.hello(8)}>
 			
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
@@ -5012,7 +5193,7 @@ var Content = React.createClass({
 			</Row>
 			</Col>
 			</div>
-			<div id="main8" onClick={() => this.hello(8)}>
+			<div id="main9" onClick={() => this.hello(9)}>
 			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
 			<Row>
 			<Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}}/>

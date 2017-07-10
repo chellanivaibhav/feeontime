@@ -351,24 +351,23 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 
 
 
-			<Paper zDepth="1" style={{'width':'210%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','margin-left':'-40em'}}>
+
+			<Paper zDepth="1" style={{'margin-left':'-35em','width':'190%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','height':'7em'}}>
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
-			<span style={{'margin-left':'5em','display': 'inline-block','width':'160px','font-size':'2.0em','color':'#797979'}}> &#8377;{this.state.totalamount}</span>
-			{/*<span style={{'margin-left':'5em','font-size':'1.5em','color':'#797979'}}> Coupons Selected : {this.state.noofcoupons}</span>*/}
-
+			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
+			<span style={{'margin-left':'1em','display': 'inline-block','font-size':'2.0em', 'width':'160px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}> &#8377;{this.state.amount}</span>
+			
 			</Row>
 
 			</Col>
-			<Col xs="12" md="4" style={{'font-size':'2.5em','color':'#797979'}} >
-				Just A Click Away !
+			<Col xs="12" md="4" style={{'padding-top':'0.5em','margin-right':'-2em','font-size':'2.0em','color':'#797979'}} >
+				Payment Just A Click Away !
+			
 			</Col>
 			</Row>
 			</Paper>
-
-
 
 
 			</Grid>
@@ -550,7 +549,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<input type="hidden" name="address2" value={Cookies.get('type')} />
 			<input type="hidden" name="iname" value={Cookies.get('insname')}/>
 			<input type="hidden" name="city" value={Cookies.get('locationname')} />
-			<input type="hidden" name="productinfo" value="from web " />
+			<input type="hidden" name="productinfo" value={Cookies.get('insid')+"&web&web"} />
 			<input type="hidden" name="state" value={Cookies.get('studentclass')} />
 		<input type="hidden" name="country" value={Cookies.get('studentsection')} />
 			<input type="hidden" name="enforce_paymethod" value={this.state.pcode} />
@@ -571,7 +570,7 @@ var Transaction = React.createClass({
 	
 	render: function() {
 		return (
-			<div style={{'zoom':'70%'}}>
+			<div style={{'zoom':'65%'}}>
 			<PayFeesDrawer />
 			<Component />
 			</div>

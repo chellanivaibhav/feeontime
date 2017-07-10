@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyDrawer from './Drawer.js';
+import MyDrawer from './PayFeesDrawer.js';
 import {FontIcon, Tabs, Tab, RaisedButton, PasswordField, AutoComplete, TextField, Paper, AppBar, Drawer, MenuItem, IconButton, FlatButton, Toolbar, ToolbarGroup} from 'material-ui';
 import {Grid,Row,Col,Image,Carousel,ButtonToolbar,Button, Modal} from 'react-bootstrap';
 import physicsbook from '../images/physicsbook.png';
@@ -557,7 +557,7 @@ var UserProfile = React.createClass({
 
 	render: function() {
 		return (
-			<div>
+			<div style={{'zoom':'65%'}}>
 				<MyDrawer />
 				<Container />
 			</div>

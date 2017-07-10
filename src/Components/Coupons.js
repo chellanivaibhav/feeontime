@@ -127,7 +127,7 @@ var Component = React.createClass({
 		proceedtopay: {
 			'color':'white',
 			'font-size':'2.5em',
-			'height':'1.5em',
+			'height':'1.8em',
 			//'padding-top':'0.5em',
 			//'padding-bottom':'0.5em',
 			'borderRadius':'0.2em',
@@ -149,27 +149,27 @@ var Component = React.createClass({
 	return (
 			<div>
 			<br/>
-			<Grid bsClass="container">
-			<Paper zDepth="1" style={{'margin-left':'-35em','width':'190%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2'}}>
+			<Grid bsClass="container" style={{'padding-top':'2em'}}>
+			<Paper zDepth="1" style={{'margin-left':'-35em','width':'190%', 'padding-top':'1em','padding-bottom':'1em','background-color':'#f2f2f2','height':'7em'}}>
 			<Row>
 			<Col xs="12" md="8">
 			<Row>
-			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
-			<span style={{'margin-left':'1em','display': 'inline-block','font-size':'2.0em', 'width':'160px','color':'#797979'}}> &#8377;{this.state.amount}</span>
-			<span style={{'margin-left':'2em','display': 'inline-block','font-size':'2.0em', 'width':'460px','color':'#797979'}}> Coupons Selected : {this.state.noofcoupons}</span>
+			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
+			<span style={{'margin-left':'1em','display': 'inline-block','font-size':'2.0em', 'width':'160px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}> &#8377;{this.state.amount}</span>
+			<span style={{'margin-left':'2em','display': 'inline-block','font-size':'2.0em', 'width':'360px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}> Coupons Selected : {this.state.noofcoupons}</span>
 
 			</Row>
 
 			</Col>
-			<Col xs="12" md="4" style={{'padding-top':'0.5em'}} >
+			<Col xs="12" md="4" style={{'padding-top':'0.5em','margin-right':'-2em'}} >
 			<a href="/transaction"><RaisedButton bsStyle="primary" buttonStyle={styles.proceedtopay} labelStyle={styles.proceedtopay}>Proceed to Pay</RaisedButton></a>
 			</Col>
 			</Row>
 			</Paper>
 			</Grid>
 			<br />
-			<Grid bsClass="container">
-			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'1em'}}>
+			<Grid bsClass="container" style={{'padding-top':'4em'}}>
+			<Paper zDepth="1" style={{'padding-top':'4em','padding-bottom':'1em'}}>
 			<Row>
 
 
@@ -276,7 +276,7 @@ var Coupon = React.createClass({
 	
 	render: function() {
 		return (
-			<div style={{'zoom':'75%'}}>
+			<div style={{'zoom':'65%'}}>
 			<PayFeesDrawer />
 			<Component />
 			</div>
