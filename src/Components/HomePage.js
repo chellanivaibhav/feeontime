@@ -5354,7 +5354,7 @@ var Content = React.createClass({
 		}
 		else if(pic==6)
 		{
-			if(this.state.activeid==6)
+			/*if(this.state.activeid==6)
 			{
 				this.changecontent(<Playschool />);
 				this.setState({activeid: '1'});
@@ -5381,11 +5381,13 @@ var Content = React.createClass({
 				else
 				{
 				}
-			}
+			}*/
+			this.open();
+
 		}
 		else if(pic==7)
 		{
-			if(this.state.activeid==7)
+			/*if(this.state.activeid==7)
 			{
 				this.changecontent(<Playschool />);
 				this.setState({activeid: '1'});
@@ -5412,11 +5414,12 @@ var Content = React.createClass({
 				else
 				{
 				}
-			}
+			}*/
+			this.open();
 		}
 		else if(pic==8)
 		{
-			if(this.state.activeid==8)
+			/*if(this.state.activeid==8)
 			{
 				this.changecontent(<Playschool />);
 				this.setState({activeid: '1'});
@@ -5443,11 +5446,12 @@ var Content = React.createClass({
 				else
 				{
 				}
-			}
+			}*/
+			this.open();
 		}
 		else if(pic==9)
 		{
-			if(this.state.activeid==9)
+			/*if(this.state.activeid==9)
 			{
 				this.changecontent(<Playschool />);
 				this.setState({activeid: '1'});
@@ -5474,7 +5478,8 @@ var Content = React.createClass({
 				else
 				{
 				}
-			}
+			}*/
+			this.open();
 		}
 	},
 
@@ -5490,6 +5495,30 @@ var Content = React.createClass({
 		}
 		return (
 			<div>
+
+			<Modal show={this.state.showModal} onHide={this.close}>
+          
+          <Modal.Body>
+          <h1 style={{'margin-left':'5em'}}>Coming Soon !</h1>
+            <h4>This Feature Will Be Live Soon , Checkout Our App For Early Access</h4>
+            <p>
+            	<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
+				<div  >
+					<Image src={playstore} style={{'margin-left':'12em','width':'40%','height':'75px'}} />
+				</div>
+			</a>
+
+
+            </p>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+
+
 			<Grid style={{'padding-right':'-24em', 'padding-top':'3em','background-color': '#f3f3f4'}} bsClass="container-fluid">
 			<br />
 			<Row style={styles.row}>
@@ -5548,7 +5577,7 @@ var Content = React.createClass({
 			</Col>
 			</div>
 			<div id="main6" onClick={() => this.hello(6)}>
-			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Admissions />)} >
+			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}}  >
 			<Row>
 			<Image src={admissions} style={{'margin-bottom':'1.2em','margin-left':'1em'}}/>
 			</Row>
@@ -5558,7 +5587,7 @@ var Content = React.createClass({
 			</Col>
 			</div>
 			<div id="main7" onClick={() => this.hello(7)}>
-			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Workshops />)} >
+			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}}  >
 			<Row>
 			<Image src={workshops} style={{'margin-bottom':'0.5em','margin-left':'1.5em'}}/>
 			</Row>
@@ -5569,7 +5598,7 @@ var Content = React.createClass({
 			</div> 
 			<div id="main8" onClick={() => this.hello(8)}>
 			
-			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
+			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}}  >
 			<Row>
 			<Image src={skills} style={{'margin-bottom':'0.5em','margin-left':'1.1em'}}/>
 			</Row>
@@ -5583,7 +5612,7 @@ var Content = React.createClass({
 			</Col>
 			</div>
 			<div id="main9" onClick={() => this.hello(9)}>
-			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}} onClick={() => this.changecontent(<Skills />)} >
+			<Col xs={12} md={1} style={{cursor:'pointer','margin-right':'1em'}}  >
 			<Row>
 			<Image src={donations} style={{'margin-bottom':'0.5em','margin-left':'1em'}}/>
 			</Row>
