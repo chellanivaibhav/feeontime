@@ -8,7 +8,8 @@ import payfees from '../images/pay.png';
 import searchservice from '../images/search.png';
 import shoponline from '../images/shop.png';
 
-
+import {Validation, fieldValidatorCore} from "react-validation-framework";
+import validator from "validator";
 import {BrowserRouter as Router, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 var $ = require ('jquery');
@@ -272,13 +273,53 @@ var LoginSignupButton = React.createClass({
 								<Tab eventKey={2} label={<span style={{ 'text-transform':'capitalize', color: 'gray', fontFamily:'proxima nova' }}>Sign Up</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
+										<Validation group="myGroup"
+		    
+									        validators={[
+											{
+									         validator: (val) => !validator.isEmpty(val),
+									         errorMessage: "Cannot be left empty"
+									        }, {
+									         validator: (val) => validator.isAlpha(val,'en-IN'),
+									         errorMessage: "Should not be a numeric number"
+									        }, ]}>
 											<TextField value={this.state.name} name="name" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Name" />
+											</Validation>
 										</Row>
 										<Row>
+											<Validation group="myGroup"
+		    
+									        validators={[
+											{
+									         validator: (val) => !validator.isEmpty(val),
+									         errorMessage: "Cannot be left empty"
+									        }, {
+									         validator: (val) => validator.isEmail(val),
+									         errorMessage: "Enter Valid Email Id"
+									        }, ]}>
 											<TextField value={this.state.email} name="email" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
+											</Validation>
 										</Row>
 										<Row>
+										<Validation group="myGroup"
+		    
+									        validators={[
+											{
+									         validator: (val) => !validator.isEmpty(val),
+									         errorMessage: "Cannot be left empty"
+									        }, {
+									         validator: (val) => validator.isNumeric(val),
+									         errorMessage: "Should be only Numeric"
+									        },
+									        {
+									         validator: (val) => validator.isLength(val,{min:10, max: 10}),
+									         errorMessage: "Enter Valid Phone Number"
+									        },
+
+
+									         ]}>
 											<TextField value={this.state.phone} name="phone" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Mobile Number" type="number" />
+											</Validation>
 										</Row>
 										<Row>
 											<TextField value={this.state.password} name="password" onChange={this.handleChange} underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Password" type="password" />

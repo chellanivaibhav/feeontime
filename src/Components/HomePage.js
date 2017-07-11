@@ -764,7 +764,7 @@ var Footer=React.createClass({
 								<ul style={{'color':'white','margin-top':'2.3em', 'margin-left':'14px','padding-bottom':'1em'}} >
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Play School</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">School</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">College</a></ul>
+									<ul style={{'padding':'0.5em','color':'#919191'}}><a href="#">College</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Coaching</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Tutor</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">Admission</a></ul>
@@ -884,7 +884,24 @@ var Footer=React.createClass({
 
 var DailyNeeds = React.createClass({
 
+	getInitialState() {
+    return { showModal: false };
+  },
+	close() {
+    this.setState({ showModal: false });
+  	},
+
+  open() {
+    this.setState({ showModal: true });
+  },
+
+
+
+
 	render: function() {
+
+
+		
 
 		const styles = {
 			row:
@@ -910,6 +927,59 @@ var DailyNeeds = React.createClass({
 		}
 		return (
 			<div>
+
+
+
+			<Modal show={this.state.showModal} onHide={this.close}>
+          <Modal.Header closeButton>
+            <Modal.Title>Coming Soon !</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Checkout Fee On Time App Meanwhile </h4>
+            <p>
+            	<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
+				<div style={styles.play}>
+					<Image src={playstore}  />
+				</div>
+			</a>
+
+
+            </p>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<Grid bsClass="container-fluid"><br />
 		<Row style={styles.row1}>
 			<Col xs="12" md="12" style={styles.line}/>
@@ -923,13 +993,14 @@ var DailyNeeds = React.createClass({
 				<Col xs={12} md={2}>
 					<center>
 		{/*<a href="/leadgen?1" style={{'text-decoration':'none','color':'black'}}>*/}
+		<a onClick={this.open}>
 						<Row>
 							<Image src={searchtutor} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="105em" height="120em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Search Tutor</span>
 						</Row>
-				
+				</a>
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
@@ -947,6 +1018,7 @@ var DailyNeeds = React.createClass({
 				<Col xs={12} md={2}>
 					<center>
 				{/*<a href="/leadgen?3" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'0.7em'}} src={onlinetests} width="80em" height="105em" />
 						</Row>
@@ -954,11 +1026,13 @@ var DailyNeeds = React.createClass({
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Online Test</span>
 						</Row>
 				{/*</a>*/}
+				</a>
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?4" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?4" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'0.7em'}} src={informative} width="110em" height="105em" />
 						</Row>
@@ -970,7 +1044,8 @@ var DailyNeeds = React.createClass({
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?5" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?5" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={admissionhotline} style={{'margin-left':'0.8em','margin-bottom':'0.9em','margin-top':'0.7em'}} width="105em" height="105em" />
 						</Row>
@@ -987,7 +1062,8 @@ var DailyNeeds = React.createClass({
 			<Row>
 				<Col md={1}></Col>
 				<center>
-				<a href="/leadgen?6" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?6" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 					<Col xs={12} md={2}>
 						<Row>
 							<Image style={{'margin-left':'0.8em','margin-bottom':'0.9em','margin-top':'1em'}} src={elearning} width="112.5em" height="100em" />
@@ -1000,7 +1076,8 @@ var DailyNeeds = React.createClass({
 				</center>
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?7" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?7" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image style={{'margin-left':'0.5em','margin-bottom':'0.9em','margin-top':'2em'}} src={healthcard} width="120em" height="80em" />
 						</Row>
@@ -1012,7 +1089,8 @@ var DailyNeeds = React.createClass({
 				</Col>  
 				<Col xs={12} md={2}>
 					<center>
-				<a href="/leadgen?8" style={{'text-decoration':'none','color':'black'}}>
+				{/*<a href="/leadgen?8" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={studentinsurance} style={{'margin-left':'1em','margin-bottom':'0.9em','margin-top':'1em'}} width="105em" height="90em" />
 						</Row>
@@ -1027,6 +1105,7 @@ var DailyNeeds = React.createClass({
 				<Col xs={12} md={2}>
 					<center>
 				{/*<a href="/leadgen?9" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={educationloan} style={{'margin-left':'0.7em','margin-bottom':'0.9em','margin-top':'2em'}} width="87.5em" height="75em" />
 						</Row>
@@ -1035,18 +1114,21 @@ var DailyNeeds = React.createClass({
 								<span style={{'color':'#8E9295','font-size': '1.7em'}}>Education Loan</span>
 							</center>
 						</Row>
+						</a>
 				{/*</a>*/}
 					</center>
 				</Col>
 				<Col xs={12} md={2}>
 					<center>
 				{/*<a href="/leadgen?10" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={educationtour} style={{'margin-left':'0.7em','margin-bottom':'0.9em','padding-top':'0.8em','margin-top':'1em'}} width="117.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Education Tour</span>
 						</Row>
+						</a>
 				{/*</a>*/}
 					</center>
 				</Col>
@@ -1057,30 +1139,35 @@ var DailyNeeds = React.createClass({
 				<Col md={1}></Col>
 					<center>
 				{/*<a href="/leadgen?11" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={forexcard} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Forex Card</span>
 						</Row>
+						</a>
 				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={2}>
 					<center>
 				{/*<a href="/leadgen?12" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={overseaseducation} style={{'margin-left':'5.5em','margin-bottom':'0.9em'}} width="117.5em" height="90em" />
 						</Row>
 						<Row>
 							<span style={{'color':'#8E9295','font-size': '1.7em'}}>Overseas Education</span>
 						</Row>
+						</a>
 				{/*</a>*/}
 					</center>
 				</Col>
 				<Col md={2}>
 					<center>
 				{/*<a href="/leadgen?13" style={{'text-decoration':'none','color':'black'}}>*/}
+				<a onClick={this.open}>
 						<Row>
 							<Image src={careercounselling} style={{'margin-left':'1em','margin-bottom':'0.9em'}} width="110.5em" height="90em" />
 						</Row>
@@ -1089,6 +1176,7 @@ var DailyNeeds = React.createClass({
 								<span style={{'color':'#8E9295','font-size': '1.7em'}}>Career Counselling</span>
 							</center>
 						</Row>
+						</a>
 				{/*</a>*/}
 					</center>
 				</Col>
@@ -1132,7 +1220,7 @@ var Otp = React.createClass({
 		{
 			if(this.props.studentregnum=='')
 			{
-				alert("Please Enter Enrollmen Number ");
+				alert("Please Enter Enrollment Number ");
 
 			}
 			else
@@ -1221,7 +1309,7 @@ var Otp = React.createClass({
 	fetchstudentdetails: function()
 	{
 		let t = this;
-		alert(this.props.studentregnum);
+		//alert(this.props.studentregnum);
 		var mydata = {
 			regnum: this.props.studentregnum,
 			instituteid: this.props.studentinsid,
@@ -1583,7 +1671,14 @@ var School = React.createClass({
 			success: function(data)
 			{
 				var data1 = data.message;
+				if(data.message=="Not Fetch"){
+
+				}
+				else
+				{
+
 				do_the_stuff(data1);
+				}
 			},
 			error: function (error) 
 			{
@@ -1724,6 +1819,16 @@ var School = React.createClass({
 			alert('Please Enter Enrollment Number ');
 
 		}	
+		else if(this.state.locationname=='')
+		{	
+			alert('Please Select Location');
+
+		}	
+		else if(this.state.insname=='')
+		{	
+			alert('Please Select Institute');
+
+		}	
 		else
 		{
 			//alert(this.checklocation());
@@ -1796,6 +1901,11 @@ var School = React.createClass({
 
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
+		Cookies.set('studentname',this.state.studentname);
+		Cookies.set('studentclass',this.state.studentclass);
+		Cookies.set('studentsection',this.state.studentsection);
+		Cookies.set('locationname',this.state.locationname);
+		Cookies.set('type','School');
 		Cookies.set('insname',this.state.insname);
 		Cookies.set('enrollmentno',this.state.enrollmentno);
 		Cookies.set('benificiaryname',this.state.benificiaryname);
@@ -1993,7 +2103,8 @@ var School = React.createClass({
 					</Row>
 					<Row>
 					<AutoComplete
-					style={{}}
+					menuStyle={{'margin-right':'2em' }}
+					listStyle={{ maxHeight: 200, overflow: 'auto','marginRight':'2em' }}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
@@ -2198,7 +2309,7 @@ var School = React.createClass({
 			</Grid>
 			</Col>
 			<Col xs="12" md="4">
-			<img src={banner} style={{'margin-left':'-12em',float:'right'}}/>
+			<img src={banner} style={{'margin-left':'-12em',float:'center'}}/>
 			{/*<Carousel className="letter" style={styles.carousel} controls={this.state.controls} >
 			<Carousel.Item>
 			<Image src={carouselimage} />
@@ -2339,7 +2450,14 @@ var Playschool = React.createClass({
 			success: function(data)
 			{
 				var data1 = data.message;
+				if(data.message=="Not Fetch"){
+
+				}
+				else
+				{
+
 				do_the_stuff(data1);
+				}
 			},
 			error: function (error) 
 			{
@@ -2441,8 +2559,8 @@ var Playschool = React.createClass({
 	},
 
 	changedispnext :function()
-	{	alert(Cookies.get('isloggedin'));
-		if(Cookies.get('isloggedin')!=true)
+	{	//alert(Cookies.get('isloggedin'));
+		if(Cookies.get('isloggedin')===false || Cookies.get('isloggedin')==undefined )
 		{
 			alert("Please Login First");
 		}
@@ -2541,6 +2659,11 @@ var Playschool = React.createClass({
 
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
+		Cookies.set('studentname',this.state.studentname);
+		Cookies.set('studentclass',this.state.studentclass);
+		Cookies.set('studentsection',this.state.studentsection);
+		Cookies.set('locationname',this.state.locationname);
+		Cookies.set('type','Play School');
 		Cookies.set('insname',this.state.insname);
 		Cookies.set('enrollmentno',this.state.enrollmentno);
 		Cookies.set('benificiaryname',this.state.benificiaryname);
@@ -2683,6 +2806,10 @@ var Playschool = React.createClass({
 				'margin-top':'1em',
 				'font-size':'1.2em'
 			},
+			errorstyle:{
+
+			'font-size':'0.7em','padding-top':'0.5em'
+			},
 
 
 		}
@@ -2703,7 +2830,8 @@ var Playschool = React.createClass({
 					<div>	
 					<Row>
 					<AutoComplete
-					
+					menuStyle={{'margin-right':'2em' }}
+					listStyle={{ maxHeight: 200, overflow: 'auto','marginRight':'2em' }}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.data}
@@ -2726,7 +2854,8 @@ var Playschool = React.createClass({
 					<AutoComplete
 					anchorOrigin={{'vertical': 'top', 'horizontal': 'left'}}
 					targetOrigin={{'vertical': 'top', 'horizontal': 'left'}}
-
+					menuStyle={{'margin-right':'2em' }}
+					listStyle={{ maxHeight: 200, overflow: 'auto','marginRight':'2em' }}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
@@ -2744,7 +2873,18 @@ var Playschool = React.createClass({
 					</Row>
 					<Row>
 					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+					<Validation group="myGroup1"
+		    
+			        validators={[
+					{
+			         validator: (val) => !validator.isEmpty(val),
+			         errorMessage: "Cannot be left empty"
+			        }, {
+			         validator: (val) => validator.isNumeric(val),
+			         errorMessage: "Should be a numeric number"
+			        }, ]}>
+					<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.enrollmentno}errorStyle={styles.errorstyle}	 name="enrollmentno" onChange={this.handleChange} floatingLabelText="Enrollment Number" />
+					</Validation>
 					</div>
 					</Row>
 					</div>
@@ -2758,7 +2898,7 @@ var Playschool = React.createClass({
 						<div>	
 						<Row>
 						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}	
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.benificiaryname} 
 						name="benificiaryname" 
@@ -2770,7 +2910,7 @@ var Playschool = React.createClass({
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.accountno} 
-						name="accountno" 
+						name="accountno" errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="Benificiary Account Number" />
 						</Row>
@@ -2779,7 +2919,7 @@ var Playschool = React.createClass({
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.ifsccode} 
-						name="ifsccode" 
+						name="ifsccode" errorStyle={styles.errorstyle}	
 						onChange={this.handleChange} 
 						floatingLabelText="IFSC Code" />
 						</Row>
@@ -2790,24 +2930,62 @@ var Playschool = React.createClass({
 					(<div>
 						
 						<Row>
+						<Validation group="myGroup"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isAlpha(val,'en-IN'),
+					         errorMessage: "Should not contain Numbers"
+					        }, ]}>
 						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}	
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.studentname} 
 						name="studentname" 
 						onChange={this.handleChange} 
 						floatingLabelText="Student Name" />
+						</Validation>
 						</Row>
 						<Row>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} errorStyle={styles.errorstyle}	name="studentclass" onChange={this.handleChange} floatingLabelText="Class" />
+						</Validation>
 						</Col>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}errorStyle={styles.errorstyle}	 underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Section" />
+						</Validation>
 						</Col>
 						</Row>
 						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						<Validation group="myGroup"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isNumeric(val),
+					         errorMessage: "Should be a numeric number"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle}errorStyle={styles.errorstyle}	 underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						</Validation>
 						</Row>
 						</div>)
 					)}
@@ -2893,7 +3071,7 @@ var College = React.createClass({
 
 		getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: [''],move:false};
 	},
 
 	handleChange: function(event) {
@@ -3002,6 +3180,7 @@ var College = React.createClass({
 			success: function(data)
 			{
 				var data1 = data.message;
+				if(data.message!="Not Fetch")
 				do_the_stuff(data1);
 			},
 			error: function (error) 
@@ -3105,13 +3284,98 @@ var College = React.createClass({
 		return data2;
 	},
 
+	checklocation : function()
+	{	
+		var value = this.state.locationname;
+		var data=this.state.data;
+		for (var i = 0; i < data.length; i++) {
+		    if(	data[i].LocationName==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
+
+	},
+
 	changedispnext :function()
-	{
-		this.setState({dispnext: !this.state.dispnext});
+	{	
+		if(!Cookies.get('isloggedin'))
+		{
+			alert("Please Login First");
+		}
+
+		else if(this.checklocation()==false)
+		{	
+			//alert(this.checklocation());
+			alert("Please Select From The List Of Locations");
+		}
+		else if(this.checkins()==false)
+		{
+			alert('Please Select Institute From The List');
+		}
+		else if(this.state.enrollmentno=='')
+		{	
+			alert('Please Enter Enrollment Number ');
+
+		}	
+		else if(this.state.locationname=='')
+		{	
+			alert('Please Select Location');
+
+		}	
+		else if(this.state.insname=='')
+		{	
+			alert('Please Select Institute');
+
+		}	
+		else
+		{
+			//alert(this.checklocation());
+			this.setState({dispnext: !this.state.dispnext});
+		}
+
+	},
+	checkins : function()
+	{	
+		var value = this.state.insname;
+		var data=this.state.institutes;
+		for (var i = 0; i < data.length; i++) {
+		    if(data[i]==value){
+		    	//alert("found");
+		    	return true;
+		    }
+		}
+		//alert('not ');
+		return false;
+
 	},
 	changenext :function()
 	{
-		this.setState({next: !this.state.next});
+		
+		if(this.state.studentname=='')
+		{
+			alert("Please Enter Student Name");
+		}	
+		else if(this.state.studentclass=='')
+		{
+			alert("Please Enter Student Class");
+		}
+		else if(this.state.studentsection=='')
+		{
+			alert("Please Enter Student Section");
+		}
+		else if(this.state.studentfees=='')
+		{
+			alert("Please Enter Fee Amount");
+		}
+		
+		else
+		{
+			this.setState({next: !this.state.next});
+		}
+
 	},
 	proceedbutfunc: function()
 	{
@@ -3119,14 +3383,36 @@ var College = React.createClass({
 
 	preproceedbutfunc: function()
 	{
-		//alert('isnide preproceedbutfunc');
+		if(this.state.benificiaryname=='')
+		{
+			alert("Please Enter Benificiary Name");
+		}
+		else if(this.state.accountno=='')
+		{
+			alert("Please Enter Account Number");
+		}
+		else if(this.state.ifsccode=='')
+		{
+			alert("Please Enter IFSC CODE");
+		}
+
+		else
+		{
+
 		Cookies.set('studentfees', this.state.studentfees);
 		Cookies.set('insid', this.state.insid);
+		Cookies.set('studentname',this.state.studentname);
+		Cookies.set('studentclass',this.state.studentclass);
+		Cookies.set('studentsection',this.state.studentsection);
+		Cookies.set('locationname',this.state.locationname);
+		Cookies.set('type','School');
 		Cookies.set('insname',this.state.insname);
 		Cookies.set('enrollmentno',this.state.enrollmentno);
 		Cookies.set('benificiaryname',this.state.benificiaryname);
 		Cookies.set('accountno',this.state.accountno);
 		Cookies.set('ifsccode',this.state.ifsccode);
+		this.setState({move:true});
+		}
 		
 	},
 	render: function() {
@@ -3260,6 +3546,14 @@ var College = React.createClass({
 				'color':'#4688C7',
 				'margin-top':'1em',
 				'font-size':'1.2em'
+			},
+			errorstyle:{
+
+			'font-size':'0.7em','padding-top':'0.5em'
+			},
+			menustyle:{
+				'font-size':'0.3em ',
+				'margin-left':'0.2em'
 			}
 
 		}
@@ -3279,7 +3573,7 @@ var College = React.createClass({
 					<div>	
 					<Row>
 					<AutoComplete
-					
+					errorStyle={styles.errorstyle}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.data}
@@ -3300,6 +3594,7 @@ var College = React.createClass({
 					<Row>
 					<AutoComplete
 					style={{}}
+					errorStyle={styles.errorstyle}
 					floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					underlineFocusStyle={styles.underlineFocusStyle} 
 					dataSource={this.state.institutes}
@@ -3318,9 +3613,21 @@ var College = React.createClass({
 					</Row>
 					<Row>
 					<div style={enrollmentnostyle}>
-					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} 
+					<Validation group="myGroup1"
+		    
+			        validators={[
+					{
+			         validator: (val) => !validator.isEmpty(val),
+			         errorMessage: "Cannot be left empty"
+			        }, {
+			         validator: (val) => validator.isNumeric(val),
+			         errorMessage: "Should be a numeric number"
+			        }, ]}>
+					<TextField style={styles.textfieldstyle}   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}errorStyle={styles.errorstyle} underlineFocusStyle={styles.underlineFocusStyle} 
 						//inputStyle={{ textAlign: 'center', cursor: 'none' }}
 					value={this.state.enrollmentno} name="enrollmentno" onChange={this.handleChange}  floatingLabelText="Enrollment Number" />
+					</Validation>
+
 					</div>
 					</Row>
 					</div>
@@ -3335,6 +3642,8 @@ var College = React.createClass({
 						<Row>
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						errorStyle={styles.errorstyle}
+
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.benificiaryname} 
 						name="benificiaryname" 
@@ -3343,7 +3652,7 @@ var College = React.createClass({
 						</Row>
 						<Row>
 						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.accountno} 
 						name="accountno" 
@@ -3352,7 +3661,7 @@ var College = React.createClass({
 						</Row>
 						<Row>
 						<TextField style={styles.textfieldstyle} 
-						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
+						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} errorStyle={styles.errorstyle}
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.ifsccode} 
 						name="ifsccode" 
@@ -3366,24 +3675,63 @@ var College = React.createClass({
 					(<div>
 						
 						<Row>
+						<Validation group="myGroup"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isAlpha(val,'en-IN'),
+					         errorMessage: "Should not contain Numbers"
+					        }, ]}>
 						<TextField style={styles.textfieldstyle} 
 						floatingLabelFocusStyle={styles.floatingLabelFocusStyle} 
 						underlineFocusStyle={styles.underlineFocusStyle} 
 						value={this.state.studentname} 
 						name="studentname" 
+						errorStyle={styles.errorstyle}
 						onChange={this.handleChange} 
 						floatingLabelText="Student Name" />
+						</Validation>
 						</Row>
 						<Row>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Course" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} errorStyle={styles.errorstyle}floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentclass} name="studentclass" onChange={this.handleChange} floatingLabelText="Course" />
+						</Validation>
 						</Col>
 						<Col xs="12" md="6">
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Year" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, ]}>
+						<TextField style={styles.textfieldstyle} errorStyle={styles.errorstyle}floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentsection} name="studentsection" onChange={this.handleChange} floatingLabelText="Year" />
+						</Validation>
 						</Col>
 						</Row>
 						<Row>
-						<TextField style={styles.textfieldstyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						<Validation group="myGroup1"
+		    
+					        validators={[
+							{
+					         validator: (val) => !validator.isEmpty(val),
+					         errorMessage: "Cannot be left empty"
+					        }, {
+					         validator: (val) => validator.isNumeric(val),
+					         errorMessage: "Should be a numeric number"
+					        },]}>
+						<TextField style={styles.textfieldstyle} errorStyle={styles.errorstyle}floatingLabelFocusStyle={styles.floatingLabelFocusStyle} underlineFocusStyle={styles.underlineFocusStyle} value={this.state.studentfees} name="studentfees" onChange={this.handleChange} floatingLabelText="Fee Amount" />
+						</Validation>
 						</Row>
 						</div>)
 					)}
@@ -3422,7 +3770,9 @@ var College = React.createClass({
 					:
 					(	<div>
 						<Button bsStyle="primary" onClick={this.changenext} style={styles.back} ><b>Back</b></Button>
-						<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>
+						{
+							!this.state.move ? (<Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button>):(<a href="/coupons"><Button bsStyle="primary" onClick={this.preproceedbutfunc} style={styles.proceed} ><b>Proceed</b></Button></a>)
+						}
 						</div>
 						)
 
