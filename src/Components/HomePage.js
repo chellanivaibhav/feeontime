@@ -659,7 +659,7 @@ var Mobile = React.createClass({
 				'text-align' :'center',
 				//'fontFamily':'proxima-nova',
 				'color':'#919191',
-				'margin-left' : '17.2em',
+				'margin-left' : '15.2em',
 				'margin-right':'-7.8em',
 				'padding-top' : '3em',
 				'padding-bottom' : '1.0em'
@@ -943,8 +943,8 @@ var DailyNeeds = React.createClass({
             <h4>This Feature Will Be Live Soon , Checkout Our App For Early Access</h4>
             <p>
             	<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
-				<div style={styles.play} >
-					<Image src={playstore}  />
+				<div  >
+					<Image src={playstore} style={{'margin-left':'12em','width':'40%','height':'75px'}} />
 				</div>
 			</a>
 
