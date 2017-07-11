@@ -760,8 +760,8 @@ var Footer=React.createClass({
 					<Grid>
 						<Row>
 							<Col sm="4">
-								<p style={{'font-size':'1.5em', 'color':'#4588c8', 'margin-left':'60px'}}>Pay Fees Here</p>
-								<ul style={{'color':'white','margin-top':'2.3em', 'margin-left':'14px','padding-bottom':'1em'}} >
+								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'60px'}}>Pay Fees Here</p>
+								<ul style={{color:'#817e7e','margin-top':'2.3em', 'margin-left':'14px','padding-bottom':'1em','font-size':'1.2em'}} >
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Play School</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">School</a></ul>
 									<ul style={{'padding':'0.5em','color':'#919191'}}><a href="#">College</a></ul>
@@ -775,8 +775,8 @@ var Footer=React.createClass({
 							</Col>
 
 							<Col sm="4">
-								<p style={{'font-size':'1.5em', 'color':'#4588c8', 'margin-left':'-57px'}}>Daily needs</p>
-								<ul style={{'color':'white','margin-top':'2.3em','margin-left':'-100px'}} >
+								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'-57px'}}>Daily needs</p>
+								<ul style={{'color':'white','margin-top':'2.3em','margin-left':'-100px','font-size':'1.2em'}} >
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Search Tutor</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Aptitude Test</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Online Tests</a></ul>
@@ -793,7 +793,7 @@ var Footer=React.createClass({
 							</Col>
 
 							<Col sm="2">
-								<p style={{'font-size':'1.5em', 'color':'#4588c8', 'margin-left':'-9em'}}>Shop Online</p>
+								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'-7em'}}>Shop Online</p>
 							</Col>
 						</Row>
 					</Grid>
@@ -804,16 +804,16 @@ var Footer=React.createClass({
 					
 						<Row>
 							<Col sm="2">
-								<p style={{'font-size':'1.5em', 'color':'#4588c8','margin-left':'-4.2em'}}>About Us</p>
-								<ul style={{'color':'white',' margin-right':'-55em','margin-left':'-9.2em','margin-top':'2.3em','margin-bottom':'5.3em'}} >
+								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'-3.2em'}}>About Us</p>
+								<ul style={{'color':'white',' margin-right':'-55em','margin-left':'-7.2em','margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Company</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Careers</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Benefits</a></ul>
 								</ul>
 							</Col>
 							<Col sm="2">
-								<p style={{'font-size':'1.5em', 'color':'#4588c8','margin-left':'4.2em'}}>Support</p>
-								<ul style={{'color':'white','margin-right':"-80px"}} >
+								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'1.8em'}}>Support</p>
+								<ul style={{'color':'white','margin-right':"-80px",'margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Privacy Policy</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Terms Of Use</a></ul>
 									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Disclaimer</a></ul>
@@ -822,17 +822,18 @@ var Footer=React.createClass({
 							</Col>
 
 
-							<Col sm="2" style={{'margin-right':'5em'}}>
-								<p style={{'font-size':'1.5em', 'color':'#4588c8'}}>Get In Touch</p>
-								<ul style={{'color':'white'}} >
-									<ul style={{'marginRight':'5em'}} ><a href="#" >Blog</a></ul>
-									<ul><a href="#" >Subscribe to Newsletter</a></ul>
+							<Col sm="2" style={{'margin-right':'-5em','width':'40%'}}>
+								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'2.9em'}}>Get In Touch</p>
+								<ul style={{'color':'white','margin-right':"-80px",'margin-top':'2.3em','margin-bottom':'5.3em','margin-left':'2em','font-size':'1.2em'}} >
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Blog</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Subscibe To Newsletter</a></ul>
+									
 								</ul>
 							</Col>
 						</Row>
 
 						<Row>
-							<img src={payment} />
+							<img src={payment}  style={{float:'right'}}/>
 						</Row>
 					
 				</Col>
@@ -841,19 +842,19 @@ var Footer=React.createClass({
 			<Row style={{'margin-top':'70px'}}>
 
 				<Col sm='4'>
-					<p style={{'color':'#4588c8' ,'margin-left':'15em'}}>Awards</p>
+					<p style={{'color':'#4588c8' ,'margin-left':'9em','font-size':'1.8em'}}>Awards</p>
 					<img src={awards} height="80px" width="150px" style={{'margin-left':'205px'}}/>
 				</Col>
 
 				<Col sm='5'>
-					<p style={{'color':'#4588c8'}}>Connect With Us</p>
+					<p style={{'color':'#4588c8','font-size':'1.8em','margin-left':'5em',padding:'0.3em'}}>Connect With Us</p>
 					<Row>
-					<img src={facebook}/><img src={google}/><img src={linkedin}/><img src={twitter}/><img src={insta}/><img src={youtube}/>
+					<img src={facebook} style={{'padding-right':'1.5em'}}/><img src={google} style={{'padding-right':'1.5em'}}/><img src={linkedin} style={{'padding-right':'1.5em'}}/><img src={twitter} style={{'padding-right':'1.5em'}}/><img src={insta} style={{'padding-right':'1.5em'}}/><img src={youtube} style={{'padding-right':'1.5em'}}/>
 					</Row>
 				</Col>
 
 				<Col sm='3'>
-					<p style={{'color':'#4588c8'}}>Download App</p>
+					<p style={{'color':'#4588c8','font-size':'1.8em'}}>Download App</p>
 						<Row>
 								<a href="#"><img src={playstore
 								} height="40px" width="150px" style={{'margin-left':'-40px'}}/></a>
@@ -921,6 +922,11 @@ var DailyNeeds = React.createClass({
 				'text-align':'center',
 				'font-size':'2.7em'
 			},
+			play:{
+				'width':'40%',
+				'height':'200px',
+				'float':'center',
+			},
 			leftpad: {
 				'padding-left':'10%'
 			}
@@ -931,14 +937,13 @@ var DailyNeeds = React.createClass({
 
 
 			<Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Coming Soon !</Modal.Title>
-          </Modal.Header>
+          
           <Modal.Body>
-            <h4>Checkout Fee On Time App Meanwhile </h4>
+          <h1 style={{'margin-left':'5em'}}>Coming Soon !</h1>
+            <h4>This Feature Will Be Live Soon , Checkout Our App For Early Access</h4>
             <p>
             	<a href="https://play.google.com/store/apps/details?id=com.feeontime&hl=en">
-				<div style={styles.play}>
+				<div style={styles.play} >
 					<Image src={playstore}  />
 				</div>
 			</a>
@@ -1223,19 +1228,25 @@ var Otp = React.createClass({
 				alert("Please Enter Enrollment Number ");
 
 			}
+			/*else if(Cookies.get('blah'))
+			{
+				alert('Enrollment Number Not Valid');
+			}*/
 			else
 			{
-
+				
 			this.setState({ showotp: true });
 			this.getno();
 			this.sendotp();
 			}
+			
 		}
 		else
 			this.setState({ showsnackbar: true });
 	},
 	getno :function()
 	{
+		Cookies.set('blah',false);
 		let t = this;
 		
 		//alert(this.props.studentregnum);
@@ -1249,6 +1260,7 @@ var Otp = React.createClass({
 		{	
 			
 			Cookies.set('studentphone',data[0].Phone);
+			//Cookies.set('blah',true);
 			
 		}
 
@@ -1272,7 +1284,8 @@ var Otp = React.createClass({
 			},
 			error: function (error) 
 			{
-				alert(JSON.stringify(error));
+
+				alert('Incorrect Enrollment Number');
 			}						
 		})
 
@@ -1365,6 +1378,7 @@ var Otp = React.createClass({
 			},
 			error: function (error) 
 			{
+				/*Cookies.set('blah',false);*/
 				alert(JSON.stringify(error));
 			}						
 		})
@@ -2408,7 +2422,13 @@ var Playschool = React.createClass({
 		//alert(p);
 		var n = q + p;
 		//alert(n);
+		var array1=['a','b','c'];
+		var array2=['c','d','e'];
+		//p = p.filter(val => !q.includes(val));
+		/*alert(p);
+		alert(q.name);*/
 		q.push.apply(q,p);
+		//alert(q);
 		//alert(q);
 		this.setState({ institutes: q });
 		
@@ -3816,7 +3836,7 @@ var Coaching = React.createClass({
 
 	getInitialState : function() {		
 		var p = this.getapidata();
-		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: ['']};
+		return { dispproceed: true,dispnext: false, next: false ,type:'school', selectedloclat:'',selectedloclong:'', dispotp:false , enrollmentno: '',benificiaryname:'',accountno:'',ifsccode:'', studentname: '', studentclass: '', studentsection: '', studentfees: '', controls: false, regnum: '', locationname: '',insname: '', insid: '', data:p, institutes: [''],move:false};
 	},
 
 	handleChange: function(event) {
@@ -3925,7 +3945,15 @@ var Coaching = React.createClass({
 			success: function(data)
 			{
 				var data1 = data.message;
+
+				if(data.message=="Not Fetch"){
+
+				}
+				else
+				{
+
 				do_the_stuff(data1);
+				}
 			},
 			error: function (error) 
 			{
@@ -4262,6 +4290,7 @@ var Coaching = React.createClass({
 
 				</div>
 				<div style={proceedstyle}>
+				<Button bsStyle="primary" onClick={this.changedispnext} style={styles.proceed1} ><b>Next</b></Button>
 				<Row>
 			{/*at one proceed need to change state at other need to move to /coupons*/}
 
@@ -5168,8 +5197,18 @@ var Content = React.createClass({
 
 	getInitialState: function()
 	{
-		return {activeid: '1','replaceactiveid':''}
+		return {showModal: false,activeid: '1','replaceactiveid':''}
 	},
+	
+	close() {
+    this.setState({ showModal: false });
+  	},
+
+  open() {
+    this.setState({ showModal: true });
+  },
+
+
 
 	changecontent: function(data)
 	{

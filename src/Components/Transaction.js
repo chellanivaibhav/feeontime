@@ -19,7 +19,7 @@ var Component = React.createClass({
 	getInitialState : function() {		
 		
 		return {
-value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: 'delhi', city: 'delhi',hash:'',insname:'',class:'',section:'',cccharge:0,dccharge:'',netcharge:0,internetcharge:0,totalamount:0
+value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: 'delhi', city: 'delhi',hash:'',insname:'',class:'',section:'',cccharge:0,dccharge:'',netcharge:0,internetcharge:0,totalamount:0,pcodestatus:false
 
 		};
 	},
@@ -45,6 +45,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 		//does fucntion execution after setstate  has completed
 		this.setState({ 
 			pcode: 'cc',
+			pcodestatus:false,
 			internetcharge:( this.state.cccharge/100)*Cookies.get('studentfees')
 		 }, () => { 
 		    
@@ -67,6 +68,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			
 		this.setState({ 
 			pcode: 'dc',
+			pcodestatus:false,
 			internetcharge:( this.state.dccharge/100)*Cookies.get('studentfees')
 		 }, () => { 
 		    
@@ -84,6 +86,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 
 		this.setState({ 
 			pcode: 'nb',
+			pcodestatus:false,
 			internetcharge: this.state.netcharge
 		 }, () => { 
 		    
@@ -100,9 +103,22 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 		this.aftercheck();*/
 		
 	},
+
 	aftercheck :function()
 	{
+		if(this.state.pcode=='')
+		{
+			this.setState({ 
+			pcodestatus:true
+		 }, () => { 
+		    
 		this.createTotalAmount();
+		     
+		});
+		}
+		else{
+			this.createTotalAmount();
+		}
 		//this.createHash();
 	},
 
@@ -213,6 +229,24 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 
 			
 	},
+	clicked:function()
+	{
+		if(this.state.pcode=='')
+		{	
+			this.setState({
+				pcodestatus:true
+			});
+		}
+		else
+		{
+
+			this.setstate({
+
+			})
+		}
+
+	},
+
 
 	fetchinstitutedata:function(){
 
@@ -372,12 +406,12 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 
 			</Grid>
 			<br />
-			<Grid bsClass="container">
+			<Grid bsClass="container" >
 			<Paper zDepth="1" style={{'padding-top':'1em','padding-bottom':'4em','marginBottom':'-2em','width':'160%','margin-left':'-25em','height':'625px'}}>
 			<Row>
 			<Col md="3">
 
-			<List>
+			<List style={{'border-right':'thin solid #919191'}}>
 			<ListItem style={styles.list}>
 			<Row>
 			<Col md="3">
@@ -388,7 +422,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			</Col>
 			</Row>
 			</ListItem>
-			<ListItem onClick={this.checkcc}>
+			<ListItem  onClick={this.checkcc}  >
 			<Row>
 			<Col md="3">
 			<img src={cards} height="50em" width="75%"></img>&nbsp;
@@ -462,7 +496,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<Row style={{'padding-bottom':'2.0em'}}>
 			<span align="center" style={{'margin-left':'7.5em','font-size':'2.5em','color':'#919191','padding':'1em'}}>Fees
 			</span>
-			<span align="center" style={{'margin-left':'8.7em','font-size':'2.5em','color':'#919191','padding':'1em'}}>&#8377;{Cookies.get('studentfees')}
+			<span align="center" style={{'margin-left':'9.7em','font-size':'2.5em','color':'#919191','padding':'1em'}}>&#8377;{Cookies.get('studentfees')}
 			</span>
 			</Row>
 			<Row style={{'padding-bottom':'1em'}}>
@@ -477,7 +511,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<Row style={{'padding-bottom':'2em'}}>
 			<span align="center" style={{'margin-left':'8.2em','font-size':'2.5em','color':'#919191'}}>Total Amount
 			</span>
-			<span align="center" style={{'margin-left':'6.4em','font-size':'2.5em','color':'#919191'}}>&#8377;{this.state.totalamount}
+			<span align="center" style={{'margin-left':'8.4em','font-size':'2.5em','color':'#919191'}}>&#8377;{this.state.totalamount}
 			</span>
 			</Row>
 			<hr></hr>
@@ -553,7 +587,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<input type="hidden" name="state" value={Cookies.get('studentclass')} />
 		<input type="hidden" name="country" value={Cookies.get('studentsection')} />
 			<input type="hidden" name="enforce_paymethod" value={this.state.pcode} />
-			<RaisedButton type="submit" style={styles.button1}  buttonStyle={styles.button}>Pay Now</RaisedButton>
+			<RaisedButton type="submit"  disabled={this.state.pcodestatus} style={styles.button1}  buttonStyle={styles.button}>Pay Now</RaisedButton>
 			</form>
 			</Row>
 			</Col>
