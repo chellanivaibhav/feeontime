@@ -216,7 +216,7 @@ var LoginSignupButton = React.createClass({
 			},
 		}
 		return (
-			<div style={{'zoom':'65%'}}>
+			<div style={{'zoom':'55%'}}>
 	        <Dialog
 	        titleStyle={styles.gridstyle}
 	        bodyStyle={styles.gridstyle}
@@ -254,7 +254,7 @@ var LoginSignupButton = React.createClass({
 							</Col>
 							<Col xs="12" md="6">
 							<Tabs defaultActiveKey={1} inkBarStyle={{background: '#4688C7'}} tabItemContainerStyle={styles.tabstyle} buttonStyle={styles.tabstyle}>
-								<Tab eventKey={1} label={<span style={{ 'text-transform':'capitalize', color: 'gray', fontFamily:'proxima nova' }}>Login</span>}>
+								<Tab eventKey={1} label={<span style={{ 'text-transform':'capitalize', color: 'gray' }}>Login</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 											<TextField value={this.state.loginemail} onChange={this.handleChange} name="loginemail" underlineFocusStyle={styles.underlineFocusStyle} floatingLabelFocusStyle={styles.floatingLabelFocusStyle} floatingLabelText="Email Id" type="email" />
@@ -270,7 +270,7 @@ var LoginSignupButton = React.createClass({
 										</Row>
 									</Grid>
 								</Tab>
-								<Tab eventKey={2} label={<span style={{ 'text-transform':'capitalize', color: 'gray', fontFamily:'proxima nova' }}>Sign Up</span>}>
+								<Tab eventKey={2} label={<span style={{ 'text-transform':'capitalize', color: 'gray' }}>Sign Up</span>}>
 									<Grid bsClass="container-fluid">
 										<Row>
 										<Validation group="myGroup"

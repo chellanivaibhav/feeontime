@@ -762,38 +762,38 @@ var Footer=React.createClass({
 							<Col sm="4">
 								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'60px'}}>Pay Fees Here</p>
 								<ul style={{color:'#817e7e','margin-top':'2.3em', 'margin-left':'14px','padding-bottom':'1em','font-size':'1.2em'}} >
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Play School</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">School</a></ul>
-									<ul style={{'padding':'0.5em','color':'#919191'}}><a href="#">College</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Coaching</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Tutor</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">Admission</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">Workshops</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Skill & Employability</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a href="#">Donations</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}}  href="#">Play School</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a style={{'color':'#919191'}}  href="#">School</a></ul>
+									<ul style={{'padding':'0.5em','color':'#919191'}}><a style={{'color':'#919191'}} href="#">College</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Coaching</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Tutor</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a style={{'color':'#919191'}} href="#">Admission</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a style={{'color':'#919191'}} href="#">Workshops</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Skill & Employability</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}} ><a style={{'color':'#919191'}} href="#">Donations</a></ul>
 								</ul>
 							</Col>
 
 							<Col sm="4">
-								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'-57px'}}>Daily needs</p>
-								<ul style={{'color':'white','margin-top':'2.3em','margin-left':'-100px','font-size':'1.2em'}} >
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Search Tutor</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Aptitude Test</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Online Tests</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Informative</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Admission Hotline</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">E-Learning</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Student Insurance</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Education Loan</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Education Tours</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Forex Card</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Overseas Education</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Career Counselling</a></ul>
+								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'5em'}}>Daily needs</p>
+								<ul style={{'color':'white','margin-top':'2.3em','margin-left':'5em','font-size':'1.2em'}} >
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Search Tutor</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Aptitude Test</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Online Tests</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Informative</a></ul> 
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Admission Hotline</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">E-Learning</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Student Insurance</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Education Loan</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Education Tours</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Forex Card</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Overseas Education</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Career Counselling</a></ul>
 								</ul>
 							</Col>
 
-							<Col sm="2">
-								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'-7em'}}>Shop Online</p>
+							<Col sm="3">
+								<p style={{'font-size':'1.8em', 'color':'#4588c8', 'margin-left':'3em'}}>Shop Online</p>
 							</Col>
 						</Row>
 					</Grid>
@@ -803,32 +803,33 @@ var Footer=React.createClass({
 
 					
 						<Row>
-							<Col sm="2">
-								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'-3.2em'}}>About Us</p>
-								<ul style={{'color':'white',' margin-right':'-55em','margin-left':'-7.2em','margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Company</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Careers</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Benefits</a></ul>
+							<Col sm="3">
+								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'4em'}}>About Us</p>
+								<ul style={{'color':'white',' margin-right':'-55em','margin-left':'4em','margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Company</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Careers</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Benefits</a></ul>
 								</ul>
 							</Col>
-							<Col sm="2">
-								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'1.8em'}}>Support</p>
-								<ul style={{'color':'white','margin-right':"-80px",'margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Privacy Policy</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Terms Of Use</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Disclaimer</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Contact Us</a></ul>
+							<Col sm="4">
+								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'5em'}}>Support</p>
+								<ul style={{'color':'white','margin-left':"5em",'margin-top':'2.3em','margin-bottom':'5.3em','font-size':'1.2em'}} >
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Privacy Policy</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Terms Of Use</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Disclaimer</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Contact Us</a></ul>
 								</ul>
 							</Col>
 
 
 							<Col sm="2" style={{'margin-right':'-5em','width':'40%'}}>
 								<p style={{'font-size':'1.8em', 'color':'#4588c8','margin-left':'2.9em'}}>Get In Touch</p>
-								<ul style={{'color':'white','margin-right':"-80px",'margin-top':'2.3em','margin-bottom':'5.3em','margin-left':'2em','font-size':'1.2em'}} >
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Blog</a></ul>
-									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a href="#">Subscibe To Newsletter</a></ul>
-									
+								<div style={{'color':'#919191'}}>
+								<ul style={{'color':'#919191','margin-right':"-80px",'margin-top':'2.3em','margin-bottom':'5.3em','margin-left':'2em','font-size':'1.2em'}} >
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Blog</a></ul>
+									<ul style={{'padding':'0.5em','color':'#817e7e'}}><a style={{'color':'#919191'}} href="#">Subscibe To Newsletter</a></ul>
 								</ul>
+								</div>	
 							</Col>
 						</Row>
 
