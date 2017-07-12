@@ -391,7 +391,7 @@ value : '', amount: '', pcode: '', firstname: '', email: '', phone:0, address: '
 			<Col xs="12" md="8">
 			<Row>
 			<span style={{'margin-left':'7em','display': 'inline-block','font-size':'2.0em', 'width':'660px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}>{Cookies.get('insname')} , {Cookies.get('locationname')}</span>
-			<span style={{'margin-left':'1em','display': 'inline-block','font-size':'2.0em', 'width':'160px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}> &#8377;{this.state.amount}</span>
+			<span style={{'margin-left':'1em','display': 'inline-block','font-size':'2.0em', 'width':'160px','color':'#797979','word-wrap':'break-word','margin-top':'m'}}> &#8377;{this.state.totalamount}</span>
 			
 			</Row>
 
